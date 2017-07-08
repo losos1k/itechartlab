@@ -1,5 +1,4 @@
 body{
-    margin: 0;
     padding: 0;
     width: 1170px;
     font-family: 'Source Sans Pro', sans-serif;
@@ -8,9 +7,30 @@ body{
 
 .wrapper{
     display: grid;
-    grid-template-columns: 70px auto;    
 }
 
-.column{
-    
+.wrapper-header{
+    grid-template-columns: 100px 470px;
+    grid-gap: 600px;
+}
+
+.indents0{
+    margin: 0;
+    padding: 0;
+}
+
+.margin-top-bottom_80px{
+    margin: 80px 0px 80px 0px;
+}
+
+.padding-top-bottom_80px{
+    padding: 80px 0px 80px 0px;
+}
+
+ul.menu{
+    list-style-type: none;
+}
+
+li.menu__item{
+    display: inline;
 }
