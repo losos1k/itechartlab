@@ -10,3 +10,26 @@ header{
     font-size: 26px;
     color: white;
 }
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    list-style-type: none;
+    
+}
+
+.menu__item{
+    display: inline;
+    margin-left: 47px; 
+}
+
+li a{
+    color: white;
+    text-decoration: none;
+}
+
+li a:hover{
+    color: white;
+    text-decoration: underline;
+}

@@ -26,11 +26,3 @@ body{
 .padding-top-bottom_80px{
     padding: 80px 0px 80px 0px;
 }
-
-ul.menu{
-    list-style-type: none;
-}
-
-li.menu__item{
-    display: inline;
-}

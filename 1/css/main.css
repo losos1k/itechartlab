@@ -2,6 +2,7 @@
     background-color: #38373b;
     height: 140px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
@@ -9,17 +10,16 @@
 
 .slogan__main-text{
     font-weight: 300;
-    font-size: 40px;
+    font-size: 28px;
     text-transform: uppercase;
     color: white;
     text-align: center;
-    letter-spacing: 2px;
+    letter-spacing: 6px;
 }
 
 .slogan__addit-text{
     font-weight: 300;
     font-size: 20px;
-    text-transform: uppercase;
     color: white;
     text-align: center;
     letter-spacing: 2px;
