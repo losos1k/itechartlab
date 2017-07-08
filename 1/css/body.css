@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 1170px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin:auto
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 70px auto;    
+}
+
+.column{
+    
+}
