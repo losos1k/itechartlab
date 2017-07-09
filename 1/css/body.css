@@ -14,20 +14,6 @@ body{
     grid-gap: 600px;
 }
 
-.indents0{
-    margin: 0;
-    padding: 0;
-}
-
-.padding-top-bottom_80px{
-    padding: 80px 0px 80px 0px;
-}
-
-.margin-top-bottom-30px{
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
 .link_color{
     color: #db5940;
     text-decoration: none;

@@ -29,27 +29,27 @@
     height: 400px;
 }
 
-.main-sec1-wrapper{
+.main-info-wrapper{
     grid-template-columns: repeat(3, 370px);
     grid-gap: 30px;
     height: 260px;
     background-color: #f4f4f4;
 }
 
-.main-sec1{
+.main-info{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-.main-sec1__title{
+.main-info__title{
     font-weight: 300;
     font-size: 31px;
     color: #9a98a2;    
 }
 
-.main-sec1__text{
+.main-info__text{
     text-align: center;
     margin-left: 19px;
     margin-right: 19px;
