@@ -35,16 +35,18 @@
 }
 
 .contact-form__input{
-    width: 455px;
+    width: 440px;
     height: 47px;
     border: 0;
     background-color: #db5940;
     border-radius: 5px 0px 0px 5px;
     font-size: 15px;
+    color: #e5dede;
+    padding-left: 20px;
 }
 
 .contact-form__input::-webkit-input-placeholder{
-    color: white;
+    color: #e5dede;
 }
 
 .contact-form__button{
