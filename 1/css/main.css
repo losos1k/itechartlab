@@ -61,11 +61,11 @@
 .main-preview-wrapper{
     grid-template-columns: 370px 200px 30px 200px 370px;    
     background-color: #ffffff;
-    height: 200px;    
+    height: 201px;    
 }
 
 .main-preview__pic{
-    width: 200px;
+    width: 201px;
     border-radius: 50%;
 }
 
