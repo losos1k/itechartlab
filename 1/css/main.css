@@ -50,15 +50,41 @@
 
 .main-sec1__text{
     text-align: center;
+    margin-left: 19px;
+    margin-right: 19px;
+    font-size: 17px;
 }
 
 .main-preview-wrapper{
-    grid-template-columns: 370px 200px 30px 200px 370px;    
     height: 462px;
+}
+.main-preview-wrapper{
+    grid-template-columns: 370px 200px 30px 200px 370px;    
     background-color: #ffffff;
+    height: 200px;    
 }
 
 .main-preview__pic{
     width: 200px;
     border-radius: 50%;
+}
+
+.main-preview__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.text-align_left{
+    text-align: end;
+}
+
+.text-align_right{
+    text-align: start;    
+}
+
+.main-preview__text{
+    line-height: 25px;
+    margin-right: 30px;
+    margin-left: 30px;
 }
