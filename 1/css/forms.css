@@ -26,7 +26,8 @@
     border-radius: 5px 0px 0px 5px;
     font-size: 15px;
     color: #e5dede;
-    padding-left: 20px;
+    padding: 0px 0px 0px 20px;
+    margin: 0;
 }
 
 .contact-form__input::-webkit-input-placeholder{
