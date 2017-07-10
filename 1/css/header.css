@@ -3,6 +3,11 @@ header{
     height: 80px;
 }
 
+.wrapper-header{
+    grid-template-columns: 10% 40%;
+    grid-gap: 50%;
+}
+
 .logo{
     display: inline-block;
     margin-top: 23px;

@@ -9,12 +9,11 @@ body{
     display: grid;
 }
 
-.wrapper-header{
-    grid-template-columns: 100px 470px;
-    grid-gap: 600px;
-}
-
 .link_color{
     color: #db5940;
+    text-decoration: none;
+}
+
+a{
     text-decoration: none;
 }

@@ -1,22 +1,23 @@
 .menu{
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     list-style-type: none;
-    
 }
 
 .menu__item{
-    display: inline;
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    vertical-align: middle;
     margin-left: 47px; 
+    padding: 0px 5px 0px 5px;
 }
 
-li a{
+a .menu__item{
     color: white;
     text-decoration: none;
 }
 
-li a:hover{
-    color: white;
-    text-decoration: underline;
+.menu__item:hover{
+    background-color: #d0563e;
 }
