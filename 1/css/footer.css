@@ -9,9 +9,13 @@
     grid-template-columns: 70px 30px 270px; 
 }
 
-.social__text{
+.social__text, .social__text a{
     margin: auto 0px;
     color: #9a98a2;
+}
+
+.social__text a:hover{
+    text-decoration: underline;
 }
 
 .copyright{
