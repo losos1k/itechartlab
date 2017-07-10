@@ -1,11 +1,12 @@
 .slogan{
     background-color: #38373b;
-    height: 140px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
 
 .slogan__main-text{
@@ -30,9 +31,8 @@
 }
 
 .main-info-wrapper{
-    grid-template-columns: repeat(3, 370px);
-    grid-gap: 30px;
-    height: 260px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5%;
     background-color: #f4f4f4;
 }
 
@@ -41,40 +41,37 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-.main-info__icon{
-    height: 100px;
+    height: 260px;    
 }
 
 .icon__circle{
-    position: relative;    
+    display: flex;
+    justify-content: center;
+    align-items: center;   
     width: 94px;
     height: 94px;
     background-color: transparent;
     border-radius: 50%;
     border: 3px solid #9a98a2;
-    z-index: 1;
 }
 
 .icon{
     position: relative;
-    z-index: 2;    
 }
 
 .icon_heart{
-    top: -70px;
-    left: 25px;
+    left: 1px;
+    top: 2px;
 }
 
 .icon_pencil{
-    top: -74px;
-    left: 30px;
+    left: 1px;
+    bottom: 1px;
 }
 
 .icon_flag{
-    top: -74px;
-    left: 39px;
+    left: 7px;
+    top: 1px;
 }
 
 .main-info__title{
@@ -91,9 +88,6 @@
     color: #9a98a2;    
 }
 
-.main-preview-wrapper{
-    height: 462px;
-}
 .main-preview-wrapper{
     grid-template-columns: 370px 200px 30px 200px 370px;    
     background-color: #ffffff;

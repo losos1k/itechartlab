@@ -3,13 +3,12 @@ footer{
 }
 
 .social{
-    height: 70px;
-    grid-template-columns: repeat(3, 370px);
-    grid-gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2.5%;
 }
 
 .social__item{
-    grid-template-columns: 70px 30px 270px; 
+    grid-template-columns: 19% 8% 73%;
 }
 
 .social__text, .social__text a{
