@@ -9,8 +9,7 @@
     align-items: center;
     height: 100%;
     vertical-align: middle;
-    margin-left: 36px; 
-    padding: 0px 5px 0px 5px;
+    padding: 0px 21px 0px 21px;
 }
 
 a .menu__item{
@@ -19,5 +18,5 @@ a .menu__item{
 }
 
 .menu__item:hover{
-    background-color: #d0563e;
+    background-color: #c74b33;
 }
