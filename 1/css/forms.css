@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
     background-color: #38373b;
-    height: 290px;
 }
 
 .contact-form__title{
@@ -12,10 +11,6 @@
     font-size: 28px;
     color: #9a98a2;
     letter-spacing: 5px;
-}
-
-.contact-form{
-    margin-top: 19px;
 }
 
 .contact-form__input{
