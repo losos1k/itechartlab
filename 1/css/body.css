@@ -17,3 +17,16 @@ body{
 a{
     text-decoration: none;
 }
+
+.icon__circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    background-color: transparent;
+    border-radius: 50%;
+    border: 3px solid #9a98a2;
+}
+
+.icon{
+    position: relative;
+}

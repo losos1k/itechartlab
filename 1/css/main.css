@@ -44,19 +44,9 @@
     height: 260px;    
 }
 
-.icon__circle{
-    display: flex;
-    justify-content: center;
-    align-items: center;   
+.main-info__icon-circle{
     width: 94px;
     height: 94px;
-    background-color: transparent;
-    border-radius: 50%;
-    border: 3px solid #9a98a2;
-}
-
-.icon{
-    position: relative;
 }
 
 .icon_heart{

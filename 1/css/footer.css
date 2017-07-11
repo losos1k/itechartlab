@@ -24,6 +24,11 @@ footer{
     padding: 80px 0px 79px 0px; 
 }
 
+.social__icon-circle{
+    width: 64px;
+    height: 64px;
+}
+
 .hr-footer{
     height: 0;
     text-align: center;
