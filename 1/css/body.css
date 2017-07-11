@@ -1,12 +1,18 @@
 body{
     padding: 0;
-    width: 1170px;
     font-family: 'Source Sans Pro', sans-serif;
-    margin:auto
+    margin:auto;
 }
 
 .wrapper{
     display: grid;
+}
+
+.container{
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
 }
 
 .link_color{

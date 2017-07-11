@@ -6,6 +6,7 @@ header{
 .wrapper-header{
     grid-template-columns: 10% 40%;
     grid-gap: 50%;
+    height: 100%;
 }
 
 .logo{
