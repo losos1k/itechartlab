@@ -84,12 +84,12 @@
 }
 
 .main-preview-wrapper{
-    grid-template-columns: 370px 200px 30px 200px 370px;    
+    grid-template-columns: 1fr 201px 30px 201px 1fr;    
     background-color: #ffffff;
 }
 
 .main-preview__pic{
-    width: 201px;
+    width: 100%;
     border-radius: 50%;
 }
 
