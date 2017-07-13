@@ -6,6 +6,12 @@
     background-color: #38373b;
 }
 
+.contact-form{
+    width: 48.7%;    
+    height: 47px;
+    display: flex;
+}
+
 .contact-form__title{
     font-weight: 300;
     font-size: 28px;
@@ -14,15 +20,8 @@
     margin-top: 50px;
 }
 
-@media (min-width: 768px) and (max-width: 1024px){
-    .contact-form__title{
-        margin-top: 20px;
-    }
-}
-
 .contact-form__input{
-    width: 440px;
-    height: 47px;
+    width: 79%;
     border: 0;
     background-color: #db5940;
     border-radius: 5px 0px 0px 5px;
@@ -37,13 +36,29 @@
 }
 
 .contact-form__button{
-    width: 115px;
-    height: 47px;    
+    width: 21%;
     border: 0;
     border-radius: 0px 5px 5px 0px;    
     background-color: #f4f4f4;
     color: #db5940;
     padding: 0;
-    font-size: 15px;
-    margin-left: -4px;
+    font-size: 1.2vmax;
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+    .contact-form__title{
+        margin-top: 20px;
+    }
+    .contact-form__button{
+        font-size: 1.5vmax;        
+    }
+}
+
+@media (max-width: 768px){
+    .contact-form{
+        width: 95%;
+    } 
+    .contact-form__button{
+        font-size: 2vmax;
+    }
 }

@@ -8,7 +8,7 @@ footer{
 }
 
 .social__item{
-    grid-template-columns: 19% 8% 73%;
+    grid-template-columns: 27% 73%;
 }
 
 .social__text, .social__text a{
@@ -29,6 +29,23 @@ footer{
     height: 64px;
 }
 
+.hr-footer{
+    height: 0;
+    text-align: center;
+    border: #4f4e53 0.5px solid;
+    margin: auto;
+}
+
+.copyright{
+    color: #9a98a2;
+    text-align: center;
+}
+
+.copyright_indents{
+    padding-top: 40px;
+    padding-bottom: 58px;
+}
+
 @media (min-width: 768px) and (max-width: 1024px){
     .social__icon-circle{
         width: 40px;
@@ -45,19 +62,25 @@ footer{
     }
 }
 
-.hr-footer{
-    height: 0;
-    text-align: center;
-    border: #4f4e53 0.5px solid;
-    margin: auto;
-}
-
-.copyright{
-    color: #9a98a2;
-    text-align: center;
-}
-
-.copyright_indents{
-    padding-top: 40px;
-    padding-bottom: 58px;
+@media (max-width: 768px){
+    .social{
+        grid-template-columns: initial;
+    }
+    .social__icon-circle{
+        width: 40px;
+        height: 40px;
+        margin-left: 30px;
+    }
+    .social__icon{
+        width: 50%;
+    }
+    .social__item{
+        grid-template-columns: 15% 85%;
+    }
+    .social_padding{
+    padding: 50px 0px 50px 0px; 
+    }
+    .social__item:not(:nth-last-child){
+        margin-bottom: 20px;
+    }
 }
