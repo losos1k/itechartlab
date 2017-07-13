@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.padding-top-bottom_80px{
+.main-blocks-padding{
     padding: 80px 0px 80px 0px;
 }
 
@@ -17,7 +17,7 @@
 }
 
 @media (max-width: 1024px){
-    .padding-top-bottom_80px{
+    .main-blocks-padding{
         padding: 50px 0px 50px 0px;    
     }
 }
