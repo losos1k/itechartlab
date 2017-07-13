@@ -1,0 +1,18 @@
+header{
+    background-color: #db5940;
+    height: 80px;
+}
+
+.wrapper-header{
+    grid-template-columns: 10% 40%;
+    grid-gap: 50%;
+    height: 100%;
+}
+
+.logo{
+    display: inline-block;
+    margin-top: 23px;
+    font-weight: 300;
+    font-size: 26px;
+    color: white;
+}
