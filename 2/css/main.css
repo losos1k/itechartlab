@@ -84,29 +84,32 @@
     color: #9a98a2;    
 }
 
-.main-preview-wrapper{
-    grid-template-columns: 1fr 201px 30px 201px 1fr;    
-    background-color: #ffffff;
+.main-preview{
+    display: flex;
+    justify-content: space-around;
 }
 
-@media (min-width: 768px) and (max-width: 1024px){
-    .main-preview-wrapper{
-        grid-template-columns: 1fr 130px 15px 130px 1fr;   
-    }
+.main-preview-content{
+    width: 47%;
+    background-color: #ffffff;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .main-preview__pic{
-    width: 100%;
+    width: 201px;
     border-radius: 50%;
 }
 
 @media (min-width: 768px) and (max-width: 1024px){
     .main-preview__pic{
-        margin-top: 30%; 
+        width: 150px; 
     }
 }
 
 .main-preview__info{
+    width: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
