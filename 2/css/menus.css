@@ -39,7 +39,7 @@ a .menu__item{
         font-size: 1.5em;
     }
     .menu.responsive {position: relative;}
-    .menu.responsive .icon {
+    .menu.responsive .header-menu__icon {
         position: absolute;
         right: 0;
         top: 0;
