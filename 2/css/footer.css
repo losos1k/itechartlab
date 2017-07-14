@@ -75,12 +75,12 @@ footer{
         width: 50%;
     }
     .social__item{
-        grid-template-columns: 15% 85%;
+        grid-template-columns: 22% 78%;
     }
     .social_padding{
     padding: 50px 0px 50px 0px; 
     }
-    .social__item:not(:nth-last-child){
+    .social__item:not(:nth-last-child(1)){
         margin-bottom: 20px;
     }
 }
