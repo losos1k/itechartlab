@@ -4,8 +4,8 @@ header{
 }
 
 .wrapper-header{
-    grid-template-columns: 10% 40%;
-    grid-gap: 50%;
+    display: flex;
+    justify-content: space-between;
     height: 100%;
 }
 
@@ -15,4 +15,14 @@ header{
     font-weight: 300;
     font-size: 26px;
     color: white;
+}
+
+@media (max-width: 768px){
+    header{
+        height: 100%;
+    }
+    .wrapper-header{
+        display: block;
+        height: 100%;
+    }
 }

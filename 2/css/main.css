@@ -102,6 +102,7 @@
 
 .main-preview-content:nth-child(odd) {
     text-align: end;
+    clear: left;
 }
 
 .main-preview-content:nth-child(even) {
