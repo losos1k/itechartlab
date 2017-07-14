@@ -37,9 +37,10 @@ a .menu__item{
         float: right;
         color: white;
         font-size: 1.5em;
+        margin: 20px 20px 0 0;
     }
     .menu.responsive {position: relative;}
-    .menu.responsive .header-menu__icon {
+    .responsive .header-menu__icon {
         position: absolute;
         right: 0;
         top: 0;
