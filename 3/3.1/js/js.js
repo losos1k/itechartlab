@@ -1,15 +1,35 @@
 var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
 
 function format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE){
-    var DD = +insDate.substr(INPUT_TEMPLATE.indexOf('D'), INPUT_TEMPLATE.split('D').length - 1);
-    var MM = +insDate.substr(INPUT_TEMPLATE.indexOf('M'), INPUT_TEMPLATE.split('M').length - 1);
-    var YYYY = +insDate.substr(INPUT_TEMPLATE.indexOf('Y'), INPUT_TEMPLATE.split('Y').length - 1);
-    OUTPUT_TEMPLATE = DD + '-' + MM + '-' + YYYY;
-    var DATE = new Date(YYYY, (MM-1), DD); 
-    console.log(DATE);      
-    return OUTPUT_TEMPLATE;
+    var months = ['January', 
+        'February', 
+        'March', 
+        'April', 
+        'May', 
+        'June', 
+        'July', 
+        'August', 
+        'September', 
+        'October',
+        'November',
+        'December'];
+    var day = +insDate.substr(INPUT_TEMPLATE.search(/D/), INPUT_TEMPLATE.match(/D/g).length);
+    var month = +insDate.substr(INPUT_TEMPLATE.search(/M/), INPUT_TEMPLATE.match(/M/g).length);
+    var year = +insDate.substr(INPUT_TEMPLATE.search(/Y/), INPUT_TEMPLATE.match(/Y/g).length);
+    var date = OUTPUT_TEMPLATE.replace(/D+/, day).replace(/M+/, month).replace(/Y+/, year);      
+    var DATE = new Date(year, (month-1), day); 
+
+    if (/month/.test(OUTPUT_TEMPLATE)){
+        date = OUTPUT_TEMPLATE.replace(/D+/, day).replace(/month/, months[month-1]).replace(/Y+/, year); 
+    };
+
+    return date;
 }
 
-//console.log(format('31102011', 'DDMMYYYY', 'DD-MM-YYYY'));
-console.log(format('20130431', 'YYYYMMDD', 'DD-MM-YYYY'));
+console.log(format('31102011', 'DDMMYYYY', 'DD-MM-YYYY'));
+console.log(format('20130430', 'YYYYMMDD', 'DD-MM-YYYY'));
+console.log(format('2013-06-29', 'YYYY-MM-DD', 'DD month YYYY'));
+
+
+
 
