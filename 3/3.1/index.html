@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script type="text/javascript" src="js/main.js"></script>                    
         <script type="text/javascript" src="js/js.js"></script>            
     </head>
     <body>
+        <form id="form">
+            Enter date: <input type="text" id="insDate" placeholder="31102011"><br>
+            Enter input date template: <input type="text" name="INPUT_TEMPLATE" placeholder="DDMMYYYY"><br>
+            Enter output date template: <input type="text" name="OUTPUT_TEMPLATE" placeholder="DD-MM-YYYY"><br>
+            <input onclick='format()' type="submit" value="Submit">
+        </form>
+        <p id="result"></p>
     </body>
 </html>
