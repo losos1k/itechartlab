@@ -82,3 +82,5 @@ mod = (function() {
     }
     
 })();
+
+console.log(insDate);
