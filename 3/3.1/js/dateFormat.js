@@ -24,8 +24,6 @@ mod = (function() {
         }
 
     var format = function(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
-        
-        if ((/[DMY]/g.test(INPUT_TEMPLATE)) && (/[DMY]/g.test(OUTPUT_TEMPLATE))){
             
             if (typeof(insDate) === 'number'){
             DATE = new Date(insDate);
@@ -56,11 +54,7 @@ mod = (function() {
             }
             
         return date; 
-        
-    } else {
-            alert('Inputed date template is incorrect!');
-        }   
-     }
+    }
 
     var fromNow = function(insDate, INPUT_TEMPLATE) {
         day = getDate(/D/g);
@@ -76,8 +70,9 @@ mod = (function() {
         diff = (now-DATE)/msInYear;
         absDiff = Math.abs(diff);
 
-        return Math.round(absDiff) + ' from now';
+        return Math.round(absDiff) + ' years from now';
     };
+    
 
     return {
         format,

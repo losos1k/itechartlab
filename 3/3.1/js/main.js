@@ -11,12 +11,25 @@ function btnClick (e){
     insDate = document.forms["form"].elements["insDate"].value;
     INPUT_TEMPLATE = document.forms["form"].elements["INPUT_TEMPLATE"].value;
     OUTPUT_TEMPLATE = document.forms["form"].elements["OUTPUT_TEMPLATE"].value;
-    document.getElementById("resultDate").innerHTML = mod.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
+        if ((INPUT_TEMPLATE.indexOf('D')!=-1) && (INPUT_TEMPLATE.indexOf('M')!=-1) && (INPUT_TEMPLATE.indexOf('Y')!=-1) &&
+            (OUTPUT_TEMPLATE.indexOf('D')!=-1) && ((OUTPUT_TEMPLATE.indexOf('M')!=-1) || (OUTPUT_TEMPLATE.indexOf('month')!=-1)) &&
+            (OUTPUT_TEMPLATE.indexOf('Y')!=-1)){
+            document.getElementById("resultDate").innerHTML = mod.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
+            }
+        else {
+            alert('Inputed date template is incorrect!');
+        }
+
 };
 
 function btnFromNow (e){
     e.preventDefault();
     insDate = document.forms["form"].elements["insDate"].value;
     INPUT_TEMPLATE = document.forms["form"].elements["INPUT_TEMPLATE"].value;
-    document.getElementById("resultFromNow").innerHTML = mod.fromNow(insDate, INPUT_TEMPLATE);
+    if ((INPUT_TEMPLATE.indexOf('D')!=-1) && (INPUT_TEMPLATE.indexOf('M')!=-1) && (INPUT_TEMPLATE.indexOf('Y')!=-1)){
+            document.getElementById("resultFromNow").innerHTML = mod.fromNow(insDate, INPUT_TEMPLATE);
+            }
+        else {
+            alert('Inputed date template is incorrect!');
+        }
 };
