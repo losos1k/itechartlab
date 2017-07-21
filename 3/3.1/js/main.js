@@ -1,12 +1,22 @@
-//var date = mod.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
 var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
 
-submitBtn.onclick = function (){
+var submitBtn = document.getElementById("submitBtn");
+var fromNow = document.getElementById("fromNow");
+
+submitBtn.addEventListener("click", btnClick);
+fromNow.addEventListener("click", btnFromNow);
+
+function btnClick (e){
+    e.preventDefault();
     insDate = document.forms["form"].elements["insDate"].value;
     INPUT_TEMPLATE = document.forms["form"].elements["INPUT_TEMPLATE"].value;
     OUTPUT_TEMPLATE = document.forms["form"].elements["OUTPUT_TEMPLATE"].value;
-    console.log(insDate); 
-    return false;   
+    document.getElementById("resultDate").innerHTML = mod.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
 };
 
-console.log(insDate);
+function btnFromNow (e){
+    e.preventDefault();
+    insDate = document.forms["form"].elements["insDate"].value;
+    INPUT_TEMPLATE = document.forms["form"].elements["INPUT_TEMPLATE"].value;
+    document.getElementById("resultFromNow").innerHTML = mod.fromNow(insDate, INPUT_TEMPLATE);
+};

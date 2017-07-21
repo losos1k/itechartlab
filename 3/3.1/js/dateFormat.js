@@ -25,7 +25,7 @@ mod = (function() {
 
     var format = function(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
         
-        if ((/[DMY]/g.test(INPUT_TEMPLATE)) && (/[DMY|DmonthY]/g.test(OUTPUT_TEMPLATE))){
+        if ((/[DMY]/g.test(INPUT_TEMPLATE)) && (/[DMY]/g.test(OUTPUT_TEMPLATE))){
             
             if (typeof(insDate) === 'number'){
             DATE = new Date(insDate);
@@ -46,6 +46,7 @@ mod = (function() {
             year = getDate(/Y/g);
             
             if ((/\d{2}/.test(day)) && (/\d{2}/.test(month)) && (/\d{4}/.test(year))) {
+                
                 date = OUTPUT_TEMPLATE.replace(/D+/, day).replace(/M+/, month).replace(/Y+/, year);      
                 if (/month/.test(OUTPUT_TEMPLATE)){
                     date = OUTPUT_TEMPLATE.replace(/D+/, day).replace(/month/, months[month-1]).replace(/Y+/, year); 
@@ -55,12 +56,13 @@ mod = (function() {
             }
             
         return date; 
+        
     } else {
-            console.log('Error!');
+            alert('Inputed date template is incorrect!');
         }   
-    }
+     }
 
-    var fromNow = function(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
+    var fromNow = function(insDate, INPUT_TEMPLATE) {
         day = getDate(/D/g);
 
         month = getDate(/M/g);        
@@ -72,8 +74,9 @@ mod = (function() {
         var now = new Date();
         
         diff = (now-DATE)/msInYear;
+        absDiff = Math.abs(diff);
 
-        return Math.round.abs(diff) + ' years ago';
+        return Math.round(absDiff) + ' from now';
     };
 
     return {
@@ -82,5 +85,3 @@ mod = (function() {
     }
     
 })();
-
-console.log(insDate);
