@@ -66,20 +66,20 @@ var mod = (function () {
             return newNode;
         }
 
-        this.findValue = function (value) {
-            console.log(find(value, this.root));
+        this.findValue = function (insExp) {
+            console.log(find(insExp, this.root));
         };
 
-        function find(value, treeNode) {
+        function find(insExp, treeNode) {
             var occurrences = [];
             for (var prop in treeNode.content) {
-                if (treeNode.content[prop].toString() == value.toString() || treeNode.content[prop].toString().includes(value.toString())) {
+                if (treeNode.content[prop].toString() == insExp.toString() || treeNode.content[prop].toString().includes(insExp.toString())) {
                     occurrences.push(treeNode.content[prop]);
                 }
             }
             if (treeNode.children !== null) {
                 for (var i = 0; i < treeNode.children.length; i++) {
-                    occurrences = occurrences.concat(find(value, treeNode.children[i]));
+                    occurrences = occurrences.concat(find(insExp, treeNode.children[i]));
                 }
             }
             return occurrences;
