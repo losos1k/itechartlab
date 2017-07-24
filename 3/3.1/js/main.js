@@ -1,4 +1,5 @@
 (function inputData() {
+
     var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
 
     var submitBtn = document.getElementById("submitBtn");
@@ -44,14 +45,4 @@
             alert('Inputed date template is incorrect!');
         }
     };
-
-    var dateFormat = new DateFormatter();
-    console.log(dateFormat);
-
-    return {
-        btnClick,
-        btnFromNow
-    }
-
 })();
-
