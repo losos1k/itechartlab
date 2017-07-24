@@ -1,4 +1,8 @@
-mod = (function () {
+function DateFormatter() {
+
+    this.insDate = insDate;
+    this.INPUT_TEMPLATE = INPUT_TEMPLATE;
+    this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
 
     var DATE, year, month, day, date;
 
@@ -31,7 +35,7 @@ mod = (function () {
         return ((/\d{2}/.test(day)) && (/\d{2}/.test(month)) && (/\d{4}/.test(year)));
     }
 
-    var format = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
+    this.format = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
         if (typeof (insDate) === 'number') {
             DATE = new Date(insDate);
@@ -63,10 +67,10 @@ mod = (function () {
                 resultDate.style.display = "none";
             }
         }
+    };
 
-    }
+    this.fromNow = function (insDate, INPUT_TEMPLATE) {
 
-    var fromNow = function (insDate, INPUT_TEMPLATE) {
         day = getDate(/D/g);
         month = getDate(/M/g);
         year = getDate(/Y/g);
@@ -92,4 +96,4 @@ mod = (function () {
         fromNow
     }
 
-})();
+}; 

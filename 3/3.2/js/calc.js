@@ -1,7 +1,7 @@
 'use strict';
 
 var mod = (function () {
-    const elemerators = {
+    const operations = {
         '+': (x, y) => x + y,
         '-': (x, y) => x - y,
         '*': (x, y) => x * y,
@@ -15,16 +15,17 @@ var mod = (function () {
         '-': 1
     };
 
-    var formExp;
+    var formExp, outputExp;
 
     var inputStrParse = function (insExp) {
-        var stack = [];
-        var output = [];
+        let stack = [];
+        let output = [];
+        let stackTop = 0;
 
         insExp.split(' ').forEach(function (elem) {
             if (elem in priorities) {
-                stack.push(elem);
-                var stackTop = stack.slice(-1)[0];
+                stackTop = stack.slice(-1)[0];
+                stack.push(elem);                
                 
                 if (priorities[elem] > priorities[stackTop]) {
                     output.push(stack.pop());
@@ -33,29 +34,30 @@ var mod = (function () {
                 output.push(elem);
             }
         });
-        formExp = output.concat(stack);
 
-        return formExp;
+        return output.concat(stack);
     }
 
-    var calc = function (formExp) {
-        var stack = [];
+    // var calc = (function (formExp) {
+    //         let stack = [];
+    //         console.log(typeof(formExp));
+    //         formExp.forEach(function (elem) {
+    //             if (elem in operations) {
+    //                 var [y, x] = [stack.pop(), stack.pop()];
+    //                 stack.push(operations[elem](x, y));
+    //             } else {
+    //                 stack.push(parseFloat(elem));
+    //             }
+    //         });
 
-        insExp.split(' ').forEach(function (elem) {
-            if (elem in elemerators) {
-                var [y, x] = [stack.pop(), stack.pop()];
-                stack.push(elemerators[elem](x, y));
-            } else {
-                stack.push(parseFloat(elem));
-            }
-        });
+    //         outputExp = stack.pop()
 
-        return stack.pop();
-    }
+    //         return outputExp;
+    //     })();
+
 
     return {
-        inputStrParse,
-        calc
+        inputStrParse
     }
 
 })();
