@@ -20,44 +20,46 @@ var mod = (function () {
     var inputStrParse = function (insExp) {
         let stack = [];
         let output = [];
-        let stackTop = 0;
 
         insExp.split(' ').forEach(function (elem) {
             if (elem in priorities) {
-                stackTop = stack.slice(-1)[0];
-                stack.push(elem);                
-                
-                if (priorities[elem] > priorities[stackTop]) {
-                    output.push(stack.pop());
+                var stackTop = stack.slice(-1)[0];
+
+                if (priorities[elem] <= priorities[stackTop]) {
+                    while ((stack.length > 0) && (priorities[elem] <= priorities[stackTop])) {
+                        output.push(stack.pop());
+                    }
                 }
+                stack.push(elem);
+
             } else {
                 output.push(elem);
             }
         });
 
-        return output.concat(stack);
+        formExp = output.concat(stack.reverse());
+
+        return calc(formExp);
     }
 
-    // var calc = (function (formExp) {
-    //         let stack = [];
-    //         console.log(typeof(formExp));
-    //         formExp.forEach(function (elem) {
-    //             if (elem in operations) {
-    //                 var [y, x] = [stack.pop(), stack.pop()];
-    //                 stack.push(operations[elem](x, y));
-    //             } else {
-    //                 stack.push(parseFloat(elem));
-    //             }
-    //         });
+    var calc = function (formExp) {
+        let stack = [];
+        console.log(typeof (formExp));
+        formExp.forEach(function (elem) {
+            if (elem in operations) {
+                var [y, x] = [stack.pop(), stack.pop()];
+                stack.push(operations[elem](x, y));
+            } else {
+                stack.push(parseFloat(elem));
+            }
+        });
 
-    //         outputExp = stack.pop()
-
-    //         return outputExp;
-    //     })();
-
+        return stack.pop();
+    };
 
     return {
-        inputStrParse
+        inputStrParse,
+        calc
     }
 
 })();
