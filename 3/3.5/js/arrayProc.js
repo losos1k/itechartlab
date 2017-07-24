@@ -1,7 +1,9 @@
+'use strict';
+
 var mod = (function () {
 
     var insExpArr;
-    
+
     var stringToArray = function (insExp) {
         insExpArr = insExp.split(' ');
         for (var i = 0; i < insExpArr.length; i++) {
@@ -18,8 +20,8 @@ var mod = (function () {
         }
     }
 
+    var getMaxSubSum = function (insExpArr) {
 
-    function getMaxSubSum(insExpArr) {
         return insExpArr.reduce((obj, elem, i) => {
             if (elem < 0) {
                 obj.current = Math.max(obj.current + elem, 0);
@@ -36,19 +38,28 @@ var mod = (function () {
         }, { max: 0, current: 0, positive: 0 });
     }
 
-    function searchMin(insExpArr){
+    function searchMin(insExpArr) {
         return Math.min.apply(null, insExpArr);
     }
 
-    function searchMax(insExpArr){
+    function searchMax(insExpArr) {
         return Math.max.apply(null, insExpArr);
     }
 
-    function searchMid(){
+    function searchMid(insExpArr) {
+        function compareNumeric(a, b) {
+            if (a > b) return 1;
+            if (a < b) return -1;
+        }
 
+        insExpArr.sort(compareNumeric);
+        var middle = insExpArr[Math.floor(insExpArr.length / 2)];
+
+        return middle;
     }
 
     return {
+        stringToArray,
         getMaxSubSum,
         searchMin,
         searchMax,
@@ -56,7 +67,3 @@ var mod = (function () {
     }
 
 })();
-
-console.log(mod.getMaxSubSum([-1, 2, 3, -9]));
-console.log(mod.searchMin([-1, 2, 3, -9]));
-console.log(mod.searchMax([-1, 2, 3, -9]));

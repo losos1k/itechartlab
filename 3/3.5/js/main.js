@@ -7,15 +7,16 @@ var subSumBtn = document.getElementById("subSumBtn"),
 
 var result = document.getElementById("result");
 
-subSumBtn.addEventListener("click", function(){btnClick(mod.subSum)});
+subSumBtn.addEventListener("click", function(){btnClick(mod.getMaxSubSum)});
 searchMinBtn.addEventListener("click", function(){btnClick(mod.searchMin)});
 searchMaxBtn.addEventListener("click", function(){btnClick(mod.searchMax)});
 searchMidBtn.addEventListener("click", function(){btnClick(mod.searchMid)});
 
 function btnClick(func){
     insExp = document.getElementById("insExp").value;
-    if (/^(0$|-?[1-9]\d*(\.\d*[1-9]$)?|-?0\.\d*[1-9])$/.test(insExp)) {
-        result.innerHTML = func(insExp);
+    if (/[1-9]|-[1-9]/.test(insExp)) {
+        var insExpArr = mod.stringToArray(insExp);
+        result.innerHTML = func(insExpArr);
     }
     else {
         alert('Inputed data is incorrect!');
