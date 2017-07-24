@@ -1,13 +1,16 @@
 var insExp;
 
 var subSumBtn = document.getElementById("subSumBtn"),
-    searchBtn = document.getElementById("searchBtn");
+    searchMinBtn = document.getElementById("searchMinBtn"),
+    searchMaxBtn = document.getElementById("searchMaxBtn"),
+    searchMidBtn = document.getElementById("searchMidBtn");
 
 var result = document.getElementById("result");
 
 subSumBtn.addEventListener("click", function(){btnClick(mod.subSum)});
-searchBtn.addEventListener("click", function(){btnClick(mod.search)});
-
+searchMinBtn.addEventListener("click", function(){btnClick(mod.searchMin)});
+searchMaxBtn.addEventListener("click", function(){btnClick(mod.searchMax)});
+searchMidBtn.addEventListener("click", function(){btnClick(mod.searchMid)});
 
 function btnClick(func){
     insExp = document.getElementById("insExp").value;
