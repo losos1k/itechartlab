@@ -1,23 +1,18 @@
 var insExp;
 
-var bubbleSortBtn = document.getElementById("bubbleSortBtn"),
-    insertionSortBtn = document.getElementById("insertionSortBtn"),
-    quickSortBtn = document.getElementById("quickSortBtn"),
-    selectionSortBtn = document.getElementById("selectionSortBtn");
+var subSumBtn = document.getElementById("subSumBtn"),
+    searchBtn = document.getElementById("searchBtn");
 
 var result = document.getElementById("result");
 
-bubbleSortBtn.addEventListener("click", function(){btnClick(mod.bubbleSort)});
-insertionSortBtn.addEventListener("click", function(){btnClick(mod.insertionSort)});
-quickSortBtn.addEventListener("click", function(){btnClick(mod.quickSort)});
-selectionSortBtn.addEventListener("click", function(){btnClick(mod.selectionSort)});
+subSumBtn.addEventListener("click", function(){btnClick(mod.subSum)});
+searchBtn.addEventListener("click", function(){btnClick(mod.search)});
 
 
-function btnClick(sortFunc){
+function btnClick(func){
     insExp = document.getElementById("insExp").value;
-    if (/^[/0-9\s]+$/.test(insExp)) {
-        var insExpArr = mod.stringToArray(insExp);
-        result.innerHTML = sortFunc(insExpArr);
+    if (/^(0$|-?[1-9]\d*(\.\d*[1-9]$)?|-?0\.\d*[1-9])$/.test(insExp)) {
+        result.innerHTML = func(insExp);
     }
     else {
         alert('Inputed data is incorrect!');
