@@ -4,19 +4,22 @@ var mod = (function () {
         name: 'name1',
         desc: 'desc1',
         details: {
-            detailProp1: 'smth1',
-            detailProp2: 'smth2',
-            detailIntegerProperty2: '12',
-            detailProp3: 'smth3',
+            detailProperty1: 'smth1',
+            detailProperty2: 'smth2',
+            detailIntegerProperty2: 12,
+            detailProperty3: 'smth3',
             detailObject: {
                 detailObjectProp1: 'smth4',
                 detailObjectProp2: 'smth5',
-                integerProp: '123',
+                integerProp: 123
             },
             detailObject2: {
                 detailObjectProp1: 'smth6',
                 detailObjectProp2: 'smth7',
-                integerProp: '222',
+                integerProp: 222,
+                arrProp: ['arrValue1', {
+                    objectInsideArrayProp: 'arrValue2'
+                }]
             }
         }
     };
@@ -25,7 +28,7 @@ var mod = (function () {
         this.content = content;
         this.children = children;
         this.title = title;
-        
+
         this.appendChild = function (treeNode) {
             children.push(treeNode);
         }
@@ -70,7 +73,7 @@ var mod = (function () {
         function find(value, treeNode) {
             var occurrences = [];
             for (var prop in treeNode.content) {
-                if (treeNode.content[prop] == value || treeNode.content[prop].includes(value)) {
+                if (treeNode.content[prop].toString() == value.toString() || treeNode.content[prop].toString().includes(value.toString())) {
                     occurrences.push(treeNode.content[prop]);
                 }
             }

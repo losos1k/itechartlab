@@ -26,11 +26,6 @@ var mod = (function () {
     }
 
     return {
-        stringToArray,
-        bubbleSort,
-        insertionSort,
-        quickSort,
-        selectionSort
     }
 
 })();
