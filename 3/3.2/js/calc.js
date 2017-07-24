@@ -1,20 +1,50 @@
 'use strict';
 
 var mod = (function () {
-    const operators = {
+    const elemerators = {
         '+': (x, y) => x + y,
         '-': (x, y) => x - y,
         '*': (x, y) => x * y,
         '/': (x, y) => x / y
     };
 
-    var calc = function (insExp) {
-        let stack = [];
+    const priorities = {
+        '*': 2,
+        '/': 2,
+        '+': 1,
+        '-': 1
+    };
 
-        insExp.split(' ').forEach(function(elem){
-            if (elem in operators) {
-                let [y, x] = [stack.pop(), stack.pop()];
-                stack.push(operators[elem](x, y));
+    var formExp;
+
+    var inputStrParse = function (insExp) {
+        var stack = [];
+        var output = [];
+
+        insExp.split(' ').forEach(function (elem) {
+            if (elem in priorities) {
+                stack.push(elem);
+                var stackTop = stack.slice(-1)[0];
+                
+                if (priorities[elem] > priorities[stackTop]) {
+                    output.push(stack.pop());
+                }
+            } else {
+                output.push(elem);
+            }
+        });
+        formExp = output.concat(stack);
+
+        return formExp;
+    }
+
+    var calc = function (formExp) {
+        var stack = [];
+
+        insExp.split(' ').forEach(function (elem) {
+            if (elem in elemerators) {
+                var [y, x] = [stack.pop(), stack.pop()];
+                stack.push(elemerators[elem](x, y));
             } else {
                 stack.push(parseFloat(elem));
             }
@@ -24,6 +54,7 @@ var mod = (function () {
     }
 
     return {
+        inputStrParse,
         calc
     }
 

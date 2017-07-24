@@ -8,7 +8,8 @@ submitBtn.addEventListener("click", btnClick);
 function btnClick(e) {
     e.preventDefault();
     insExp = document.getElementById("insExp").value;
-    if (/^[-+()*\/0-9\s]+$/.test(insExp)) {
+    if (/^[-+()*\/0-9\.\s]+$/.test(insExp)) {
+        result.innerHTML = mod.inputStrParse(insExp);
         result.innerHTML = mod.calc(insExp);
     }
     else {
