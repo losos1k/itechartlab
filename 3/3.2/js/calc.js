@@ -44,7 +44,6 @@ var mod = (function () {
 
     var calc = function (formExp) {
         let stack = [];
-        console.log(typeof (formExp));
         formExp.forEach(function (elem) {
             if (elem in operations) {
                 var [y, x] = [stack.pop(), stack.pop()];
