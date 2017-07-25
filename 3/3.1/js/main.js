@@ -1,5 +1,4 @@
 (function () {
-
     var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
     var submitBtn = document.getElementById("submitBtn");
     var fromNow = document.getElementById("fromNow");

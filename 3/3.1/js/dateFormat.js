@@ -1,9 +1,5 @@
 var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
-    // this.insDate = insDate;
-    // this.INPUT_TEMPLATE = INPUT_TEMPLATE;
-    // this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
-
     var DATE, year, month, day, date;
 
     var msInYear = 365 * 3600 * 24 * 1000;
@@ -21,12 +17,12 @@ var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
         'November',
         'December'];
 
-    var getDate = function (regEx) {
+    var getDate = function (regEx, insDate, INPUT_TEMPLATE) {
 
         return +insDate.substr(INPUT_TEMPLATE.search(regEx), INPUT_TEMPLATE.match(regEx).length);
     }
 
-    var setOutputDate = function (monthStyle) {
+    var setOutputDate = function (monthStyle, OUTPUT_TEMPLATE) {
 
         return OUTPUT_TEMPLATE.replace(/D+/, day).replace(/M+|month/, monthStyle).replace(/Y+/, year);
     }
@@ -44,21 +40,21 @@ var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             month = DATE.getMonth() + 1;
             day = DATE.getDate();
 
-            date = setOutputDate(month);
+            date = setOutputDate(month, OUTPUT_TEMPLATE);
 
         } else {
-            day = getDate(/D/g);
+            day = getDate(/D/g, insDate, INPUT_TEMPLATE);
             day < 10 ? day = '0' + day : day;
 
-            month = getDate(/M/g);
+            month = getDate(/M/g, insDate, INPUT_TEMPLATE);
             month < 10 ? month = '0' + month : month;
 
-            year = getDate(/Y/g);
+            year = getDate(/Y/g, insDate, INPUT_TEMPLATE);
 
             if (insDateValidate()) {
-                date = setOutputDate(month);
+                date = setOutputDate(month, OUTPUT_TEMPLATE);
                 if (/month/.test(OUTPUT_TEMPLATE)) {
-                    date = setOutputDate(months[month - 1]);
+                    date = setOutputDate(months[month - 1], OUTPUT_TEMPLATE);
                 }
                 return date;
             }
@@ -70,9 +66,13 @@ var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
     this.fromNow = function (insDate, INPUT_TEMPLATE) {
 
-        day = getDate(/D/g);
-        month = getDate(/M/g);
-        year = getDate(/Y/g);
+        day = getDate(/D/g, insDate, INPUT_TEMPLATE);
+        day < 10 ? day = '0' + day : day;
+
+        month = getDate(/M/g, insDate, INPUT_TEMPLATE);
+        month < 10 ? month = '0' + month : month;
+
+        year = getDate(/Y/g, insDate, INPUT_TEMPLATE);
 
         if (insDateValidate()) {
             DATE = new Date(year, (month - 1), day);
@@ -81,7 +81,11 @@ var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             diff = (now - DATE) / msInYear;
             absDiff = Math.abs(diff);
 
-            return Math.round(absDiff) + ' years from now';
+            if (absDiff > 1) {
+                return Math.round(absDiff) + ' years from now';
+            } else {
+                return resultFromNow.innerHTML = 'less than 1 year from now';
+            }
         }
         else {
             resultFromNow.innerHTML = 'Inputed data is incorrect!';
