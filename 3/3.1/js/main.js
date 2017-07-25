@@ -28,7 +28,7 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
         var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
         var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
         if (inputData.inputTemplateValidate() && inputData.outputTemplateValidate()) {
-            resultDate.innerHTML = dateFormat.format(insDate.value, INPUT_TEMPLATE.value);
+            resultDate.innerHTML = dateFormat.format();
         }
         else {
             console.log('first alert');
@@ -41,7 +41,7 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
         var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value);
         var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
         if (inputData.inputTemplateValidate()) {
-            resultFromNow.innerHTML = dateFormat.fromNow(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+            resultFromNow.innerHTML = dateFormat.fromNow();
         }
         else {
             console.log('first alert');
