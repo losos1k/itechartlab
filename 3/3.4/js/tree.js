@@ -1,4 +1,4 @@
-var mod = (function () {
+var treeHandler = (function () {
 
     jsonObject = {
         name: 'name1',
