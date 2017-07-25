@@ -14,7 +14,7 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
     }
 };
 
-(function inputHandler(){
+(function inputHandler() {
     var submitBtn = document.getElementById("submitBtn");
     var fromNow = document.getElementById("fromNow");
     var resultDate = document.getElementById("resultDate");
