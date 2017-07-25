@@ -9,13 +9,17 @@
         var tree = new Tree();
         insExp = document.getElementById("insExp").value;
         insJson = document.getElementById("insJson").value;
-        tree.createTreeFromJSON(insJson);        
-        if (/[0-9]|[a-z]/.test(insExp)) {
-            result.innerHTML = tree.findValue(insExp);
+
+        if (/[0-9a-zA-Z]/.test(insExp)) {
+            try {
+                tree.createTreeFromJSON(JSON.parse(insJson));
+                result.innerHTML = tree.findValue(insExp);
+            } catch (e) {
+                result.innerHTML = 'Indalid JSON';
+            }
         }
         else {
             result.innerHTML = 'Inputed data is incorrect!';
         }
     }
-    
 })();

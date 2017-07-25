@@ -6,12 +6,12 @@ var treeHandler = (function () {
         this.title = title;
 
         this.appendChild = function (treeNode) {
-            children.push(treeNode);
+            this.children.push(treeNode);
         }
     };
 
     this.Tree = function () {
-        this.root = new TreeNode();
+        this.root = new TreeNode(null, '', []);
 
         this.createTreeFromJSON = function (json) {
             this.root = parseTreeNode(json, 'root');
@@ -62,5 +62,4 @@ var treeHandler = (function () {
     return {
         Tree
     }
-
 })();
