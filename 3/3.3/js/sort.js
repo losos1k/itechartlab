@@ -1,4 +1,4 @@
-var mod = (function () {
+var sort = (function () {
 
     var stringToArray = function (insExp) {
         insExpArr = insExp.match(/[0-9]+|-[0-9]+/g);
