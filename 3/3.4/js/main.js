@@ -3,21 +3,18 @@
     var findValueBtn = document.getElementById("findValueBtn");
     var result = document.getElementById("result");
 
-    findValueBtn.addEventListener("click", function () { btnClick(tree.findValue) });
+    findValueBtn.addEventListener("click", btnClick);
 
-    function btnClick(func) {
+    function btnClick() {
         var tree = new Tree();
         tree.createTreeFromJSON(jsonObject);
         insExp = document.getElementById("insExp").value;
-        if (/^[/0-9\s]+$/.test(insExp)) {
-            result.innerHTML = func(insExp);
+        if (/[0-9]|[a-z]/.test(insExp)) {
+            result.innerHTML = tree.findValue(insExp);
         }
         else {
             alert('Inputed data is incorrect!');
         }
     }
+    
 })();
-
-
-// tree.createTreeFromJSON(jsonObject);
-// tree.findValue('2');

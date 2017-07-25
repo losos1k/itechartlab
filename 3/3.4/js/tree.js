@@ -6,7 +6,7 @@ var treeHandler = (function () {
         details: {
             detailProperty1: 'smth1',
             detailProperty2: 'smth2',
-            detailIntegerProperty2: 12,
+            detailIntegerProperty2: 222,
             detailProperty3: 'smth3',
             detailObject: {
                 detailObjectProp1: 'smth4',
@@ -36,7 +36,7 @@ var treeHandler = (function () {
 
 
     this.Tree = function () {
-        this.root = new TreeNode(null, null, null);
+        this.root = new TreeNode();
 
         this.createTreeFromJSON = function (json) {
             this.root = parseTreeNode(json, 'root');
@@ -66,7 +66,7 @@ var treeHandler = (function () {
         }
 
         this.findValue = function (insExp) {
-            console.log(find(insExp, this.root));
+            return find(insExp, this.root);
         };
 
         function find(insExp, treeNode) {
