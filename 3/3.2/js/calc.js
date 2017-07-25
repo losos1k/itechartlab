@@ -1,6 +1,6 @@
 'use strict';
 
-var mod = (function () {
+var Calculator = function (insExp) {
     const operations = {
         '+': (x, y) => x + y,
         '-': (x, y) => x - y,
@@ -15,9 +15,9 @@ var mod = (function () {
         '-': 1
     };
 
-    var formExp, outputExp;
+    var formExp;
 
-    var inputStrParse = function (insExp) {
+    this.inputStrParse = function (insExp) {
         let stack = [];
         let output = [];
 
@@ -55,10 +55,4 @@ var mod = (function () {
 
         return stack.pop();
     };
-
-    return {
-        inputStrParse,
-        calc
-    }
-
-})();
+};
