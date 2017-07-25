@@ -1,48 +1,49 @@
-(function inputData() {
+function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
-    var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
+    this.insDate = insDate;
+    this.INPUT_TEMPLATE = INPUT_TEMPLATE;
+    this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
 
-    var submitBtn = document.getElementById("submitBtn");
-    var fromNow = document.getElementById("fromNow");
-    var resultDate = document.getElementById("resultDate");
-    var resultFromNow = document.getElementById("resultFromNow");
-
-
-    submitBtn.addEventListener("click", btnClick);
-    fromNow.addEventListener("click", btnFromNow);
-
-    var inputTemplateValidate = function () {
+    this.inputTemplateValidate = function () {
         return (INPUT_TEMPLATE.indexOf('D') != -1) && (INPUT_TEMPLATE.indexOf('M') != -1) && (INPUT_TEMPLATE.indexOf('Y') != -1);
     }
-    var outputTemplateValidate = function () {
+    this.outputTemplateValidate = function () {
         return (OUTPUT_TEMPLATE.indexOf('D') != -1) &&
             ((OUTPUT_TEMPLATE.indexOf('M') != -1) || (OUTPUT_TEMPLATE.indexOf('month') != -1)) &&
             (OUTPUT_TEMPLATE.indexOf('Y') != -1);
     }
+};
 
-    function btnClick(e) {
-        e.preventDefault();
-        insDate = document.getElementById("insDate").value;
-        INPUT_TEMPLATE = document.getElementById("INPUT_TEMPLATE").value;
-        OUTPUT_TEMPLATE = document.getElementById("OUTPUT_TEMPLATE").value;
-        if (inputTemplateValidate() && outputTemplateValidate()) {
-            resultDate.innerHTML = dateFormat.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
-        }
-        else {
-            alert('Inputed date template is incorrect!');
-        }
+var submitBtn = document.getElementById("submitBtn");
+var fromNow = document.getElementById("fromNow");
+var resultDate = document.getElementById("resultDate");
+var resultFromNow = document.getElementById("resultFromNow");
 
-    };
+submitBtn.addEventListener("click", btnClick);
+fromNow.addEventListener("click", btnFromNow);
 
-    function btnFromNow(e) {
-        e.preventDefault();
-        insDate = document.getElementById("insDate").value;
-        INPUT_TEMPLATE = document.getElementById("INPUT_TEMPLATE").value;
-        if (inputTemplateValidate()) {
-            resultFromNow.innerHTML = dateFormat.fromNow(insDate, INPUT_TEMPLATE);
-        }
-        else {
-            alert('Inputed date template is incorrect!');
-        }
-    };
-})();
+function btnClick(e) {
+    e.preventDefault();
+    var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+    var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+    if (inputData.inputTemplateValidate() && inputData.outputTemplateValidate()) {
+        resultDate.innerHTML = dateFormat.format(insDate.value, INPUT_TEMPLATE.value);
+    }
+    else {
+        console.log('first alert');
+        alert('Inputed date template is incorrect!');
+    }
+};
+
+function btnFromNow(e) {
+    e.preventDefault();
+    var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value);
+    var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
+    if (inputData.inputTemplateValidate()) {
+        resultFromNow.innerHTML = dateFormat.fromNow(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+    }
+    else {
+        console.log('first alert');
+        alert('Inputed date template is incorrect!');
+    }
+};

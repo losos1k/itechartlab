@@ -1,6 +1,9 @@
-window.DateFormatter = (function () {
-
-    return function () {
+function DateFormatter(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE)   {   
+    
+        this.insDate = insDate;
+        this.INPUT_TEMPLATE = INPUT_TEMPLATE;
+        this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
+      
         var DATE, year, month, day, date;
 
         var msInYear = 365 * 3600 * 24 * 1000;
@@ -87,6 +90,3 @@ window.DateFormatter = (function () {
             }
         };
     }
-})(); 
-
-var dateFormat = new DateFormatter();

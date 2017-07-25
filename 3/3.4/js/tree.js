@@ -35,8 +35,7 @@ var mod = (function () {
     };
 
 
-
-    function Tree() {
+    this.Tree = function () {
         this.root = new TreeNode(null, null, null);
 
         this.createTreeFromJSON = function (json) {
@@ -85,13 +84,8 @@ var mod = (function () {
             return occurrences;
         }
     }
-
-    var tree = new Tree();
-    tree.createTreeFromJSON(jsonObject);
-    tree.findValue('2');
-
     return {
-
+        Tree
     }
 
 })();

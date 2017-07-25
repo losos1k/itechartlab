@@ -51,40 +51,15 @@ var mod = (function () {
     }
 
     function quickSort(insExpArr) {
+        if (insExpArr.length == 0) return [];
+        var a = [], b = [], p = insExpArr[0];
 
-        var low = 0;
-        var high = insExpArr.length - 1;
-        var i = low;
-        var j = high;
-        var middle = insExpArr[Math.floor((low + high) / 2)];
-
-        while (i < j) {
-            while (insExpArr[i] < middle) {
-                i++;
-            }
-            while (insExpArr[j] > middle) {
-                j++;
-            }
-            if (i <= j) {
-                var temp = insExpArr[i];
-                insExpArr[i] = insExpArr[j];
-                insExpArr[j] = temp;
-                i++;
-                j--;
-            }
+        for (var i = 1; i < insExpArr.length; i++) {
+            if (insExpArr[i] < p) a[a.length] = insExpArr[i];
+            else b[b.length] = insExpArr[i];
         }
 
-        if (!insExpArr[i]) {
-            if (low < j) {
-                quickSort(insExpArr, low, j);
-            }
-
-            if (i < high) {
-                quickSort(insExpArr, i, high);
-            }
-        }
-
-        return insExpArr;
+        return quickSort(a).concat(p, quickSort(b));
     }
 
     var selectionSort = function (insExpArr) {
