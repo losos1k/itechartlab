@@ -15,7 +15,7 @@ selectionSortBtn.addEventListener("click", function(){btnClick(mod.selectionSort
 
 function btnClick(sortFunc){
     insExp = document.getElementById("insExp").value;
-    if (/^[/0-9\s]+$/.test(insExp)) {
+    if (/[1-9]|-[1-9]+/.test(insExp)) {
         var insExpArr = mod.stringToArray(insExp);
         result.innerHTML = sortFunc(insExpArr);
     }

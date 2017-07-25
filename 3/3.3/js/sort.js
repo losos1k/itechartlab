@@ -1,7 +1,8 @@
 var mod = (function () {
 
     var stringToArray = function (insExp) {
-        insExpArr = insExp.split(' ');
+        insExpArr = insExp.match(/[0-9]+|-[0-9]+/g);
+
         for (var i = 0; i < insExpArr.length; i++) {
             insExpArr[i] = +insExpArr[i];
         };
@@ -11,7 +12,6 @@ var mod = (function () {
 
 
     var bubbleSort = function (insExpArr) {
-
         for (var i = insExpArr.length - 1; i > 0; i--) {
             var counter = 0;
 
