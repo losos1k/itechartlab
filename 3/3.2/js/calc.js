@@ -21,7 +21,7 @@ var Calculator = function (insExp) {
         let stack = [];
         let output = [];
 
-        insExp.split(' ').forEach(function (elem) {
+        insExp.match(/[0-9]*[.]?[0-9]+|[+|*|/|-]/g).forEach(function (elem) {
             if (elem in priorities) {
                 var stackTop = stack.slice(-1)[0];
 
