@@ -14,36 +14,38 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
     }
 };
 
-var submitBtn = document.getElementById("submitBtn");
-var fromNow = document.getElementById("fromNow");
-var resultDate = document.getElementById("resultDate");
-var resultFromNow = document.getElementById("resultFromNow");
+(function inputHandler(){
+    var submitBtn = document.getElementById("submitBtn");
+    var fromNow = document.getElementById("fromNow");
+    var resultDate = document.getElementById("resultDate");
+    var resultFromNow = document.getElementById("resultFromNow");
 
-submitBtn.addEventListener("click", btnClick);
-fromNow.addEventListener("click", btnFromNow);
+    submitBtn.addEventListener("click", btnClick);
+    fromNow.addEventListener("click", btnFromNow);
 
-function btnClick(e) {
-    e.preventDefault();
-    var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
-    var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
-    if (inputData.inputTemplateValidate() && inputData.outputTemplateValidate()) {
-        resultDate.innerHTML = dateFormat.format(insDate.value, INPUT_TEMPLATE.value);
-    }
-    else {
-        console.log('first alert');
-        alert('Inputed date template is incorrect!');
-    }
-};
+    function btnClick(e) {
+        e.preventDefault();
+        var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+        var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+        if (inputData.inputTemplateValidate() && inputData.outputTemplateValidate()) {
+            resultDate.innerHTML = dateFormat.format(insDate.value, INPUT_TEMPLATE.value);
+        }
+        else {
+            console.log('first alert');
+            alert('Inputed date template is incorrect!');
+        }
+    };
 
-function btnFromNow(e) {
-    e.preventDefault();
-    var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value);
-    var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
-    if (inputData.inputTemplateValidate()) {
-        resultFromNow.innerHTML = dateFormat.fromNow(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
-    }
-    else {
-        console.log('first alert');
-        alert('Inputed date template is incorrect!');
-    }
-};
+    function btnFromNow(e) {
+        e.preventDefault();
+        var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value);
+        var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
+        if (inputData.inputTemplateValidate()) {
+            resultFromNow.innerHTML = dateFormat.fromNow(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+        }
+        else {
+            console.log('first alert');
+            alert('Inputed date template is incorrect!');
+        }
+    };
+})();
