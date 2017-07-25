@@ -10,7 +10,6 @@ function btnClick(e) {
     insExp = document.getElementById("insExp").value;
     if (/^[-+()*\/0-9\.\s]+$/.test(insExp)) {
         result.innerHTML = mod.inputStrParse(insExp);
-        // result.innerHTML = mod.calc();
     }
     else {
         alert('Inputed data is incorrect!');
