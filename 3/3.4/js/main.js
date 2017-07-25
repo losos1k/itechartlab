@@ -13,7 +13,7 @@
             result.innerHTML = tree.findValue(insExp);
         }
         else {
-            alert('Inputed data is incorrect!');
+            result.innerHTML = 'Inputed data is incorrect!';
         }
     }
     

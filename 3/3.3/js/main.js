@@ -20,6 +20,6 @@ function btnClick(sortFunc){
         result.innerHTML = sortFunc(insExpArr);
     }
     else {
-        alert('Inputed data is incorrect!');
+        result.innerHTML = 'Inputed data is incorrect!';
     }
 }

@@ -31,8 +31,7 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             resultDate.innerHTML = dateFormat.format();
         }
         else {
-            console.log('first alert');
-            alert('Inputed date template is incorrect!');
+            resultDate.innerHTML = 'Inputed data is incorrect!';
         }
     };
 
@@ -44,8 +43,7 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             resultFromNow.innerHTML = dateFormat.fromNow();
         }
         else {
-            console.log('first alert');
-            alert('Inputed date template is incorrect!');
+            resultDate.innerHTML = 'Inputed data is incorrect!';
         }
     };
 })();

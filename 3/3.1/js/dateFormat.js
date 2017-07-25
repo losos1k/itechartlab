@@ -63,8 +63,7 @@ function DateFormatter(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
                 return date;
             }
             else {
-                alert('Inputed date template is incorrect!');
-                resultDate.style.display = "none";
+                resultDate.innerHTML = 'Inputed data is incorrect!';
             }
         }
     };
@@ -85,8 +84,7 @@ function DateFormatter(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             return Math.round(absDiff) + ' years from now';
         }
         else {
-            alert('Inputed date template is incorrect!');
-            resultFromNow.style.display = "none";
+            resultFromNow.innerHTML = 'Inputed data is incorrect!';
         }
     };
 }
