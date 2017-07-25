@@ -19,6 +19,6 @@ function btnClick(func){
         result.innerHTML = func(insExpArr);
     }
     else {
-        alert('Inputed data is incorrect!');
+        result.innerHTML = 'Inputed data is incorrect!';
     }
 }

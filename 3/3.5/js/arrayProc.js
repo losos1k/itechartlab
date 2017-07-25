@@ -5,7 +5,8 @@ var mod = (function () {
     var insExpArr;
 
     var stringToArray = function (insExp) {
-        insExpArr = insExp.split(' ');
+        insExpArr = insExp.match(/[0-9]+|-[0-9]+/g);
+        
         for (var i = 0; i < insExpArr.length; i++) {
             insExpArr[i] = +insExpArr[i];
         };
