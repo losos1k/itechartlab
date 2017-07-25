@@ -1,8 +1,8 @@
-function DateFormatter(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
+var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
-    this.insDate = insDate;
-    this.INPUT_TEMPLATE = INPUT_TEMPLATE;
-    this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
+    // this.insDate = insDate;
+    // this.INPUT_TEMPLATE = INPUT_TEMPLATE;
+    // this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
 
     var DATE, year, month, day, date;
 
@@ -87,4 +87,4 @@ function DateFormatter(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
             resultFromNow.innerHTML = 'Inputed data is incorrect!';
         }
     };
-}
+};

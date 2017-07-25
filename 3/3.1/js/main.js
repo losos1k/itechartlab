@@ -1,20 +1,6 @@
-function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
+(function () {
 
-    this.insDate = insDate;
-    this.INPUT_TEMPLATE = INPUT_TEMPLATE;
-    this.OUTPUT_TEMPLATE = OUTPUT_TEMPLATE;
-
-    this.inputTemplateValidate = function () {
-        return (INPUT_TEMPLATE.indexOf('D') != -1) && (INPUT_TEMPLATE.indexOf('M') != -1) && (INPUT_TEMPLATE.indexOf('Y') != -1);
-    }
-    this.outputTemplateValidate = function () {
-        return (OUTPUT_TEMPLATE.indexOf('D') != -1) &&
-            ((OUTPUT_TEMPLATE.indexOf('M') != -1) || (OUTPUT_TEMPLATE.indexOf('month') != -1)) &&
-            (OUTPUT_TEMPLATE.indexOf('Y') != -1);
-    }
-};
-
-(function inputHandler() {
+    var insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE;
     var submitBtn = document.getElementById("submitBtn");
     var fromNow = document.getElementById("fromNow");
     var resultDate = document.getElementById("resultDate");
@@ -23,12 +9,24 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
     submitBtn.addEventListener("click", btnClick);
     fromNow.addEventListener("click", btnFromNow);
 
+    var inputTemplateValidate = function () {
+        return (INPUT_TEMPLATE.indexOf('D') != -1) && (INPUT_TEMPLATE.indexOf('M') != -1) && (INPUT_TEMPLATE.indexOf('Y') != -1);
+    }
+
+    var outputTemplateValidate = function () {
+        return (OUTPUT_TEMPLATE.indexOf('D') != -1) &&
+            ((OUTPUT_TEMPLATE.indexOf('M') != -1) || (OUTPUT_TEMPLATE.indexOf('month') != -1)) &&
+            (OUTPUT_TEMPLATE.indexOf('Y') != -1);
+    }
+
     function btnClick(e) {
         e.preventDefault();
-        var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
-        var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
-        if (inputData.inputTemplateValidate() && inputData.outputTemplateValidate()) {
-            resultDate.innerHTML = dateFormat.format();
+        insDate = document.getElementById("insDate").value;
+        INPUT_TEMPLATE = document.getElementById("INPUT_TEMPLATE").value;
+        OUTPUT_TEMPLATE = document.getElementById("OUTPUT_TEMPLATE").value;
+        if (inputTemplateValidate() && outputTemplateValidate()) {
+            var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value, OUTPUT_TEMPLATE.value);
+            resultDate.innerHTML = dateFormat.format(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE);
         }
         else {
             resultDate.innerHTML = 'Inputed data is incorrect!';
@@ -37,10 +35,11 @@ function InputData(insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
     function btnFromNow(e) {
         e.preventDefault();
-        var inputData = new InputData(insDate.value, INPUT_TEMPLATE.value);
-        var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
-        if (inputData.inputTemplateValidate()) {
-            resultFromNow.innerHTML = dateFormat.fromNow();
+        insDate = document.getElementById("insDate").value;
+        INPUT_TEMPLATE = document.getElementById("INPUT_TEMPLATE").value;
+        if (inputTemplateValidate()) {
+            var dateFormat = new DateFormatter(insDate.value, INPUT_TEMPLATE.value);
+            resultFromNow.innerHTML = dateFormat.fromNow(insDate, INPUT_TEMPLATE);
         }
         else {
             resultDate.innerHTML = 'Inputed data is incorrect!';
