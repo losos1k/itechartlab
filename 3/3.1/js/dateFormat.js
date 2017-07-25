@@ -1,4 +1,4 @@
-var DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
+window.DateFormatter = function (insDate, INPUT_TEMPLATE, OUTPUT_TEMPLATE) {
 
     var DATE, year, month, day, date;
 

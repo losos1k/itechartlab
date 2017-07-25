@@ -1,4 +1,4 @@
-var treeHandler = (function () {
+window.treeHandler = (function () {
 
     function TreeNode(content, title, children) {
         this.content = content;

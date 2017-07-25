@@ -1,6 +1,6 @@
 'use strict';
 
-var Calculator = function (insExp) {
+window.Calculator = function (insExp) {
     const operations = {
         '+': (x, y) => x + y,
         '-': (x, y) => x - y,

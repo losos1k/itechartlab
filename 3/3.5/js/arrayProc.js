@@ -1,12 +1,12 @@
 'use strict';
 
-var mod = (function () {
+window.ArrayProc = function () {
 
     var insExpArr;
 
-    var stringToArray = function (insExp) {
+    this.stringToArray = function (insExp) {
         insExpArr = insExp.match(/[0-9]+|-[0-9]+/g);
-        
+
         for (var i = 0; i < insExpArr.length; i++) {
             insExpArr[i] = +insExpArr[i];
         };
@@ -21,7 +21,7 @@ var mod = (function () {
         }
     }
 
-    var getMaxSubSum = function (insExpArr) {
+    this.getMaxSubSum = function (insExpArr) {
 
         return insExpArr.reduce((obj, elem, i) => {
             if (elem < 0) {
@@ -39,15 +39,15 @@ var mod = (function () {
         }, { max: 0, current: 0, positive: 0 });
     }
 
-    function searchMin(insExpArr) {
+    this.searchMin = function (insExpArr) {
         return Math.min.apply(null, insExpArr);
     }
 
-    function searchMax(insExpArr) {
+    this.searchMax = function (insExpArr) {
         return Math.max.apply(null, insExpArr);
     }
 
-    function searchMid(insExpArr) {
+    this.searchMid = function (insExpArr) {
         function compareNumeric(a, b) {
             if (a > b) return 1;
             if (a < b) return -1;
@@ -58,13 +58,4 @@ var mod = (function () {
 
         return middle;
     }
-
-    return {
-        stringToArray,
-        getMaxSubSum,
-        searchMin,
-        searchMax,
-        searchMid
-    }
-
-})();
+};
