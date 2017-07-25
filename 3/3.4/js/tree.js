@@ -1,29 +1,5 @@
 var treeHandler = (function () {
 
-    jsonObject = {
-        name: 'name1',
-        desc: 'desc1',
-        details: {
-            detailProperty1: 'smth1',
-            detailProperty2: 'smth2',
-            detailIntegerProperty2: 222,
-            detailProperty3: 'smth3',
-            detailObject: {
-                detailObjectProp1: 'smth4',
-                detailObjectProp2: 'smth5',
-                integerProp: 123
-            },
-            detailObject2: {
-                detailObjectProp1: 'smth6',
-                detailObjectProp2: 'smth7',
-                integerProp: 222,
-                arrProp: ['arrValue1', {
-                    objectInsideArrayProp: 'arrValue2'
-                }]
-            }
-        }
-    };
-
     function TreeNode(content, title, children) {
         this.content = content;
         this.children = children;
@@ -33,7 +9,6 @@ var treeHandler = (function () {
             children.push(treeNode);
         }
     };
-
 
     this.Tree = function () {
         this.root = new TreeNode();
