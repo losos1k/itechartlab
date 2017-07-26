@@ -1,0 +1,22 @@
+.menu{
+    display: flex;
+    justify-content: flex-end;
+    list-style-type: none;
+}
+
+.menu__item{
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    vertical-align: middle;
+    padding: 0px 21px 0px 21px;
+}
+
+a .menu__item{
+    color: white;
+    text-decoration: none;
+}
+
+.menu__item:hover{
+    background-color: #c74b33;
+}
