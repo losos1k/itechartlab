@@ -1,0 +1,38 @@
+body{
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin:auto;
+}
+
+.wrapper{
+    display: grid;
+}
+
+.container{
+    width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+}
+
+.link_color{
+    color: #db5940;
+    text-decoration: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.icon__circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    background-color: transparent;
+    border-radius: 50%;
+    border: 3px solid #9a98a2;
+}
+
+.icon{
+    position: relative;
+}
