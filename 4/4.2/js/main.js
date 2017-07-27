@@ -17,5 +17,5 @@
             }, 0);
     }
 
-    console.log(curr(squareSum, 2, 3, 4)());
+    console.log(curr(squareSum, 2)(3));
 })();
