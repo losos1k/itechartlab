@@ -11,11 +11,10 @@
     }
 
     function squareSum() {
-        var sum = 0;
-        for (var i = 0; i < arguments.length; i++) {
-            sum += Math.pow(arguments[i], 2);
-        }
-        return 'squareSum is ' + sum;
+        return 'squareSum is ' +
+            Array.prototype.slice.call(arguments).reduce(function (sum, curr) {
+                return sum += Math.pow(curr, 2);
+            }, 0);
     }
 
     console.log(curr(squareSum, 2, 3, 4)());
