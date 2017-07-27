@@ -7,11 +7,10 @@
     }
 
     function squareSum() {
-        var args = Array.prototype.slice.call(arguments);
-        var sum1 = args.reduce(function (sum, curr) {
-            return sum += curr;
+        return 'squareSum is ' + 
+        Array.prototype.slice.call(arguments).reduce(function (sum, curr) {
+            return sum += Math.pow(curr, 2);
         }, 0);
-        return 'squareSum is ' + sum1;
     }
 
     var exp1 = part(squareSum, 2);
