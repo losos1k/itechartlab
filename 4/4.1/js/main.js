@@ -13,6 +13,6 @@
         }, 0);
     }
 
-    var exp1 = part(squareSum, 2);
-    console.log(exp1(3, 5));
+    var exp = part(squareSum, 2);
+    console.log(exp(3, 5));
 })();
