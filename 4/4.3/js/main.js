@@ -17,9 +17,9 @@
         return val;
     };
 
-    var res = myReduce(arr, function (sum, curr) {
+    var resMyReduce = myReduce(arr, function (sum, curr) {
         return sum += curr.length;
     }, 0);
 
-    console.log('My reduce result: ' + res);
+    console.log('My reduce result: ' + resMyReduce);
 })();
