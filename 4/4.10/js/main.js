@@ -1,14 +1,13 @@
 (function () {
-    var obj = {};
-    
-    obj.kek = function (a,b) {
-        var a, b;
-
-        this.method = function () {
-            return a + b;
-        };
-        return this.method.apply(this, arguments);
+    function lazyEval(fn) {
+        return fn.bind.apply(fn, arguments);
     }
 
-    console.log(obj.kek(2, 3));
+    function add(a, b) {
+        return a + b;
+    }
+
+    var kek = lazyEval(add, 2, 3);
+
+    console.log(kek());
 })();
