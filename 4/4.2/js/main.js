@@ -2,11 +2,17 @@
     function curr(func, ...partialArgs) {
         return function (...insArgs) {
             var args = partialArgs.concat(insArgs);
-            if (args.length >= func.length) {
-                return func.apply(null, args);
-            } else {
+            console.log('k');
+            console.log(partialArgs);
+
+            while (arguments >= 1) {
+                console.log('a');
                 return curr(func, ...partialArgs);
             }
+            console.log('b');
+            console.log(partialArgs);
+            
+            return func.apply(null, args);
         }
     }
 
@@ -17,5 +23,5 @@
             }, 0);
     }
 
-    console.log(curr(squareSum, 2)(3));
+    console.log(curr(squareSum, 2, 3, 4)());
 })();
