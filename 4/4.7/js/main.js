@@ -1,7 +1,7 @@
 (function () {
     var arr = [1, 2, 3, 5, 0, 4, 0, 15, 12];
 
-    var myReduce = function (array, cb, initialVal) {
+    var myReduce = function (array, cb, initialVal = 0) {
         var val = initialVal;
         for (var i = 0; i < array.length; i++) {
             val = cb.call(null, val, array[i], i, array);
@@ -24,7 +24,7 @@
 
     var arrSum = myReduce(even, function (sum, curr) {
         return sum += curr;
-    }, 0);
+    });
     
     var avg = arrSum / even.length;
 

@@ -9,7 +9,7 @@
     console.log('Native reduce result: ' + res);
 
 
-    var myReduce = function (array, cb, initialVal) {
+    var myReduce = function (array, cb, initialVal = 0) {
         var val = initialVal;
         for (var i = 0; i < array.length; i++) {
             val = cb.call(null, val, array[i], i, array);
