@@ -20,7 +20,9 @@
     }
 
     function minDivider(number) {
-        if (number === 1) return [1, null];
+        if (number === 1) {
+            return [1, null];
+        }
         for (var i = 2; i < Math.floor(number / 2); i++) {
             if (number % i === 0) {
                 return [i, ~~(number / i)]
@@ -29,6 +31,6 @@
         return [number, 1];
     }
 
-    console.log(unfold(decrement, 12));
-    console.log(unfold(minDivider, 12));
+    console.log('Decrement: ' + unfold(decrement, 12));
+    console.log('Decomposition into simple multipliers: ' + unfold(minDivider, 12));
 })();
