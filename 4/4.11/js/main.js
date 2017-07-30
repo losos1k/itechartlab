@@ -5,7 +5,7 @@
         var lazyEval = func.bind.apply(func, args);
         return function () {
             if (res) {
-                return 'the result was already calculated: ' + res;
+                return 'the result has been already calculated: ' + res;
             }
             res = lazyEval();
             return 'calculated result is: ' + res;
