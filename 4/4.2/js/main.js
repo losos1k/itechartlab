@@ -1,19 +1,13 @@
 (function () {
-    function curr(func, ...partialArgs) {
-        return function (...insArgs) {
-            var args = partialArgs.concat(insArgs);
-            console.log('k');
-            console.log(partialArgs);
 
-            while (arguments >= 1) {
-                console.log('a');
-                return curr(func, ...partialArgs);
+    function curr(func) {
+        var args = [];
+        return function innerCurr() {
+            for (var i = 0; i < arguments.length; i++) {
+                args[i] = arguments[i];
             }
-            console.log('b');
-            console.log(partialArgs);
-            
-            return func.apply(null, args);
-        }
+            return args[i] >= func.length ? func.apply(null, args) : innerCurr();
+        };
     }
 
     function squareSum() {
@@ -23,5 +17,5 @@
             }, 0);
     }
 
-    console.log(curr(squareSum, 2, 3, 4)());
+    console.log(curr(squareSum)(2, 3, 5));
 })();
