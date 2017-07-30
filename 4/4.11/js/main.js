@@ -1,8 +1,8 @@
 (function () {
-    function lazyEvalMemo(fn) {
+    function lazyEvalMemo(func) {
         var args = arguments;
         var res;
-        var lazyEval = fn.bind.apply(fn, args);
+        var lazyEval = func.bind.apply(func, args);
         return function () {
             if (res) {
                 return 'the result was already calculated: ' + res;
