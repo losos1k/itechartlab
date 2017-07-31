@@ -13,12 +13,12 @@
         }
     }
 
-    function factorial(num) {
-        return (num != 1) ? num * factorial(num - 1) : 1;
+    function square(num) {
+        return Math.pow(num, 2);
     }
 
 
-    var lazyMemoSum = lazyEvalMemo(factorial, 3);
+    var lazyMemoSum = lazyEvalMemo(square, 3);
 
     console.log(lazyMemoSum());
     console.log(lazyMemoSum());
