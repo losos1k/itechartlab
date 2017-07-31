@@ -1,6 +1,6 @@
-("use strict";
+"use strict";
 
-function () {
+(function () {
     var arr = ['kek', 'lol', 'azaza'];
 
     var res = arr.map(function (curr) {
@@ -12,7 +12,7 @@ function () {
 
 
     var myMap = function (array, cb) {
-        outputArr = [];
+        var outputArr = [];
         for (var i = 0; i < array.length; i++) {
             outputArr.push(cb(array[i], i, array));
         }
