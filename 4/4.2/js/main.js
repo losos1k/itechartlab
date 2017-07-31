@@ -10,7 +10,7 @@
                 if (args.length > 1) {
                     innerCurr(args[i]);
                 }
-                var res = func.call(null, args[i]);
+                res = func.call(null, args[i]);
             }
             console.log(arguments);
             console.log(res);
