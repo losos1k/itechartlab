@@ -2,9 +2,13 @@
 
 (function () {
     function fillArray(size = 0) {
-        if (size <= 0) return [];
-        return [Math.floor(Math.random() * 100)].concat(fillArray(size - 1));
-    }
+        let arr = [];
+        for (var i = 0; i < size; i++){
+            arr.push(Math.floor(Math.random() * 100));
+        }
+        return arr;
+    };
+
     var arr = fillArray(10);
 
     var myReduce = function (array, cb, initialVal = 0) {
