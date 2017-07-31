@@ -4,12 +4,14 @@
     var arr = ['v1', 'v', 'val1', 'vvv3', 'val57439', '123'];
 
     var getFirst = function (array, cb) {
-        outputArr = [];
+        var outputArr = [];
         for (var i = 0; i < array.length; i++) {
-            if (cb.call(null, array[i], i, array))
+            if (cb.call(null, array[i], i, array)) {
                 outputArr.push(array[i]);
+                break;
+            }
         }
-        return outputArr[0];
+        return outputArr;
     };
 
     var res = getFirst(arr, function (curr) {
