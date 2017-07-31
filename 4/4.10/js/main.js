@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     function lazyEval(func) {
         console.log('the result has not been calculated yet');        

@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     function fillArray(size = 0) {
         if (size <= 0) return [];

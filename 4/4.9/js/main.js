@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     var arr = ['v1', 'v', 'val1', 'vvv3', 'val57439', '123'];
 

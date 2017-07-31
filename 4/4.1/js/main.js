@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     function part(func, ...partialArgs) {
         return function (...insArgs) {

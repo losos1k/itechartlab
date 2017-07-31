@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     function unfold(callback, initialValue) {
         var res = [];

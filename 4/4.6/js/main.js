@@ -1,3 +1,5 @@
+"use strict";
+
 (function () {
     var arr = [12, 5, undefined, 'aoa', 65, 1024, 'kek', 8];
 
