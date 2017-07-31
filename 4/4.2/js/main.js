@@ -28,13 +28,13 @@
         return Array.prototype.slice.call(arguments).reduce(function (sum, curr) {
             return sum += Math.pow(curr, 2);
         }, 0);
-    }
+    };
 
     function sumsum() {
         return Array.prototype.slice.call(arguments).reduce(function (sum, curr) {
             return sum += curr;
         }, 0);
-    }
+    };
 
     console.log(curr(squareSum)(2, 3, 5));
     console.log(curr(sumsum)(1, 2, 3, 4, 1));
