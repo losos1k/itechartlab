@@ -12,7 +12,7 @@
     };
 
     var myFilter = function (array, cb) {
-        outputArr = [];
+        var outputArr = [];
         for (var i = 0; i < array.length; i++) {
             if (cb.call(null, array[i], i, array))
                 outputArr.push(array[i]);
