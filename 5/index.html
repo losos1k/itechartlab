@@ -4,7 +4,6 @@
 <head>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" />
@@ -12,15 +11,19 @@
 
 <body>
     <main class="main-area">
+        <h1>Welcome!</h1>
         <form class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            <button type="button" class="btn btn-outline-success" id="kek" href="#">REGISTER</button>
+            <input type="email" class="form-control m-2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login">
+            <input type="password" class="form-control m-2" id="exampleInputPassword1" placeholder="Password">
         </form>
-        <div class="drop-area">
-            <p class="drop-area__text">Drop your photo here</p>
+        <div id="drop-area" onclick="$('#filePhoto').click()">
+            <p>Drop your photo here</p>
+            <img src="" />
         </div>
+        <input type="file" name="user-picture" id="filePhoto" />
+        <button type="button" class="btn btn-outline-success m-3" id="submitForm" href="#">REGISTER</button>
     </main>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 
 </html>
