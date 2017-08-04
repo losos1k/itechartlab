@@ -6,6 +6,10 @@
         var password = $('#exampleInputPassword1');
         var fileName;
 
+        $('.close').click(function () {
+            $('.message').addClass('message_invisible');
+        });
+
         $('.drop-area').dragAndDrop(function (name) {
             fileName = name;
         });
@@ -21,13 +25,13 @@
             }
 
             function onSuccess() {
-                console.log('Success!');
+                $('.message').addClass('message_visible');
             }
 
             validate(fileName, emailVal, passwordVal)
                 .then(() => uploadFile(fileName, emailVal, passwordVal))
                 .then(onSuccess)
-                .catch(error => console.log('error', error))
+                .catch(error => alert('error: ' + error))
         });
     });
 })(jQuery);

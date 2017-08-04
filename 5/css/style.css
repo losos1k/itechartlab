@@ -3,6 +3,10 @@ body{
     color: #737373;
 }
 
+p{
+    margin: 0;
+}
+
 .main-area{
     width: 100%;
     margin-top: 10%; 
@@ -49,4 +53,52 @@ body{
     object-fit: cover;
     width: 300px;
     height: 300px;  
+}
+
+.message{
+    display: none;
+}
+
+.success-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%; 
+    left: 14%;
+    top: 14%;
+    background-color: white;   
+    position: fixed;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.message_visible{
+    display: block;
+}
+
+.message_invisible{
+    display: none;
+}
+
+.overlay{
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    opacity: .5;
+}
+
+.success-message__text{
+    padding: 0 2% 0 2%;
+    font-size: 2.5em;
+}
+
+.close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
