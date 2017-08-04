@@ -32,7 +32,6 @@
                 reader.readAsDataURL(files[0]);
             })();
             var namePic = files[0].name;
-            console.log(files)
 
             if ($.isFunction(onAdded)) {
                 onAdded(namePic);
