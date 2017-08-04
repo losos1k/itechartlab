@@ -23,15 +23,7 @@
                 // }));
                 return true;
             };
-
-            promise
-                .then(validated => {
-                    return fakePostQuery = function (emailVal, passwordVal, fileName) {
-                        return true;
-                    };
-                })
-                .then(promisePost => console.log('zaglushka'))
-                .catch(err => console.log(err));
+            promise();
         });
     });
 })(jQuery);
