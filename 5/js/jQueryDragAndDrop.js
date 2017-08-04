@@ -1,5 +1,5 @@
 (function ($) {
-    jQuery.fn.dragAndDrop = function () {
+    jQuery.fn.dragAndDrop = function (onAdded) {
 
         $(this).on('dragenter', function (e) {
             e.stopPropagation();
@@ -24,12 +24,16 @@
             (function imgHandler() {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    $('.drop-area img').attr('src', event.target.result);
+                    var pathToPic = reader.result;
+                    $('.drop-area img').attr('src', pathToPic);
                 }
                 reader.readAsDataURL(files[0]);
             })();
+            var namePic = files[0].name;
 
-            console.log(files);
+            if ($.isFunction(onAdded)) {
+                onAdded(namePic);
+            }
         });
     };
 })(jQuery);

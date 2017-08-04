@@ -1,28 +1,37 @@
 (function ($) {
     $(document).ready(function () {
 
-        $('.drop-area').dragAndDrop();
+        var inputData = $('.input-data-control');
+        var email = $('#exampleInputEmail1');
+        var password = $('#exampleInputPassword1');
+        var fileName;
+
+        $('.drop-area').dragAndDrop(function (name) {
+            fileName = name;
+        });
 
         $('#submitForm').click(function () {
+            var emailVal = email.val();
+            var passwordVal = password.val();
             function checkForm() {
-                $('input').each(function () {
-                    if ($('input').val().length > 0) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                });
+                // return console.log(inputData.each(function () {
+                //     if ($(this).val().length > 0) {
+                //         return true;
+                //     } else {
+                //         return false;
+                //     }
+                // }));
+                return true;
             };
 
-            var promise = new Promise((resolve, reject) => {
-                checkForm('#input-text') ? resolve(result) : reject();
-            });
-
             promise
-                .then(
-                result => console.log('Fulfilled: '),
-                error => console.log('Rejected')
-                );
+                .then(validated => {
+                    return fakePostQuery = function (emailVal, passwordVal, fileName) {
+                        return true;
+                    };
+                })
+                .then(promisePost => console.log('zaglushka'))
+                .catch(err => console.log(err));
         });
     });
 })(jQuery);
