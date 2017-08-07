@@ -77,10 +77,6 @@ p{
     display: block;
 }
 
-.message_invisible{
-    display: none;
-}
-
 .overlay{
     background-color: #000;
     position: fixed;

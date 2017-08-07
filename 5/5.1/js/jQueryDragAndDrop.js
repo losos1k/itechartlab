@@ -3,6 +3,17 @@
 
         var dropArea = $(this);
 
+        function imgHandler(e) {
+            var reader = new FileReader();
+            var files = e.originalEvent.dataTransfer.files;
+            reader.onload = function (event) {
+                var pathToPic = reader.result;
+                dropArea.append("<img src='" + pathToPic + "'>");
+            }
+            reader.readAsDataURL(files[0]);
+            return files[0].name;
+        };
+
         dropArea.on('dragenter', function (e) {
             e.stopPropagation();
             e.preventDefault();
@@ -20,18 +31,8 @@
             e.preventDefault();
 
             $(this).addClass('drop-area_hovered');
-            e.dataTransfer = e.originalEvent.dataTransfer;
-            var files = e.dataTransfer.files;
 
-            (function imgHandler() {
-                var reader = new FileReader();
-                reader.onload = function (event) {
-                    var pathToPic = reader.result;
-                    dropArea.append("<img src='" + pathToPic + "'>");
-                }
-                reader.readAsDataURL(files[0]);
-            })();
-            var namePic = files[0].name;
+            var namePic = imgHandler(e);
 
             if ($.isFunction(onAdded)) {
                 onAdded(namePic);
