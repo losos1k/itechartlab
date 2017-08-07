@@ -1,30 +1,26 @@
 (function ($) {
-    jQuery.fn.dinamicDataScroll = function (receivedParams) {
-        var defaultParams = {
-            defaultPicsAmount: 30,
-            addedPicsAmount: 30
-        };
-        var wrap = $(this);        
+    $.fn.dinamicDataScroll = function (receivedParams) {
 
-        $.extend(params = {}, defaultParams, receivedParams);
+        var wrap = $(this);
+        var loading = false;
+
+        var params = $.extend({}, $.fn.dinamicDataScroll.defaultParams, receivedParams);
 
         wrap.scroll(function () {
-            if (wrap.height() + wrap.scrollTop() == this.scrollHeight) {
-                wrap.innerHTML += getPics(params.addedPicsAmount);
+            if (!loading && this.scrollHeight - wrap.scrollTop() - wrap.height() < params.scrollStartPosition) {
+                loading = true;
+                wrap.innerHTML += getPics(params.addedPicsAmount)
+                    .then(() => loading = false);
             }
         });
 
-        function getPics(PicsAmount) {
-            $.ajax({
+        function getPics(picsAmount) {
+            return $.ajax({
                 url: 'https://jsonplaceholder.typicode.com/photos',
                 method: 'GET'
             })
                 .then(function (data) {
-                    for (var i = 0; i < PicsAmount; i++) {
-                        var albumId = data[i].albumId;
-                        var id = data[i].id;
-                        var title = data[i].title;
-                        var url = data[i].url;
+                    for (var i = 0; i < picsAmount; i++) {
                         var thumbnailUrl = data[i].thumbnailUrl;
 
                         $("<img/>").attr("src", thumbnailUrl).appendTo(wrap);
@@ -34,4 +30,11 @@
 
         getPics(params.defaultPicsAmount);
     };
+
+    $.fn.dinamicDataScroll.defaultParams = {
+        defaultPicsAmount: 30,
+        addedPicsAmount: 30,
+        scrollStartPosition: 100
+    };
+
 })(jQuery);

@@ -2,12 +2,14 @@
     $(document).ready(function () {
         var params1 = {
             defaultPicsAmount: 100,
-            addedPicsAmount: 30
+            addedPicsAmount: 30,
+            scrollStartPosition: 200
         };
 
         var params2 = {
             defaultPicsAmount: 50,
-            addedPicsAmount: 20
+            addedPicsAmount: 20,
+            scrollStartPosition: 300            
         };
 
         $('#scrollArea1').dinamicDataScroll(params1);
