@@ -1,7 +1,8 @@
 (function ($) {
-    jQuery.fn.dragAndDrop = function (onAdded) {
+    $.fn.dragAndDrop = function (onAdded) {
 
         var dropArea = $(this);
+        dropArea.append('<p>Drop your photo here</p>');
 
         function imgHandler(e) {
             var reader = new FileReader();

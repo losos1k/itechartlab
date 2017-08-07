@@ -1,6 +1,5 @@
 (function ($) {
     $(document).ready(function (cb) {
-
         var inputData = $('.input-data-control');
         var email = $('#exampleInputEmail1');
         var password = $('#exampleInputPassword1');
@@ -28,8 +27,6 @@
         $('#submitForm').click(function () {
             var emailVal = email.val();
             var passwordVal = password.val();
-
-            console.log("dd");
 
             validate(fileName, emailVal, passwordVal)
                 .then(() => uploadFile(fileName, emailVal, passwordVal))
