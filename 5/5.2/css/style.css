@@ -1,3 +1,7 @@
 .main-area{
     text-align: center;
+    height: 900px;
+    width: 48%;    
+    overflow: auto;
+    display: inline-block;
 }
