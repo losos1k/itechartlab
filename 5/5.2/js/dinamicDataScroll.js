@@ -7,7 +7,8 @@
         var params = $.extend({}, $.fn.dinamicDataScroll.defaultParams, receivedParams);
 
         wrap.scroll(function () {
-            if (!loading && this.scrollHeight - wrap.scrollTop() - wrap.height() < params.scrollStartPosition) {
+            var scrollPosition = this.scrollHeight - wrap.scrollTop() - wrap.height();
+            if (!loading && scrollPosition < params.scrollStartPosition) {
                 loading = true;
                 wrap.innerHTML += getPics(params.addedPicsAmount)
                     .then(() => loading = false);
