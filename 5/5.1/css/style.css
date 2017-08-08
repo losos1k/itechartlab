@@ -1,0 +1,100 @@
+body{
+    background-color: #f2f2f2;
+    color: #737373;
+}
+
+p{
+    margin: 0;
+}
+
+.main-area{
+    width: 100%;
+    margin-top: 10%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.input-data-control{
+    margin-bottom: 10px;    
+}
+
+.form-control{
+    width: 25%;
+    padding: 7px;
+}
+
+.drop-area{
+    overflow: hidden;
+    width: 100%; 
+    height: 370px; 
+    border: 3px dashed #e8e8e8;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    background-color: #f7f7f7;
+}
+
+.drop-area_hovered{
+    border-color: #cccccc;
+}
+
+.drop-area:hover{
+    color: #999;
+}
+
+#filePhoto{
+     display: none; 
+}
+
+.drop-area img{
+    object-fit: cover;
+    width: 300px;
+    height: 300px;  
+}
+
+.message{
+    display: none;
+}
+
+.success-message{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 70%; 
+    left: 14%;
+    top: 14%;
+    background-color: white;   
+    position: fixed;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.message_visible{
+    display: block;
+}
+
+.overlay{
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    opacity: .5;
+}
+
+.success-message__text{
+    padding: 0 2% 0 2%;
+    font-size: 2.5em;
+}
+
+.close{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
