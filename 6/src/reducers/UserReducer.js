@@ -1,4 +1,4 @@
-const UserReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'CHANGE_LOGIN': {
@@ -18,4 +18,4 @@ const initialState = {
     password: null
 };
 
-export default UserReducer;
+export default userReducer;

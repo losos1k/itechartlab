@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
+import { Provider } from 'react-redux'
+
 import '../App.css'
 
-import LoginInput from '../components/LoginInput'
-import PasswordInput from '../components/PasswordInput'
-import SubmitButton from '../components/SubmitButton'
+import Login from '../components/Login/Login'
 
-import store from '../reducers/store';
+import store from '../reducers/store'
 
-class Login extends Component {
+class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginInput /><br />
-        <PasswordInput /><br />
-        <SubmitButton /><br />
+        <Provider store={store}>
+          <Login />
+        </Provider>
       </div>
     );
   }
 }
 
-export default Login;
+export default App;
