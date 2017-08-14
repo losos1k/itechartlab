@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { loginDispatcher } from '../../reducers/actions'
 
 @connect((store) => {
   return {
     login: store.user.login,
     password: store.user.password,
+    store
   };
 })
 export default class Login extends Component {
@@ -27,11 +29,9 @@ export default class Login extends Component {
   }
 
   handleSubmit = (e) => {
-    var userData = this.state;
-    this.props.onHandleData(userData);
-    console.log('success!');   
+    this.props.dispatch(loginDispatcher('CHANGE_LOGIN'));
+    // console.log('success!', this.props.store);
   }
-
   render() {
     return (
       <div className="Login">
