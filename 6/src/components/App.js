@@ -13,13 +13,11 @@ store.subscribe(() => {
   store.getState();
 })
 
-store.dispatch({ type: 'CHANGE_LOGIN', loginValue: 'log', passwordValue: 'pass' });
-
 class App extends Component {
-  handleData = (loginVal) => {
-    this.setState({ user: loginVal });
-    console.log(this.state.user)
+  handleData = (userData) => {
+    console.log(store.dispatch({ type: 'CHANGE_LOGIN', loginValue: userData.login, passwordValue: userData.password }));
   }
+
   render() {
     return (
       <div className="App">

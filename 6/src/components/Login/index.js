@@ -29,8 +29,7 @@ export default class Login extends Component {
   handleSubmit = (e) => {
     var userData = this.state;
     this.props.onHandleData(userData);
-    console.log(userData);
-    console.log('success!');
+    console.log('success!');   
   }
 
   render() {
@@ -43,4 +42,3 @@ export default class Login extends Component {
     );
   }
 }
-

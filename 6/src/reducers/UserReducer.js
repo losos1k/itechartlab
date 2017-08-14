@@ -5,10 +5,6 @@ const userReducer = (state = initialState, action) => {
             return { ...state, login: action.loginValue, password: action.passwordValue };
             break;
         }
-        case 'CHANGE_PASSWORD': {
-            return { ...state, password: action.value };
-            break;
-        }
     }
     return state;
 };
