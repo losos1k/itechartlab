@@ -7,7 +7,10 @@ const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
 store.subscribe(() => {
-    store.getState();
+    console.log(store.getState())
+    // store.getState();
 });
+
+
 
 export default store;

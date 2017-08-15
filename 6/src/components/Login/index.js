@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { CHANGE_LOGIN, loginDispatcher } from '../../reducers/actions'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
 @connect((store) => {
   return {
@@ -13,7 +14,8 @@ export default class Login extends Component {
     super();
     this.state = {
       login: '',
-      password: ''
+      password: '',
+      redirect: false
     };
   }
 
@@ -28,15 +30,21 @@ export default class Login extends Component {
   }
 
   handleSubmit = (e) => {
+    this.setState({ redirect: true });
     this.props.setLogin(CHANGE_LOGIN, this.state.login, this.state.password);
   }
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="movies_list" />;
+    }
     return (
-      <div className="Login">
-        <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
-        <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
-        <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
-      </div>
+      <BrowserRouter history={history}>
+        <div className="Login">
+          <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
+          <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
+          <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
