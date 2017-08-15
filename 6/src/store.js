@@ -10,8 +10,4 @@ store.subscribe(() => {
     store.getState();
 });
 
-store.dispatch((dispatch) => {
-    dispatch({type: 'CHANGE_LOGIN', login: 'kkk', password: 'fffff'})
-})
-
 export default store;

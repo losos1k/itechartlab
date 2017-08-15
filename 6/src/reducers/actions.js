@@ -1,9 +1,13 @@
-export function loginDispatcher() {
+export const CHANGE_LOGIN = 'CHANGE_LOGIN';
+
+export function loginDispatcher(dispatch) {
     return {
-        type: 'CHANGE_LOGIN',
-        loginValue: 'this.state.login',
-        passwordValue: 'this.state.password'
+        setLogin: (actionType, loginVal, passwordVal) => {
+            dispatch({
+                type: actionType,
+                login: loginVal,
+                password: passwordVal,
+            })
+        }
     }
 }
-
-// { type: 'CHANGE_LOGIN', loginValue: this.state.login, passwordValue: this.state.password }

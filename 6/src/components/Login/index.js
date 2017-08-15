@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginDispatcher } from '../../reducers/actions'
+import { CHANGE_LOGIN, loginDispatcher } from '../../reducers/actions'
 
 @connect((store) => {
   return {
     login: store.user.login,
     password: store.user.password,
-    store
   };
-})
+}, loginDispatcher)
 export default class Login extends Component {
   constructor() {
     super();
@@ -29,8 +28,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = (e) => {
-    this.props.dispatch(loginDispatcher('CHANGE_LOGIN'));
-    // console.log('success!', this.props.store);
+    this.props.setLogin(CHANGE_LOGIN, this.state.login, this.state.password);
   }
   render() {
     return (
