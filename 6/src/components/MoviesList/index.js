@@ -1,23 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { FETCH_MOVIES, fetchMoviesData } from '../../reducers/actions'
+import { fetchMoviesData } from '../../actions/actions';
+import * as actionTypes from '../../reducers/actionTypes'
+
+import './index.css';
 
 @connect((store) => {
     return {
-        movies: store.movies
+        movies: store.movies.movies
     };
 }, fetchMoviesData)
 class MoviesList extends Component {
+    static defaultProps = {
+        movies: []
+    }
+
     componentWillMount() {
-        this.props.getMovies(FETCH_MOVIES);
+        this.props.getMovies(actionTypes.FETCH_MOVIES);
     }
 
     render() {
-        // const mappedMovies = this.props.movies.map(movie => <li key={movie.id}>{movie.title}</li>)
-        console.log(this.props.movies);
+        const mappedMovies = this.props.movies.map(movie => {
+            return <p key={movie.id}>
+                {movie.id + ' '}
+                <img src={movie.images[0]} />
+                {movie.title}
+            </p>
+        })
+
         return (
-            // <ul>{mappedMovies}</ul>
-            <h1>Movies list</h1>
+            <div>
+                <nav></nav>
+                <div></div>
+                <div>{mappedMovies}</div>
+            </div>
         );
     }
 }
