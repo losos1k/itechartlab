@@ -12,7 +12,6 @@ class MoviesList extends Component {
         this.props.getMovies(FETCH_MOVIES);
     }
 
-    
     render() {
         // const mappedMovies = this.props.movies.map(movie => <li key={movie.id}>{movie.title}</li>)
         console.log(this.props.movies);

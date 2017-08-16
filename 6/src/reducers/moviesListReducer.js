@@ -3,8 +3,8 @@ import { FETCH_MOVIES } from '../reducers/actions'
 const moviesListReducer = (state = [], action) => {
 
     switch (action.type) {
-        case FETCH_MOVIES: {
-            return { ...state };
+        case FETCH_MOVIES.type: {
+            return { ...state, movies: action.movies };
             break;
         }
     }

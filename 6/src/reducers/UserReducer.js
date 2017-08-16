@@ -3,7 +3,7 @@ import { CHANGE_LOGIN } from '../reducers/actions'
 const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case CHANGE_LOGIN: {
+        case CHANGE_LOGIN.type: {
             return { ...state, login: action.login, password: action.password };
             break;
         }
