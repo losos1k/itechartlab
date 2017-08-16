@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Login from '../components/Login/index'
 import MoviesList from '../components/MoviesList/index'
+import MovieInfo from '../components/Movies/index'
 
 class App extends Component {
   constructor() {
@@ -21,6 +22,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/movies_list" component={MoviesList} />
+              <Route exact path="/movie" component={MovieInfo} />
             </Switch>
           </Provider>
         </div>

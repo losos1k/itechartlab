@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as loginActions from '../../actions/actions'
 import * as actionTypes from '../../reducers/actionTypes'
-import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const mapDispatchToProps = () => {
   return dispatch => ({
@@ -45,9 +45,6 @@ export default class Login extends Component {
     this.props.setLogin(actionTypes.CHANGE_LOGIN, this.state.login, this.state.password);
   }
   render() {
-    // if (this.state.redirect) {
-    //   return <Redirect push to="movies_list" />;
-    // }
     return (
         <div className="Login">
           <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 
 import { fetchMoviesData } from '../../actions/actions';
 import * as actionTypes from '../../reducers/actionTypes'
+import Movie from '../Movies/Movie'
 
 import './index.css';
 
@@ -31,11 +32,7 @@ class MoviesList extends Component {
         })
 
         return (
-            <div>
-                <nav></nav>
-                <div></div>
-                <div>{mappedMovies}</div>
-            </div>
+            <Movie mappedMovies={mappedMovies}/>
         );
     }
 }
