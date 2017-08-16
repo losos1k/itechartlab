@@ -4,7 +4,7 @@ const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case CHANGE_LOGIN: {
-            return { ...state, login: action.loginValue, password: action.passwordValue };
+            return { ...state, login: action.login, password: action.password };
             break;
         }
     }

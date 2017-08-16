@@ -7,8 +7,8 @@ const middleware = applyMiddleware(logger);
 const store = createStore(reducers, middleware);
 
 store.subscribe(() => {
-    console.log(store.getState())
-    // store.getState();
+    // console.log(store.getState())
+    store.getState();
 });
 
 

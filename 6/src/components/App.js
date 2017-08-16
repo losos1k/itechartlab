@@ -3,8 +3,6 @@ import { Provider } from 'react-redux'
 import store from '../store'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
-import '../App.css'
-
 import Login from '../components/Login/index'
 import MoviesList from '../components/MoviesList/index'
 
