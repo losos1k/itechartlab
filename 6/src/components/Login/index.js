@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { CHANGE_LOGIN, loginDispatcher } from '../../reducers/actions'
+import * as loginActions from '../../actions/actions'
+import * as actionTypes from '../../reducers/actionTypes'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 
-@connect((store) => {
+const mapDispatchToProps = () => {
+  return dispatch => ({
+    setLogin: (actionType, loginVal, passwordVal) => {
+      dispatch(loginActions.loginDispatcher(actionType, loginVal, passwordVal))
+    }
+  })
+}
+
+const mapStateToProps = (store) => {
   return {
     login: store.user.login,
     password: store.user.password,
   };
-}, loginDispatcher)
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 export default class Login extends Component {
   constructor() {
     super();
@@ -31,7 +42,7 @@ export default class Login extends Component {
 
   handleSubmit = (e) => {
     this.setState({ redirect: true });
-    this.props.setLogin(CHANGE_LOGIN, this.state.login, this.state.password);
+    this.props.setLogin(actionTypes.CHANGE_LOGIN, this.state.login, this.state.password);
   }
   render() {
     if (this.state.redirect) {

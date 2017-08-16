@@ -4,13 +4,7 @@ import reducers from './reducers/reducers'
 
 const logger = createLogger();
 const middleware = applyMiddleware(logger);
-const store = createStore(reducers, middleware);
 
-store.subscribe(() => {
-    // console.log(store.getState())
-    store.getState();
-});
+const storeCreate = () => createStore(reducers, middleware);
 
-
-
-export default store;
+export default storeCreate;
