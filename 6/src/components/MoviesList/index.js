@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
+
 import { fetchMoviesData } from '../../actions/actions';
 import * as actionTypes from '../../reducers/actionTypes'
 
