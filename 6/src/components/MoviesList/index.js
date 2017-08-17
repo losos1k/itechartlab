@@ -1,18 +1,22 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom';
+import axios from 'axios';
 
-import { fetchMoviesData } from '../../actions/actions';
-import * as actionTypes from '../../reducers/actionTypes'
-import Movie from '../Movies/Movie'
+import { fetchMoviesData } from '../../actions/fetchMoviesData';
+import * as actionTypes from '../../reducers/actionTypes';
+import Movie from '../Movies/Movie';
+import MovieInfo from '../Movies/index';
 
 import './index.css';
 
-@connect((store) => {
+const mapStateToProps = (store) => {
     return {
         movies: store.movies.movies
     };
-}, fetchMoviesData)
+}
+
+@connect(mapStateToProps, fetchMoviesData)
 class MoviesList extends Component {
     static defaultProps = {
         movies: []
@@ -25,14 +29,18 @@ class MoviesList extends Component {
     render() {
         const mappedMovies = this.props.movies.map(movie => {
             return <p key={movie.id}>
-                {movie.id + ' '}
-                <img src={movie.images[0]} />
-                {movie.title}
+                <Link to={`/movie/${movie.id + 1}`}>
+                    {movie.id + ' '}
+                    <img src={movie.images[0]} />
+                    {movie.title}</Link>
             </p>
         })
-
         return (
-            <Movie mappedMovies={mappedMovies}/>
+            <div>
+                <nav></nav>
+                <div></div>
+                <div>{mappedMovies}</div>
+            </div>
         );
     }
 }

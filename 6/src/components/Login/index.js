@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as loginActions from '../../actions/actions'
+import { loginDispatcher } from '../../actions/loginDispatcher'
 import * as actionTypes from '../../reducers/actionTypes'
 import { Link } from 'react-router-dom'
 
 const mapDispatchToProps = () => {
   return dispatch => ({
     setLogin: (actionType, loginVal, passwordVal) => {
-      dispatch(loginActions.loginDispatcher(actionType, loginVal, passwordVal))
+      dispatch(loginDispatcher(actionType, loginVal, passwordVal))
     }
   })
 }
