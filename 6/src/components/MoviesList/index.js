@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import axios from 'axios';
-
 import { fetchMoviesData } from '../../actions/fetchMoviesData';
+
 import * as actionTypes from '../../reducers/actionTypes';
 import MovieInfo from '../Movies/index';
 
@@ -19,10 +19,6 @@ const mapStateToProps = (store) => {
 class MoviesList extends Component {
     static defaultProps = {
         movies: []
-    }
-
-    componentWillMount() {
-        this.props.getMovies(actionTypes.FETCH_MOVIES);
     }
 
     render() {

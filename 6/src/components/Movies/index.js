@@ -1,19 +1,58 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
-import { fetchMoviesData } from '../../actions/fetchMoviesData';
+import { getComment } from '../../actions/getComment';
 import * as actionTypes from '../../reducers/actionTypes';
 
 const mapStateToProps = (store) => {
     return {
-        movies: store.movies.movies
+        login: store.user.login,
+        movies: store.movies.movies,
+        commentAuthor: store.comments.commentAuthor,
+        commentDate: store.comments.commentDate,
+        commentText: store.comments.commentText,
     };
 }
 
-@connect(mapStateToProps, fetchMoviesData)
+const mapDispatchToProps = () => {
+    return dispatch => ({
+        getComment: (actionType, commentAuthorVal, commentDateVal, commentTextVal) => {
+            dispatch(getComment(actionType, commentAuthorVal, commentDateVal, commentTextVal))
+        }
+    })
+}
+
+@connect(mapStateToProps, mapDispatchToProps)
 class MovieInfo extends Component {
+    constructor() {
+        super();
+        this.state = {
+            commentAuthor: '',
+            commentDate: '',
+            commentText: '',
+        };
+    }
+
     static defaultProps = {
-        movies: []
+        movies: [],
+    }
+
+    handleCommentInput = (e) => {
+        const commentVal = e.target.value;
+        const nowDate = new Date();
+        this.setState({
+            commentAuthor: this.props.login,
+            commentDate: nowDate.getDate(),
+            commentText: commentVal,
+        });
+    }
+
+    hadleCommentSubmit = (e) => {
+        this.props.getComment(
+            actionTypes.GET_COMMENT,
+            this.state.commentAuthor,
+            this.state.commentDate,
+            this.state.commentText);
     }
 
     render() {
@@ -24,6 +63,11 @@ class MovieInfo extends Component {
                 <h1>{selectedMovie.title}</h1>
                 <div>{selectedMovie.description}</div>
                 <img src={selectedMovie.images[0]} />
+                <div>
+                    <input type="text" onChange={this.handleCommentInput} placeholder="Type your comment here..." />
+                    <input type="submit" defaultValue="Send comment" onClick={this.hadleCommentSubmit} />
+                </div>
+                <h6>{this.props.commentAuthor} commented at {this.props.commentDate} aug: {this.props.commentText}</h6>
                 <h1><Link to='/movies'>Back</Link></h1>
             </div>
         );
