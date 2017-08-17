@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginDispatcher } from '../../actions/loginDispatcher'
 import * as actionTypes from '../../reducers/actionTypes'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 const mapDispatchToProps = () => {
   return dispatch => ({
@@ -43,13 +43,19 @@ export default class Login extends Component {
   handleSubmit = (e) => {
     this.setState({ redirect: true });
     this.props.setLogin(actionTypes.CHANGE_LOGIN, this.state.login, this.state.password);
+    this.pushToNextPage();
   }
+
+  pushToNextPage = () => {
+    this.props.history.push(`/movies_list`)
+  }
+
   render() {
     return (
         <div className="Login">
           <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
           <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
-          <Link to='/movies_list'><input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} /></Link>
+          <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
         </div>
     );
   }
