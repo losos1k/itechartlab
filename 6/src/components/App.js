@@ -21,8 +21,8 @@ class App extends Component {
           <Provider store={storeCreate()}>
             <Switch>
               <Route exact path="/" component={Login} />
-              <Route path="/movies_list" component={MoviesList} />
-              <Route path="/movie" component={MovieInfo} />
+              <Route path="/movies" component={MoviesList} />
+              <Route path="/movie/:id" component={MovieInfo} />
             </Switch>
           </Provider>
         </div>

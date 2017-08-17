@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loginDispatcher } from '../../actions/loginDispatcher'
+// import { pushToNextPage } from '../../actions/pushToNextPage'
 import * as actionTypes from '../../reducers/actionTypes'
 import { withRouter } from 'react-router-dom'
 
@@ -47,16 +48,16 @@ export default class Login extends Component {
   }
 
   pushToNextPage = () => {
-    this.props.history.push(`/movies_list`)
+    this.props.history.push(`/movies`)
   }
 
   render() {
     return (
-        <div className="Login">
-          <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
-          <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
-          <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
-        </div>
+      <div className="Login">
+        <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
+        <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
+        <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
+      </div>
     );
   }
 }

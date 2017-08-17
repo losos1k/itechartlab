@@ -5,7 +5,6 @@ import axios from 'axios';
 
 import { fetchMoviesData } from '../../actions/fetchMoviesData';
 import * as actionTypes from '../../reducers/actionTypes';
-import Movie from '../Movies/Movie';
 import MovieInfo from '../Movies/index';
 
 import './index.css';
@@ -29,7 +28,7 @@ class MoviesList extends Component {
     render() {
         const mappedMovies = this.props.movies.map(movie => {
             return <p key={movie.id}>
-                <Link to={`/movie/${movie.id + 1}`}>
+                <Link to={`/movie/${movie.id}`}>
                     {movie.id + ' '}
                     <img src={movie.images[0]} />
                     {movie.title}</Link>
