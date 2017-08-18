@@ -1,20 +1,22 @@
-import { GET_COMMENT } from '../reducers/actionTypes'
+import { actionTypes } from '../actions/actionTypes'
 
-const commentReducer = (state = [], action) => {
+const commentReducer = (state = initialState, action) => {
 
-    switch (action.type) {
+    switch (actionTypes.GET_COMMENT) {
 
-        case GET_COMMENT.type: {
+        case actionTypes.GET_COMMENT: {
             return {
                 ...state,
-                commentAuthor: action.commentAuthor,
-                commentDate: action.commentDate,
-                commentText: action.commentText,
+                comments: [...state.comments, action.comments]
             };
             break;
         }
     }
     return state;
 };
+
+const initialState = {
+    comments: []
+}
 
 export default commentReducer;

@@ -1,10 +1,10 @@
-import { FETCH_MOVIES } from '../reducers/actionTypes'
+import { actionTypes } from '../actions/actionTypes'
 
 const moviesListReducer = (state = [], action) => {
 
-    switch (action.type) {
+    switch (actionTypes.FETCH_MOVIES) {
 
-        case FETCH_MOVIES.type: {
+        case actionTypes.FETCH_MOVIES: {
             return { ...state, movies: action.movies };
             break;
         }

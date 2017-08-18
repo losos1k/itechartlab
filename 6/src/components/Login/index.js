@@ -1,15 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginDispatcher } from '../../actions/loginDispatcher'
-import { fetchMoviesData } from '../../actions/fetchMoviesData';
+import { getLogin } from '../../actions/getLogin'
 // import { pushToNextPage } from '../../actions/pushToNextPage'
-import * as actionTypes from '../../reducers/actionTypes'
+import { actionTypes } from '../../actions/actionTypes';
 import { BrowserRouter, withRouter } from 'react-router-dom'
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    setLogin: (actionType, loginVal, passwordVal) => {
-      dispatch(loginDispatcher(actionType, loginVal, passwordVal))
+    getLogin: (loginVal, passwordVal) => {
+      dispatch(getLogin(loginVal, passwordVal))
     }
   })
 }
@@ -42,7 +41,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = (e) => {
-    this.props.setLogin(actionTypes.CHANGE_LOGIN, this.state.login, this.state.password);
+    this.props.getLogin(this.state.login, this.state.password);
     this.pushToNextPage();
   }
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export function getQuery(url) {
-    return axios.get(url)
+export function getMoviesFromJson() {
+    return axios.get(`../movies.json`)
         .then((response) => {
             return response.data;
         })
