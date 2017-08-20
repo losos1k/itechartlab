@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getLogin } from '../../actions/getLogin'
 // import { pushToNextPage } from '../../actions/pushToNextPage'
 import { BrowserRouter, withRouter } from 'react-router-dom'
+import { FormGroup } from 'react-bootstrap';
 
 const mapDispatchToProps = () => {
   return dispatch => ({
@@ -29,18 +30,33 @@ export default class Login extends Component {
     };
   }
 
+  componentDidMount() {
+    if (localStorage.getItem('isLogin')) {
+      this.setUser();
+    }
+  }
+
   handleLogin = (e) => {
-    const loginVal = e.target.value;
-    this.setState({ login: loginVal });
+    this.setState({ login: e.target.value });
   }
 
   handlePassword = (e) => {
-    const passwordVal = e.target.value;
-    this.setState({ password: passwordVal });
+    this.setState({ password: e.target.value });
   }
 
   handleSubmit = (e) => {
-    this.props.getLogin(this.state.login, this.state.password);
+    if (!localStorage.getItem('isLogin') && (this.state.login.length > 3) && (this.state.password.length > 3)) {
+      localStorage.setItem('login', this.state.login);
+      localStorage.setItem('password', this.state.password);
+      this.setUser();
+    } else {
+      return <div>Your login or password is too short!</div>;
+    }
+  }
+
+  setUser = () => {
+    this.props.getLogin(localStorage.getItem('login'), localStorage.getItem('password'));
+    localStorage.setItem('isLogin', true)
     this.pushToNextPage();
   }
 
@@ -49,13 +65,14 @@ export default class Login extends Component {
   }
 
   render() {
+    
     return (
       <BrowserRouter history={history}>
-        <div className="Login">
-          <input placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
-          <input placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
+        <FormGroup controlId="formValidationSuccess2" validationState="success">
+          <input type="text" placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
+          <input type="password" placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
           <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
-        </div>
+        </FormGroup>
       </BrowserRouter>
     );
   }

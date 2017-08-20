@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 import { getComments } from '../../actions/getComments';
+import { getRating } from '../../actions/getRating';
+import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
     return {
         login: store.user.login,
         movies: store.movies.movies,
-        comments: store.comments.comments,
+        comments: store.comments,
+        rating: store.rating,
     };
 }
 
@@ -15,7 +18,8 @@ const mapDispatchToProps = () => {
     return dispatch => ({
         getComments: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
             dispatch(getComments(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
-        }
+        },
+        getRating: (rateVal, movieIdVal) => dispatch(getRating(rateVal, movieIdVal)),
     })
 }
 
@@ -28,13 +32,15 @@ class MovieInfo extends Component {
             commentDate: '',
             commentText: '',
             movieId: '',
+            rating: [],
         };
-    }
+    };
 
     static defaultProps = {
         movies: [],
         comments: [],
-    }
+
+    };
 
     handleCommentInput = (e) => {
         const movieIdVal = this.props.match.params.id;
@@ -47,7 +53,7 @@ class MovieInfo extends Component {
             commentText: commentVal,
             movieId: movieIdVal,
         });
-    }
+    };
 
     hadleCommentSubmit = (e) => {
         this.props.getComments(
@@ -55,22 +61,37 @@ class MovieInfo extends Component {
             this.state.commentDate,
             this.state.commentText,
             this.state.movieId);
-    }
+    };
+
+    handleRating = (rateVal) => {
+        this.setState({ rating: rateVal }, () => {
+            const movieIdVal = this.props.match.params.id;
+            this.props.getRating(
+                this.state.rating,
+                movieIdVal
+            );
+        });
+    };
 
     render() {
         const movieId = this.props.match.params.id;
-        const selectedMovie = this.props.movies.filter((movie) => movie.id === +movieId)[0];
-        const filteredComments = this.props.comments.filter(comment => comment.movieId === movieId);
-        const mappedComments = filteredComments.map((comment, index) => {
+        const movieInfo = this.props.movies.filter((movie) => movie.id === +movieId)[0];
+        const movieComments = this.props.comments.filter(comment => comment.movieId === movieId);
+        const mappedComments = movieComments.map((comment, index) => {
             return <p key={index}>
                 {comment.commentAuthor} commented on {comment.commentDate}: {comment.commentText}
             </p>
-        })
+        });
+        const movieRating = this.props.rating.filter(rating => rating.movieId === movieId);
+        const mappedRating = movieRating.map((rating, index) => rating.rating)
+        const index = mappedRating.length - 1;
+        let ratingValue = mappedRating[index]
         return (
             <div>
-                <h1>{selectedMovie.title}</h1>
-                <div>{selectedMovie.description}</div>
-                <img src={selectedMovie.images[0]} />
+                <h1>{movieInfo.title}</h1>
+                <div>{movieInfo.description}</div>
+                <img src={movieInfo.images[0]} />
+                <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
                 <div>
                     <input type="text" onChange={this.handleCommentInput} placeholder="Type your comment here..." />
                     <input type="submit" defaultValue="Send comment" onClick={this.hadleCommentSubmit} />
