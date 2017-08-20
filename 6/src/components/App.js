@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import storeCreate from '../storeCreate'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { actionTypes } from '../actions/actionTypes';
 
 import { getMovies } from '../actions/getMovies';
 
@@ -30,7 +29,7 @@ class App extends Component {
     this.store = storeCreate();
   }
 
-  componentWillMount = () => {
+  componentWillMount () {
     this.props.getMovies();
   }
 

@@ -1,5 +1,3 @@
-export const actionTypes = {
-    CHANGE_LOGIN: 'CHANGE_LOGIN',
-    FETCH_MOVIES: 'FETCH_MOVIES',
-    GET_COMMENT: 'GET_COMMENT',
-}
+export const CHANGE_LOGIN = 'CHANGE_LOGIN';
+export const FETCH_MOVIES = 'FETCH_MOVIES';
+export const GET_COMMENT = 'GET_COMMENT';

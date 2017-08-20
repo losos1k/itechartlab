@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getLogin } from '../../actions/getLogin'
 // import { pushToNextPage } from '../../actions/pushToNextPage'
-import { actionTypes } from '../../actions/actionTypes';
 import { BrowserRouter, withRouter } from 'react-router-dom'
 
 const mapDispatchToProps = () => {

@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 import { getMovies } from '../../actions/getMovies';
-import { actionTypes } from '../../actions/actionTypes';
 
 import MovieInfo from '../Movies/index';
 
 import './index.css';
 
 const mapStateToProps = (store) => {
+    console.log("mapStateToProps ",store);
     return {
         movies: store.movies.movies
     };

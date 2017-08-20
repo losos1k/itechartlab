@@ -1,8 +1,8 @@
-import { actionTypes } from '../actions/actionTypes';
+import { GET_COMMENT } from '../actions/actionTypes';
 
 export function getComments(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) {
     return {
-        type: actionType.GET_COMMENT,
+        type: GET_COMMENT,
         comments: {
             commentAuthor: commentAuthorVal,
             commentDate: commentDateVal,

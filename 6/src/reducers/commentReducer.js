@@ -1,10 +1,10 @@
-import { actionTypes } from '../actions/actionTypes'
+import { GET_COMMENT } from '../actions/actionTypes'
 
 const commentReducer = (state = initialState, action) => {
 
-    switch (actionTypes.GET_COMMENT) {
+    switch (action.type) {
 
-        case actionTypes.GET_COMMENT: {
+        case GET_COMMENT: {
             return {
                 ...state,
                 comments: [...state.comments, action.comments]

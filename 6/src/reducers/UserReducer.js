@@ -1,10 +1,10 @@
-import { actionTypes } from '../actions/actionTypes'
+import { CHANGE_LOGIN } from '../actions/actionTypes'
 
 const userReducer = (state = initialState, action) => {
 
-    switch (actionTypes.CHANGE_LOGIN) {
+    switch (action.type) {
         
-        case actionTypes.CHANGE_LOGIN: {
+        case CHANGE_LOGIN: {
             return { ...state, login: action.login, password: action.password };
             break;
         }
