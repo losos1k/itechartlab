@@ -138,6 +138,12 @@ class MoviesList extends Component {
                         <option value="year: newest first">year: newest first</option>
                         <option value="year: oldest first">year: oldest first</option>
                     </select>
+                    {/* <DropDownMenu value={this.state.sortOrder} onChange={this.handleSelect}>
+                        <MenuItem value="title: A-Z" primaryText="title: A-Z" />
+                        <MenuItem value="title: Z-A" primaryText="title: Z-A" />
+                        <MenuItem value="year: newest first" primaryText="year: newest first" />
+                        <MenuItem value="year: oldest first" primaryText="year: oldest first" />
+                    </DropDownMenu> */}
                 </div>
                 <div>{movies}</div>
             </div >

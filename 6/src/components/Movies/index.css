@@ -3,3 +3,26 @@
     display: inline-block;
     margin: 0;
 }
+
+.movie-info img{
+    width: 400px;
+}
+
+.movie-info__gallery{
+    text-align: center;
+}
+
+.movie-info__gallery img{
+    padding: 5px;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+}
+
+.carousel-control, .carousel-control:hover, .carousel-control:focus{
+    opacity: 0;
+}
+
+.movie-info__comments-item{
+    padding: 10px;
+}

@@ -4,12 +4,14 @@ import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 import { getComments } from '../../actions/getComments';
 import { getRating } from '../../actions/getRating';
 import ReactStars from 'react-stars'
-import { Breadcrumb } from 'react-bootstrap';
+import { Breadcrumb, Carousel } from 'react-bootstrap';
 import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-
+import RaisedButton from 'material-ui/RaisedButton';
 
 import './index.css';
+import '../MoviesList/index.css';
 
 const mapStateToProps = (store) => {
     return {
@@ -79,6 +81,23 @@ class MovieInfo extends Component {
         });
     };
 
+    logout = () => {
+        localStorage.removeItem('login');
+        localStorage.removeItem('password');
+        localStorage.removeItem('isLogin');
+        this.props.history.push(`/`)
+    }
+
+    getGallery = (sliceStart, sliceEnd) => {
+        const movieId = this.props.match.params.id;
+        const movieInfo = this.props.movies.filter((movie) => movie.id === +movieId)[0];
+        return movieInfo.images.slice(sliceStart, sliceEnd).map((photo, index) => {
+            return <span key={index}>
+                <img src={photo} />
+            </span>
+        });
+    };
+
     render() {
         const movieId = this.props.match.params.id;
         const movieInfo = this.props.movies.filter((movie) => movie.id === +movieId)[0];
@@ -92,6 +111,7 @@ class MovieInfo extends Component {
         const mappedRating = movieRating.map((rating, index) => rating.rating)
         const index = mappedRating.length - 1;
         let ratingValue = mappedRating[index]
+
         return (
             <div>
                 <header>
@@ -109,19 +129,36 @@ class MovieInfo extends Component {
                     <FlatButton label="Logout" primary={true} onClick={this.logout} />
                 </header>
                 <section>
-                    <Paper zDepth={1} className='movie-info'>
-                        <h1>{movieInfo.title}</h1>
-                        <div>{movieInfo.description}</div>
-                        <img src={movieInfo.images[0]} />
-                        <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
+                    <Paper zDepth={1} className='movie-list__movie'>
+                        <div><img src={movieInfo.images[0]} /></div>
+                        <section className="movie-list__movie-description">
+                            <h2>{movieInfo.title}</h2>
+                            <p>{movieInfo.description}</p>
+                            <p><b>Year: {movieInfo.year}</b></p>
+                        </section>
                     </Paper>
+                    <Carousel indicators={false} interval={null}>
+                        <Carousel.Item className="movie-info__gallery">
+                            {this.getGallery(0, 5)}
+                        </Carousel.Item>
+                        <Carousel.Item className="movie-info__gallery">
+                            {this.getGallery(5, 10)}
+                        </Carousel.Item>
+                    </Carousel>
                 </section>
-                <div>
-                    <input type="text" onChange={this.handleCommentInput} placeholder="Type your comment here..." />
-                    <input type="submit" defaultValue="Send comment" onClick={this.hadleCommentSubmit} />
-                </div>
-                <h6>{mappedComments}</h6>
-                <h1><Link to='/movies'>Back</Link></h1>
+                <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
+                <section className="movie-info__comments">
+                    <TextField
+                        hintText="Type your comment here..."
+                        floatingLabelText="Comment"
+                        fullWidth={true}
+                        multiLine={true}
+                        rows={2}
+                        onChange={this.handleCommentInput}
+                    /><br />
+                    <Paper zDepth={1} className="movie-info__comments-item">{mappedComments}</Paper>
+                    <RaisedButton label="Send comment" fullWidth={true} onClick={this.hadleCommentSubmit} />
+                </section>
             </div>
         );
     }

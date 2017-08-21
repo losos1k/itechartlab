@@ -1,4 +1,4 @@
-img {
+.movie-list__movie img {
     width: 300px;
 }
 
@@ -34,7 +34,6 @@ header{
 header h3{
     margin: 0;
 }
-
 
 .movie-list__movie-filter{
     text-align: center;
