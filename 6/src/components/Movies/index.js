@@ -4,6 +4,12 @@ import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 import { getComments } from '../../actions/getComments';
 import { getRating } from '../../actions/getRating';
 import ReactStars from 'react-stars'
+import { Breadcrumb } from 'react-bootstrap';
+import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
+
+
+import './index.css';
 
 const mapStateToProps = (store) => {
     return {
@@ -88,10 +94,28 @@ class MovieInfo extends Component {
         let ratingValue = mappedRating[index]
         return (
             <div>
-                <h1>{movieInfo.title}</h1>
-                <div>{movieInfo.description}</div>
-                <img src={movieInfo.images[0]} />
-                <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
+                <header>
+                    <Breadcrumb>
+                        <Link to={`/movies`}>
+                            <Breadcrumb.Item>
+                                Movie List
+                        </Breadcrumb.Item>
+                        </Link>
+                        <Breadcrumb.Item active>
+                            {movieInfo.title}
+                        </Breadcrumb.Item>
+                    </Breadcrumb>
+                    <p>{this.props.login}</p>
+                    <FlatButton label="Logout" primary={true} onClick={this.logout} />
+                </header>
+                <section>
+                    <Paper zDepth={1} className='movie-info'>
+                        <h1>{movieInfo.title}</h1>
+                        <div>{movieInfo.description}</div>
+                        <img src={movieInfo.images[0]} />
+                        <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
+                    </Paper>
+                </section>
                 <div>
                     <input type="text" onChange={this.handleCommentInput} placeholder="Type your comment here..." />
                     <input type="submit" defaultValue="Send comment" onClick={this.hadleCommentSubmit} />

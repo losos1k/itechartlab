@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import storeCreate from '../storeCreate'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { getMovies } from '../actions/getMovies';
 
@@ -36,6 +37,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter history={history}>
+      <MuiThemeProvider>
         <div className="App">
           <Switch>
             <Route exact path="/" component={Login} />
@@ -43,6 +45,7 @@ class App extends Component {
             <Route path="/movie/:id" component={MovieInfo} />
           </Switch>
         </div>
+        </MuiThemeProvider>
       </BrowserRouter>
     );
   }

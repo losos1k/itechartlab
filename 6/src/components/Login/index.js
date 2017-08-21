@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getLogin } from '../../actions/getLogin'
-// import { pushToNextPage } from '../../actions/pushToNextPage'
 import { BrowserRouter, withRouter } from 'react-router-dom'
-import { FormGroup } from 'react-bootstrap';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import './index.css';
 
 const mapDispatchToProps = () => {
   return dispatch => ({
@@ -27,6 +29,7 @@ export default class Login extends Component {
     this.state = {
       login: '',
       password: '',
+      message: null
     };
   }
 
@@ -50,7 +53,9 @@ export default class Login extends Component {
       localStorage.setItem('password', this.state.password);
       this.setUser();
     } else {
-      return <div>Your login or password is too short!</div>;
+      this.setState({
+        message: 'Your login or password is too short!'
+      });
     }
   }
 
@@ -65,14 +70,24 @@ export default class Login extends Component {
   }
 
   render() {
-    
+    let message = this.state.message;
+
     return (
       <BrowserRouter history={history}>
-        <FormGroup controlId="formValidationSuccess2" validationState="success">
-          <input type="text" placeholder="Login" className="dataInput" value={this.state.value} onChange={this.handleLogin} />
-          <input type="password" placeholder="Password" className="dataInput" value={this.state.value} onChange={this.handlePassword} />
-          <input type="Submit" defaultValue="Submit" onClick={this.handleSubmit} />
-        </FormGroup>
+        <div className="login-form">
+          <TextField
+            hintText="Type your login here"
+            floatingLabelText="Login"
+            onChange={this.handleLogin} /><br />
+          <TextField
+            hintText="Type your password here"
+            floatingLabelText="Password"
+            onChange={this.handlePassword} /><br />
+          <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
+
+          {message && <div>{message}</div>}
+
+        </div>
       </BrowserRouter>
     );
   }

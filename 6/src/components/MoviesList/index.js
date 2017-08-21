@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Link } from 'react-router-dom';
-import axios from 'axios';
 import { getMovies } from '../../actions/getMovies';
 import _ from 'lodash';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
 
 import MovieInfo from '../Movies/index';
 
@@ -12,6 +14,7 @@ import './index.css';
 const mapStateToProps = (store) => {
     return {
         movies: store.movies.movies,
+        login: store.user.login,
     };
 }
 
@@ -23,34 +26,41 @@ class MoviesList extends Component {
         this.state = {
             search: '',
             sortOrder: 'title: A-Z',
+            loadMoviesAmount: 10,
+            moviesListToDisplay: null,
         };
     }
 
     static defaultProps = {
-        movies: []
+        movies: [],
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
+        this.setState({
+            moviesListToDisplay: this.props.movies.slice(0, this.state.loadMoviesAmount).map(movie => {
+                return <div key={movie.id}>
+                    <Link to={`/movie/${movie.id}`}>
+                        <Paper zDepth={1} className='movie-list__movie'>
+                            <div><img src={movie.images[0]} /></div>
+                            <section className="movie-list__movie-description">
+                                <h2>{movie.title}</h2>
+                                <p>{movie.description}</p>
+                                <p><b>Year: {movie.year}</b></p>
+                            </section>
+                        </Paper>
+                    </Link>
+                </div>
+            })
+        })
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
-        this.setState({ items: this.props.movies })
-    }
-
-    getDistFromBottom = () => {
-        var scrollPosition = window.pageYOffset;
-        var windowSize = window.innerHeight;
-        var bodyHeight = document.body.offsetHeight;
-        return Math.max(bodyHeight - (scrollPosition + windowSize), 0);
     }
 
     handleScroll = () => {
-        if (this.getDistFromBottom() < 300) {
-            console.log('kek', this.getMovies());
-            this.getMovies();
-        }
+        this.setState({ loadMoviesAmount: 20 })
     }
 
     handleSearch = (e) => {
@@ -65,9 +75,10 @@ class MoviesList extends Component {
         localStorage.removeItem('login');
         localStorage.removeItem('password');
         localStorage.removeItem('isLogin');
+        this.props.history.push(`/`)
     }
 
-    getMovies = () => {
+    getMovies = (moviesLoadAmount) => {
         const moviesList = this.props.movies.filter(movie => {
             return movie.title.toLowerCase().indexOf(
                 this.state.search.toLowerCase()) !== -1;
@@ -90,33 +101,46 @@ class MoviesList extends Component {
                 sortedList = _.orderBy(moviesList, 'year', 'desc');
                 break;
         }
-        return sortedList.map(movie => {
-            return <p key={movie.id}>
+        return sortedList.slice(0, moviesLoadAmount).map(movie => {
+            return <div key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
-                    {movie.id + ' '}
-                    <img src={movie.images[0]} />
-                    {movie.title}</Link>
-            </p>
+                    <Paper zDepth={1} className='movie-list__movie'>
+                        <div><img src={movie.images[0]} /></div>
+                        <section className="movie-list__movie-description">
+                            <h2>{movie.title}</h2>
+                            <p>{movie.description}</p>
+                            <p><b>Year: {movie.year}</b></p>
+                        </section>
+                    </Paper>
+                </Link>
+            </div>
         })
     }
 
     render() {
+        var movies = this.getMovies(10);
         return (
-            <div>
-                <nav>
-                    <h1 onClick={this.logout}><Link to='/'>Logout</Link></h1>
-                </nav>
-                <div>
-                    <input type="text" placeholder="search" onChange={this.handleSearch} value={this.state.search} />
+            <div >
+                <header>
+                    <h3>Movie List</h3>
+                    <p>{this.props.login}</p>
+                    <FlatButton label="Logout" primary={true} onClick={this.logout} />
+                </header>
+                <div className="movie-list__movie-filter">
+                    <TextField
+                        hintText="For example: Fight Club..."
+                        floatingLabelText="Search"
+                        onChange={this.handleSearch}
+                        value={this.state.search} />
                     <select value={this.state.sortOrder} onChange={this.handleSelect}>
                         <option value="title: A-Z">title: A-Z</option>
                         <option value="title: Z-A">title: Z-A</option>
-                        <option value="year: oldest first">year: oldest first</option>
                         <option value="year: newest first">year: newest first</option>
+                        <option value="year: oldest first">year: oldest first</option>
                     </select>
                 </div>
-                <div>{this.getMovies()}</div>
-            </div>
+                <div>{movies}</div>
+            </div >
         );
     }
 }
