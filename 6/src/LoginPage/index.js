@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getLogin } from '../../actions/getLogin'
+import { getLogin } from './getLogin'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';

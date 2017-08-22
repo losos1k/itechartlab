@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import storeCreate from '../storeCreate'
+import storeCreate from './storeCreate'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { getMovies } from '../actions/getMovies';
+import { getMovies } from './MovieListPage/getMovies';
 
-import Login from '../components/Login/index'
-import MoviesList from '../components/MoviesList/index'
-import MovieInfo from '../components/Movies/index'
+import Login from './LoginPage/index'
+import MoviesList from './MovieListPage/index'
+import MovieInfo from './MoviePage/index'
 
 const mapStateToProps = (store) => {
   return {

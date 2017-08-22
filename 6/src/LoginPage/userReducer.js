@@ -1,4 +1,4 @@
-import { CHANGE_LOGIN } from '../actions/actionTypes'
+import { CHANGE_LOGIN } from '../actionTypes'
 
 const userReducer = (state = initialState, action) => {
 

@@ -4,12 +4,12 @@ import Paper from 'material-ui/Paper';
 import Dialog from 'material-ui/Dialog';
 
 import './index.css';
-import '../MoviesList/index.css';
+import '../MovieListPage/index.css';
 
-import Comments from './Comments';
-import Rating from './Rating';
-import Gallery from './Gallery';
-import Header from './Header';
+import Comments from './components/Comments';
+import Rating from './components/Rating';
+import Gallery from './components/Gallery';
+import Header from './components/Header';
 
 const mapStateToProps = (store) => {
     return {

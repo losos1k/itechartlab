@@ -1,11 +1,11 @@
-import { GET_RATING } from '../actions/actionTypes'
+import { GET_COMMENT } from '../actionTypes'
 
 const commentsReducer = (state = [], action) => {
 
     switch (action.type) {
 
-        case GET_RATING: {
-            return [...state, action.rating];
+        case GET_COMMENT: {
+            return [...state, action.comments];
             break;
         }
     }

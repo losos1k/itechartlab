@@ -1,5 +1,5 @@
 import { getMoviesFromJson } from '../services/queries';
-import { FETCH_MOVIES } from '../actions/actionTypes';
+import { FETCH_MOVIES } from '../actionTypes';
 
 export const getMovies = () => (dispatch) => {
     return getMoviesFromJson()

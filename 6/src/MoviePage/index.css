@@ -6,6 +6,7 @@
 
 .movie-info img{
     width: 400px;
+    cursor: pointer;
 }
 
 .movie-info__gallery{

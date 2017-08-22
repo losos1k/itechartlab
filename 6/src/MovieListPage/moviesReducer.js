@@ -1,4 +1,4 @@
-import { FETCH_MOVIES } from '../actions/actionTypes'
+import { FETCH_MOVIES } from '../actionTypes'
 
 const moviesReducer = (state = [], action) => {
 

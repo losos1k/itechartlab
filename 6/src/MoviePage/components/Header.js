@@ -8,6 +8,7 @@ const mapStateToProps = (store) => {
     return {
         login: store.user.login,
         movies: store.movies.movies,
+        
     };
 }
 @connect(mapStateToProps)
@@ -26,9 +27,9 @@ class Header extends Component {
                 <Breadcrumb>
                     <Breadcrumb.Item>
                         Movie List
-                        </Breadcrumb.Item>
+                    </Breadcrumb.Item>
                     <Breadcrumb.Item active>
-                        {this.props.movieInfo.title}
+                        {/* {this.props.movieInfo.title} */}
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <div>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getMovies } from '../../actions/getMovies';
+import { getMovies } from './getMovies';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
-import Header from './Header';
+import Header from '../MoviePage/components/Header';
 
 import './index.css';
 

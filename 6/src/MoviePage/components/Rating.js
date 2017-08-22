@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRating } from '../../actions/getRating';
+import { getRating } from '../getRating';
 import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
     return {
+        login: store.user.login,        
         rating: store.rating,
     };
 }
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        getRating: (rateVal, movieIdVal) => dispatch(getRating(rateVal, movieIdVal)),
+        getRating: (rateVal, movieIdVal, loginVal) => dispatch(getRating(rateVal, movieIdVal, loginVal)),
     })
 }
 
@@ -29,7 +30,8 @@ class Rating extends Component {
             const movieIdVal = this.props.movieId;
             this.props.getRating(
                 this.state.rating,
-                movieIdVal
+                movieIdVal,
+                this.props.login
             );
         });
     };
