@@ -37,8 +37,11 @@ class MoviesList extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-        this.setState((prevState) => ({
-            moviesListToDisplay: this.getMovies(prevState.loadMoviesAmount)
+    }
+
+    componentWillReceiveProps() {
+        this.setState((prevState, props) => ({
+            moviesListToDisplay: props.movies.slice(0, prevState.loadMoviesAmount)
         }))
     }
 
@@ -64,7 +67,6 @@ class MoviesList extends Component {
         if (this.getDocHeight() - 20 <= this.getScrollY() + window.innerHeight) {
             this.setState((prevState) => ({
                 loadMoviesAmount: prevState.loadMoviesAmount + 10,
-                moviesListToDisplay: this.getMovies(prevState.loadMoviesAmount)
             }))
         }
     }
@@ -85,7 +87,7 @@ class MoviesList extends Component {
     }
 
     filterMovies = () => {
-        const moviesList = this.props.movies.filter(movie => {
+        const moviesList = this.state.moviesListToDisplay.filter(movie => {
             return movie.title.toLowerCase().indexOf(
                 this.state.search.toLowerCase()) !== -1;
         });
@@ -123,25 +125,8 @@ class MoviesList extends Component {
         })
     }
 
-    getMovies = (moviesLoadAmount) => {
-        return this.props.movies.slice(0, moviesLoadAmount).map(movie => {
-            return <div key={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
-                    <Paper zDepth={1} className='movie-list__movie'>
-                        <div><img src={movie.images[0]} /></div>
-                        <section className="movie-list__movie-description">
-                            <h2>{movie.title}</h2>
-                            <p>{movie.description}</p>
-                            <p><b>Year: {movie.year}</b></p>
-                        </section>
-                    </Paper>
-                </Link>
-            </div>
-        })
-    }
-
     render() {
-        console.log(this.state.moviesListToDisplay)
+        console.log(this.state.moviesListToDisplay.filterMovies())
         return (
             <div >
                 <header>
@@ -162,8 +147,7 @@ class MoviesList extends Component {
                         <option value="year: oldest first">year: oldest first</option>
                     </select>
                 </div>
-                <div>{this.getMovies(this.state.moviesLoadAmount)}</div>
-                <div>{this.state.moviesListToDisplay}</div>
+                <div>{this.filterMovies()}</div>
             </div >
         );
     }
