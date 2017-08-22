@@ -126,7 +126,7 @@ class MoviesList extends Component {
     }
 
     render() {
-        console.log(this.state.moviesListToDisplay.filterMovies())
+        console.log(this.state.moviesListToDisplay)
         return (
             <div >
                 <header>
@@ -147,7 +147,20 @@ class MoviesList extends Component {
                         <option value="year: oldest first">year: oldest first</option>
                     </select>
                 </div>
-                <div>{this.filterMovies()}</div>
+                <div>{this.state.moviesListToDisplay.map(movie => {
+                    return <div key={movie.id}>
+                        <Link to={`/movie/${movie.id}`}>
+                            <Paper zDepth={1} className='movie-list__movie'>
+                                <div><img src={movie.images[0]} /></div>
+                                <section className="movie-list__movie-description">
+                                    <h2>{movie.title}</h2>
+                                    <p>{movie.description}</p>
+                                    <p><b>Year: {movie.year}</b></p>
+                                </section>
+                            </Paper>
+                        </Link>
+                    </div>
+                })}</div>
             </div >
         );
     }
