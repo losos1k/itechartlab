@@ -27,7 +27,7 @@ class MoviesList extends Component {
             search: '',
             sortOrder: 'title: A-Z',
             loadMoviesAmount: 10,
-            moviesListToDisplay: null,
+            moviesListToDisplay: [],
         };
     }
 
@@ -37,30 +37,36 @@ class MoviesList extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-        this.setState({
-            moviesListToDisplay: this.props.movies.slice(0, this.state.loadMoviesAmount).map(movie => {
-                return <div key={movie.id}>
-                    <Link to={`/movie/${movie.id}`}>
-                        <Paper zDepth={1} className='movie-list__movie'>
-                            <div><img src={movie.images[0]} /></div>
-                            <section className="movie-list__movie-description">
-                                <h2>{movie.title}</h2>
-                                <p>{movie.description}</p>
-                                <p><b>Year: {movie.year}</b></p>
-                            </section>
-                        </Paper>
-                    </Link>
-                </div>
-            })
-        })
+        this.setState((prevState) => ({
+            moviesListToDisplay: this.getMovies(prevState.loadMoviesAmount)
+        }))
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.handleScroll);
     }
 
+    getDocHeight = () => {
+        return Math.max(
+            document.body.scrollHeight, document.documentElement.scrollHeight,
+            document.body.offsetHeight, document.documentElement.offsetHeight,
+            document.body.clientHeight, document.documentElement.clientHeight
+        );
+    }
+
+    getScrollY = () => {
+        let scrOfY = 0;
+        scrOfY = document.body.scrollTop;
+        return scrOfY;
+    }
+
     handleScroll = () => {
-        this.setState({ loadMoviesAmount: 20 })
+        if (this.getDocHeight() - 20 <= this.getScrollY() + window.innerHeight) {
+            this.setState((prevState) => ({
+                loadMoviesAmount: prevState.loadMoviesAmount + 10,
+                moviesListToDisplay: this.getMovies(prevState.loadMoviesAmount)
+            }))
+        }
     }
 
     handleSearch = (e) => {
@@ -78,30 +84,47 @@ class MoviesList extends Component {
         this.props.history.push(`/`)
     }
 
-    getMovies = (moviesLoadAmount) => {
+    filterMovies = () => {
         const moviesList = this.props.movies.filter(movie => {
             return movie.title.toLowerCase().indexOf(
                 this.state.search.toLowerCase()) !== -1;
         });
-        let sortedList = '';
+        let filteredList = [];
         switch (this.state.sortOrder) {
             case 'title: A-Z':
-                sortedList = _.orderBy(moviesList, 'title', 'asc');
+                filteredList = _.orderBy(moviesList, 'title', 'asc');
                 break;
 
             case 'title: Z-A':
-                sortedList = _.orderBy(moviesList, 'title', 'desc');
+                filteredList = _.orderBy(moviesList, 'title', 'desc');
                 break;
 
             case 'year: oldest first':
-                sortedList = _.orderBy(moviesList, 'year', 'asc');
+                filteredList = _.orderBy(moviesList, 'year', 'asc');
                 break;
 
             case 'year: newest first':
-                sortedList = _.orderBy(moviesList, 'year', 'desc');
+                filteredList = _.orderBy(moviesList, 'year', 'desc');
                 break;
         }
-        return sortedList.slice(0, moviesLoadAmount).map(movie => {
+        return filteredList.map(movie => {
+            return <div key={movie.id}>
+                <Link to={`/movie/${movie.id}`}>
+                    <Paper zDepth={1} className='movie-list__movie'>
+                        <div><img src={movie.images[0]} /></div>
+                        <section className="movie-list__movie-description">
+                            <h2>{movie.title}</h2>
+                            <p>{movie.description}</p>
+                            <p><b>Year: {movie.year}</b></p>
+                        </section>
+                    </Paper>
+                </Link>
+            </div>
+        })
+    }
+
+    getMovies = (moviesLoadAmount) => {
+        return this.props.movies.slice(0, moviesLoadAmount).map(movie => {
             return <div key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
                     <Paper zDepth={1} className='movie-list__movie'>
@@ -118,7 +141,7 @@ class MoviesList extends Component {
     }
 
     render() {
-        var movies = this.getMovies(10);
+        console.log(this.state.moviesListToDisplay)
         return (
             <div >
                 <header>
@@ -138,14 +161,9 @@ class MoviesList extends Component {
                         <option value="year: newest first">year: newest first</option>
                         <option value="year: oldest first">year: oldest first</option>
                     </select>
-                    {/* <DropDownMenu value={this.state.sortOrder} onChange={this.handleSelect}>
-                        <MenuItem value="title: A-Z" primaryText="title: A-Z" />
-                        <MenuItem value="title: Z-A" primaryText="title: Z-A" />
-                        <MenuItem value="year: newest first" primaryText="year: newest first" />
-                        <MenuItem value="year: oldest first" primaryText="year: oldest first" />
-                    </DropDownMenu> */}
                 </div>
-                <div>{movies}</div>
+                <div>{this.getMovies(this.state.moviesLoadAmount)}</div>
+                <div>{this.state.moviesListToDisplay}</div>
             </div >
         );
     }

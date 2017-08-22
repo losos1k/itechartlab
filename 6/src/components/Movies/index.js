@@ -116,11 +116,9 @@ class MovieInfo extends Component {
             <div>
                 <header>
                     <Breadcrumb>
-                        <Link to={`/movies`}>
-                            <Breadcrumb.Item>
-                                Movie List
+                        <Breadcrumb.Item>
+                            Movie List
                         </Breadcrumb.Item>
-                        </Link>
                         <Breadcrumb.Item active>
                             {movieInfo.title}
                         </Breadcrumb.Item>
@@ -157,7 +155,7 @@ class MovieInfo extends Component {
                         onChange={this.handleCommentInput}
                     /><br />
                     <Paper zDepth={1} className="movie-info__comments-item">{mappedComments}</Paper>
-                    <RaisedButton label="Send comment" fullWidth={true} onClick={this.hadleCommentSubmit} />
+                    <RaisedButton label="Send comment" fullWidth={true} onClick={this.hadleCommentSubmit} primary={true} />
                 </section>
             </div>
         );
