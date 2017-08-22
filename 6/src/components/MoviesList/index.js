@@ -87,7 +87,7 @@ class MoviesList extends Component {
     }
 
     filterMovies = () => {
-        const moviesList = this.state.moviesListToDisplay.filter(movie => {
+        const moviesList = this.props.movies.slice(0, this.state.loadMoviesAmount).filter(movie => {
             return movie.title.toLowerCase().indexOf(
                 this.state.search.toLowerCase()) !== -1;
         });
@@ -147,20 +147,7 @@ class MoviesList extends Component {
                         <option value="year: oldest first">year: oldest first</option>
                     </select>
                 </div>
-                <div>{this.state.moviesListToDisplay.map(movie => {
-                    return <div key={movie.id}>
-                        <Link to={`/movie/${movie.id}`}>
-                            <Paper zDepth={1} className='movie-list__movie'>
-                                <div><img src={movie.images[0]} /></div>
-                                <section className="movie-list__movie-description">
-                                    <h2>{movie.title}</h2>
-                                    <p>{movie.description}</p>
-                                    <p><b>Year: {movie.year}</b></p>
-                                </section>
-                            </Paper>
-                        </Link>
-                    </div>
-                })}</div>
+                <div>{this.filterMovies()}</div>
             </div >
         );
     }
