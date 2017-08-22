@@ -100,7 +100,7 @@ class MoviesList extends Component {
             return <div key={movie.id}>
                 <Link to={`/movie/${movie.id}`}>
                     <Paper zDepth={1} className='movie-list__movie'>
-                        <div><img src={movie.images[0]} /></div>
+                        <div><img src={movie.poster} /></div>
                         <section className="movie-list__movie-description">
                             <h2>{movie.title}</h2>
                             <p>{movie.description}</p>
