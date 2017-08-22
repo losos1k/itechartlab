@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter, Route, Redirect, Link } from 'react-router-dom'
 import { Breadcrumb } from 'react-bootstrap';
-import FlatButton from 'material-ui/FlatButton';
+
+import Logout from './Logout';
 
 const mapStateToProps = (store) => {
     return {
@@ -32,7 +32,7 @@ class Header extends Component {
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <p>{this.props.login}</p>
-                <FlatButton label="Logout" primary={true} onClick={this.logout} />
+                <Logout history={this.props.history}/>
             </header>
         );
     }

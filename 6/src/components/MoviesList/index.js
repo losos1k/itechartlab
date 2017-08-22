@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getMovies } from '../../actions/getMovies';
 import _ from 'lodash';
-import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
 import MovieInfo from '../Movies/index';
+
+import Header from './Header';
 
 import './index.css';
 
@@ -66,13 +67,6 @@ class MoviesList extends Component {
         this.setState({ sortOrder: e.target.value })
     }
 
-    logout = () => {
-        localStorage.removeItem('login');
-        localStorage.removeItem('password');
-        localStorage.removeItem('isLogin');
-        this.props.history.push(`/`)
-    }
-
     filterMovies = () => {
         const moviesList = this.props.movies.slice(0, this.state.loadMoviesAmount).filter(movie => {
             return movie.title.toLowerCase().indexOf(
@@ -115,11 +109,7 @@ class MoviesList extends Component {
     render() {
         return (
             <div >
-                <header>
-                    <h3>Movie List</h3>
-                    <p>{this.props.login}</p>
-                    <FlatButton label="Logout" primary={true} onClick={this.logout} />
-                </header>
+                <Header history={this.props.history} />
                 <div className="movie-list__movie-filter">
                     <TextField
                         hintText="For example: Fight Club..."
