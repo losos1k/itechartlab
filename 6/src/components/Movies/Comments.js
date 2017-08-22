@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const mapStateToProps = (store) => {
     return {
+        login: store.user.login,
         comments: store.comments,
     };
 }
