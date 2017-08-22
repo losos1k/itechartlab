@@ -27,7 +27,6 @@ class MoviesList extends Component {
             search: '',
             sortOrder: 'title: A-Z',
             loadMoviesAmount: 10,
-            moviesListToDisplay: [],
         };
     }
 
@@ -37,12 +36,6 @@ class MoviesList extends Component {
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll);
-    }
-
-    componentWillReceiveProps() {
-        this.setState((prevState, props) => ({
-            moviesListToDisplay: props.movies.slice(0, prevState.loadMoviesAmount)
-        }))
     }
 
     componentWillUnmount() {
@@ -57,14 +50,8 @@ class MoviesList extends Component {
         );
     }
 
-    getScrollY = () => {
-        let scrOfY = 0;
-        scrOfY = document.body.scrollTop;
-        return scrOfY;
-    }
-
     handleScroll = () => {
-        if (this.getDocHeight() - 20 <= this.getScrollY() + window.innerHeight) {
+        if (this.getDocHeight() - 100 <= document.body.scrollTop + window.innerHeight) {
             this.setState((prevState) => ({
                 loadMoviesAmount: prevState.loadMoviesAmount + 10,
             }))
@@ -126,7 +113,6 @@ class MoviesList extends Component {
     }
 
     render() {
-        console.log(this.state.moviesListToDisplay)
         return (
             <div >
                 <header>

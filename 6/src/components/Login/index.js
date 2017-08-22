@@ -70,23 +70,23 @@ export default class Login extends Component {
   }
 
   render() {
-    let message = this.state.message;
+    let errorLoginMessage = this.state.message;
 
     return (
       <BrowserRouter history={history}>
-        <div className="login-form">
-          <TextField
-            hintText="Type your login here"
-            floatingLabelText="Login"
-            onChange={this.handleLogin} /><br />
-          <TextField
-            hintText="Type your password here"
-            floatingLabelText="Password"
-            onChange={this.handlePassword} /><br />
-          <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
-
-          {message && <div>{message}</div>}
-
+        <div>
+          <div className="login-form">
+            <TextField
+              hintText="Type your login here"
+              floatingLabelText="Login"
+              onChange={this.handleLogin} /><br />
+            <TextField
+              hintText="Type your password here"
+              floatingLabelText="Password"
+              onChange={this.handlePassword} /><br />
+            <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
+            {errorLoginMessage && <div className="error__login-message">{errorLoginMessage}</div>}
+          </div>
         </div>
       </BrowserRouter>
     );

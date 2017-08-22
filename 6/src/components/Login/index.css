@@ -1,3 +1,8 @@
 .login-form{
     text-align: center
 }
+
+.error__login-message{
+    color: #B71C1C;
+    margin-top: 10px;
+}
