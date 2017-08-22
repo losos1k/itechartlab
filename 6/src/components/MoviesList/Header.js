@@ -16,8 +16,10 @@ class MoviesList extends Component {
         return (
             <header>
                 <h3>Movie List</h3>
-                <p>{this.props.login}</p>
-                <Logout history={this.props.history} />
+                <div>
+                    <p>You logged in as <b>{this.props.login}</b></p>
+                    <Logout history={this.props.history} />
+                </div>
             </header>
         );
     }

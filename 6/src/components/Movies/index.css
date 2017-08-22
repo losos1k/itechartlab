@@ -16,7 +16,6 @@
     padding: 5px;
     overflow: hidden;
     width: 200px;
-    height: 200px;
 }
 
 .carousel-control, .carousel-control:hover, .carousel-control:focus{
@@ -25,4 +24,18 @@
 
 .movie-info__comments-item{
     padding: 10px;
+}
+
+.movie-info__images img{
+    height: -webkit-fill-available;    
+}
+
+.movie-info__images{
+    text-align: center;   
+}
+
+.carousel{
+    display: inline-block;
+    text-align: center;
+    width: 100%;
 }

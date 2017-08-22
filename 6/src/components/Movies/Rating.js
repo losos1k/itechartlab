@@ -38,7 +38,7 @@ class Rating extends Component {
         const movieRating = this.props.rating.filter(rating => rating.movieId === this.props.movieId);
         const mappedRating = movieRating.map((rating, index) => rating.rating)
         const index = mappedRating.length - 1;
-        let ratingValue = mappedRating[index]
+        let ratingValue = mappedRating[index];
 
         return (
             <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />

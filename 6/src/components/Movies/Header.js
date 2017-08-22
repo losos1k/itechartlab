@@ -31,8 +31,10 @@ class Header extends Component {
                         {this.props.movieInfo.title}
                     </Breadcrumb.Item>
                 </Breadcrumb>
-                <p>{this.props.login}</p>
-                <Logout history={this.props.history}/>
+                <div>
+                    <p>You logged in as <b>{this.props.login}</b></p>
+                    <Logout history={this.props.history} />
+                </div>
             </header>
         );
     }

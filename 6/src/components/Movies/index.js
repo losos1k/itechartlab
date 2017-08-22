@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Paper from 'material-ui/Paper';
+import Dialog from 'material-ui/Dialog';
 
 import './index.css';
 import '../MoviesList/index.css';
@@ -17,8 +18,24 @@ const mapStateToProps = (store) => {
 }
 @connect(mapStateToProps)
 class MovieInfo extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            open: false,
+        }
+    }
+
     static defaultProps = {
         movies: [],
+    };
+
+    handleOpen = () => {
+        this.setState({ open: true });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
     };
 
     render() {
@@ -30,16 +47,24 @@ class MovieInfo extends Component {
                 <Header movieInfo={movieInfo} history={this.props.history} />
                 <section className="movie-info">
                     <Paper zDepth={1} className='movie-list__movie'>
-                        <div><img src={movieInfo.poster} /></div>
+                        <div onClick={this.handleOpen}><img src={movieInfo.poster} /></div>
+                        <Dialog
+                            modal={false}
+                            className="movie-info__images"
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                        >
+                            <img src={movieInfo.poster} />
+                        </Dialog>
                         <section className="movie-list__movie-description">
                             <h2>{movieInfo.title}</h2>
                             <p>{movieInfo.description}</p>
                             <p><b>Year: {movieInfo.year}</b></p>
+                            <Rating movieId={this.props.match.params.id} />
                         </section>
                     </Paper>
                     <Gallery movieId={this.props.match.params.id} movieInfo={movieInfo} />
                 </section>
-                <Rating movieId={this.props.match.params.id} />
                 <Comments movieId={this.props.match.params.id} />
             </div>
         );

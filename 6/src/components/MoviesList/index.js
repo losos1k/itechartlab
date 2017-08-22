@@ -6,8 +6,6 @@ import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 
-import MovieInfo from '../Movies/index';
-
 import Header from './Header';
 
 import './index.css';

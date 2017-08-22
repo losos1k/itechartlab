@@ -71,8 +71,6 @@ class Comments extends Component {
                     hintText="Type your comment here..."
                     floatingLabelText="Comment"
                     fullWidth={true}
-                    multiLine={true}
-                    rows={2}
                     onChange={this.handleCommentInput}
                 /><br />
                 <Paper zDepth={1} className="movie-info__comments-item">{mappedComments}</Paper>

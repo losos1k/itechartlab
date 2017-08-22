@@ -35,6 +35,15 @@ header h3{
     margin: 0;
 }
 
+header p{
+    margin-right: 10px;
+    display: inline-block;
+}
+
 .movie-list__movie-filter{
     text-align: center;
+}
+
+.movie-list__movie-filter select{
+    margin-left: 30px;
 }
