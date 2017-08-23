@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRatingAction } from '../getRatingAction';
+import { getRatingAction } from '../movieInfoActions';
 import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
