@@ -107,7 +107,7 @@ class MoviesList extends Component {
     render() {
         return (
             <div >
-                <Header history={this.props.history} />
+                <Header history={this.props.history} page="Movie List" />
                 <div className="movie-list__movie-filter">
                     <TextField
                         hintText="For example: Fight Club..."

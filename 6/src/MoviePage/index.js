@@ -44,7 +44,7 @@ class MovieInfo extends Component {
 
         return (
             <div>
-                <Header movieInfo={movieInfo} history={this.props.history} />
+                <Header movieInfo={movieInfo} history={this.props.history} page="Movie"/>
                 <section className="movie-info">
                     <Paper zDepth={1} className='movie-list__movie'>
                         <div onClick={this.handleOpen}><img src={movieInfo.poster} /></div>
