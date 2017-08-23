@@ -8,11 +8,15 @@ class Gallery extends Component {
 
         this.state = {
             open: false,
+            pic: null
         }
     }
 
-    handleOpen = () => {
-        this.setState({ open: true });
+    handleOpen = (currentPhoto) => {
+        this.setState({
+            open: true,
+            pic: currentPhoto,
+        });
     };
 
     handleClose = () => {
@@ -22,14 +26,14 @@ class Gallery extends Component {
     getGallery = (sliceStart, sliceEnd) => {
         return this.props.movieInfo.images.slice(sliceStart, sliceEnd).map((photo, index) => {
             return <span key={index}>
-                <img src={photo} onClick={this.handleOpen} />
+                <img src={photo} onClick={() => this.handleOpen(photo)} />
                 <Dialog
                     modal={false}
-                    className="movie-info__images"
+                    className="movie-info__images-gallery"
                     open={this.state.open}
                     onRequestClose={this.handleClose}
                 >
-                    <img src={photo} />
+                    <img src={this.state.pic} />
                 </Dialog>
             </span>
         });
