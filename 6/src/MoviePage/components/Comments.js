@@ -61,7 +61,7 @@ class Comments extends Component {
         const movieComments = this.props.comments.filter(comment => comment.movieId === this.props.movieId);
         const mappedComments = movieComments.map((comment, index) => {
             return <p key={index}>
-                {comment.commentAuthor} commented on {comment.commentDate}: {comment.commentText}
+                <b>{comment.commentAuthor}</b> commented on {comment.commentDate}: <b>{comment.commentText}</b>
             </p>
         });
 
