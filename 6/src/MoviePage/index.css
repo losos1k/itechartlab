@@ -5,11 +5,12 @@
 }
 
 .movie-info img{
-    width: 400px;
+    width: 280px;
     cursor: pointer;
 }
 
 .movie-info__gallery{
+    padding: 10px;
     text-align: center;
 }
 
