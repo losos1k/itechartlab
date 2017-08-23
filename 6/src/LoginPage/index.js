@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getLogin } from './getLogin'
+import { getLoginAction } from './getLoginAction'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,8 +9,8 @@ import './index.css';
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    getLogin: (loginVal, passwordVal) => {
-      dispatch(getLogin(loginVal, passwordVal))
+    getLoginAction: (loginVal, passwordVal) => {
+      dispatch(getLoginAction(loginVal, passwordVal))
     }
   })
 }
@@ -60,7 +60,7 @@ export default class Login extends Component {
   }
 
   setUser = () => {
-    this.props.getLogin(localStorage.getItem('login'), localStorage.getItem('password'));
+    this.props.getLoginAction(localStorage.getItem('login'), localStorage.getItem('password'));
     localStorage.setItem('isLogin', true)
     this.pushToNextPage();
   }

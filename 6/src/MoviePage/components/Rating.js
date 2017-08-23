@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRating } from '../getRating';
+import { getRatingAction } from '../getRatingAction';
 import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
@@ -12,7 +12,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        getRating: (rateVal, movieIdVal, loginVal) => dispatch(getRating(rateVal, movieIdVal, loginVal)),
+        getRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(getRatingAction(rateVal, movieIdVal, loginVal)),
     })
 }
 
@@ -28,7 +28,7 @@ class Rating extends Component {
     handleRating = (rateVal) => {
         this.setState({ rating: rateVal }, () => {
             const movieIdVal = this.props.movieId;
-            this.props.getRating(
+            this.props.getRatingAction(
                 this.state.rating,
                 movieIdVal,
                 this.props.login

@@ -4,7 +4,7 @@ import storeCreate from './storeCreate'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import { getMovies } from './MovieListPage/getMovies';
+import { getMoviesAction } from './MovieListPage/getMoviesAction';
 
 import Login from './LoginPage/index'
 import MoviesList from './MovieListPage/index'
@@ -18,7 +18,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    getMovies: () => dispatch(getMovies())
+    getMoviesAction: () => dispatch(getMoviesAction())
   })
 }
 
@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentWillMount () {
-    this.props.getMovies();
+    this.props.getMoviesAction();
   }
 
   render() {

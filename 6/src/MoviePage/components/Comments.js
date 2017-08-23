@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getComments } from '../getComments';
+import { getCommentsAction } from '../getCommentsAction';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,8 +14,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        getComments: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
-            dispatch(getComments(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
+        getCommentsAction: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
+            dispatch(getCommentsAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
         },
     })
 }
@@ -50,7 +50,7 @@ class Comments extends Component {
     };
 
     hadleCommentSubmit = (e) => {
-        this.props.getComments(
+        this.props.getCommentsAction(
             this.state.commentAuthor,
             this.state.commentDate,
             this.state.commentText,

@@ -1,6 +1,6 @@
 import { CHANGE_LOGIN } from '../actionTypes';
 
-export function getLogin(loginVal, passwordVal) {
+export function getLoginAction(loginVal, passwordVal) {
     return {
         type: CHANGE_LOGIN,
         login: loginVal,

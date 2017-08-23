@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getMovies } from './getMovies';
+import { getMoviesAction } from './getMoviesAction';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
