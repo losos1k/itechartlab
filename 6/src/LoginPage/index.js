@@ -5,6 +5,7 @@ import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
+import Paper from 'material-ui/Paper';
 
 import './index.css';
 
@@ -85,8 +86,8 @@ export default class Login extends Component {
 
     return (
       <BrowserRouter history={history}>
-        <div>
-          <div className="login-form">
+        <div className="login-form-wrapper">
+          <Paper zDepth={1} className="login-form">
             <TextField
               hintText="Type your login here"
               floatingLabelText="Login"
@@ -105,9 +106,9 @@ export default class Login extends Component {
               >
                 {errorLoginMessage}
               </Dialog>}
-          </div>
+          </Paper>
         </div>
-      </BrowserRouter>
+      </BrowserRouter >
     );
   }
 }
