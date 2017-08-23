@@ -43,14 +43,10 @@ class Gallery extends Component {
         return (
             <Carousel indicators={false} interval={null}>
                 <Carousel.Item className="movie-info__gallery">
-                    <Glyphicon glyph="chevron-left" />
                     {this.getGallery(0, 5)}
-                    <Glyphicon glyph="chevron-right" />
                 </Carousel.Item>
                 <Carousel.Item className="movie-info__gallery">
-                    <Glyphicon glyph="chevron-left" />
                     {this.getGallery(5, 10)}
-                    <Glyphicon glyph="chevron-right" />
                 </Carousel.Item>
             </Carousel>
         );
