@@ -1,4 +1,4 @@
-import { GET_RATING, REPLACE_RATING } from '../actionTypes'
+import { GET_RATING } from '../actionTypes'
 
 const commentsReducer = (state = [], action) => {
 
@@ -8,12 +8,6 @@ const commentsReducer = (state = [], action) => {
             return [...state, action.rating];
             break;
         }
-
-        case REPLACE_RATING: (state, action) => ({
-            ...state,
-            items: state.items.filter(item => action.payload !== item),
-            lastUpdated: Date.now() 
-          })
     }
     return state;
 };
