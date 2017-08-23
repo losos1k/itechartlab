@@ -4,6 +4,7 @@ import { getLoginAction } from './getLoginAction'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
 
 import './index.css';
 
@@ -29,7 +30,8 @@ export default class Login extends Component {
     this.state = {
       login: '',
       password: '',
-      message: null
+      message: null,
+      open: false,
     };
   }
 
@@ -47,6 +49,14 @@ export default class Login extends Component {
     this.setState({ password: e.target.value });
   }
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   handleSubmit = (e) => {
     if (!localStorage.getItem('isLogin') && (this.state.login.length > 3) && (this.state.password.length > 3)) {
       localStorage.setItem('login', this.state.login);
@@ -54,6 +64,7 @@ export default class Login extends Component {
       this.setUser();
     } else {
       this.setState({
+        open: true,
         message: 'Your login or password is too short!'
       });
     }
@@ -82,10 +93,18 @@ export default class Login extends Component {
               onChange={this.handleLogin} /><br />
             <TextField
               hintText="Type your password here"
+              type="password"
               floatingLabelText="Password"
               onChange={this.handlePassword} /><br />
             <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
-            {errorLoginMessage && <div className="error__login-message">{errorLoginMessage}</div>}
+            {errorLoginMessage &&
+              <Dialog
+                modal={false}
+                open={this.state.open}
+                onRequestClose={this.handleClose}
+              >
+                {errorLoginMessage}
+              </Dialog>}
           </div>
         </div>
       </BrowserRouter>
