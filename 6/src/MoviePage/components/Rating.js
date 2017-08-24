@@ -38,14 +38,22 @@ class Rating extends Component {
     };
 
     render() {
+        let ratingValue = 0;
         const movieRating = this.props.rating.filter(rating => rating.movieId === this.props.movieId);
         const mappedRating = movieRating.map((rating, index) => rating.rating)
-        console.log(mappedRating)
-        const index = 0;
-        let ratingValue = mappedRating[index];
+        let sum = mappedRating.reduce((a, b) => a + b, 0);
+        sum === 0 ? ratingValue = 0 : ratingValue = (sum / mappedRating.length).toFixed(2);
 
         return (
-            <ReactStars count={5} onChange={this.handleRating} size={24} color2={'#ffd700'} value={ratingValue} />
+            <div>
+                <ReactStars
+                    count={5}
+                    onChange={this.handleRating}
+                    size={24}
+                    color2={'#ffd700'}
+                    value={Math.round(ratingValue)} />
+                {ratingValue !== NaN && <span><b>Rating: </b>{ratingValue} of 5</span>}
+            </div>
         );
     }
 }
