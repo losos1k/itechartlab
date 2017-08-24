@@ -32,14 +32,38 @@ export default class Login extends Component {
       login: '',
       password: '',
       message: null,
-      open: false,
+      dialogOpen: false,
     };
   }
 
   componentDidMount() {
-    if (localStorage.getItem('isLogin')) {
+    if (this.getIsLoginValue()) {
       this.setUser();
     }
+  }
+
+  setLoginValue = () => {
+    return localStorage.setItem('login', this.state.login);
+  }
+
+  setPasswordValue = () => {
+    return localStorage.setItem('password', this.state.password);
+  }
+
+  getLoginValue = () => {
+    return localStorage.getItem('login');
+  }
+
+  getPasswordValue = () => {
+    return localStorage.getItem('password');
+  }
+
+  setIsLoginValue = () => {
+    return localStorage.setItem('isLogin', true);
+  }
+
+  getIsLoginValue = () => {
+    return localStorage.getItem('isLogin');
   }
 
   handleLogin = (e) => {
@@ -51,29 +75,29 @@ export default class Login extends Component {
   }
 
   handleOpen = () => {
-    this.setState({ open: true });
+    this.setState({ dialogOpen: true });
   };
 
   handleClose = () => {
-    this.setState({ open: false });
+    this.setState({ dialogOpen: false });
   };
 
   handleSubmit = (e) => {
-    if (!localStorage.getItem('isLogin') && (this.state.login.length > 3) && (this.state.password.length > 3)) {
-      localStorage.setItem('login', this.state.login);
-      localStorage.setItem('password', this.state.password);
+    if (!this.getIsLoginValue() && (this.state.login.length > 3) && (this.state.password.length > 3)) {
+      this.setLoginValue();
+      this.setPasswordValue();
       this.setUser();
     } else {
       this.setState({
-        open: true,
+        dialogOpen: true,
         message: 'Your login or password is too short!'
       });
     }
   }
 
   setUser = () => {
-    this.props.getLoginAction(localStorage.getItem('login'), localStorage.getItem('password'));
-    localStorage.setItem('isLogin', true)
+    this.props.getLoginAction(this.getLoginValue(), this.getPasswordValue());
+    this.setIsLoginValue();
     this.pushToNextPage();
   }
 
@@ -101,7 +125,7 @@ export default class Login extends Component {
             {errorLoginMessage &&
               <Dialog
                 modal={false}
-                open={this.state.open}
+                open={this.state.dialogOpen}
                 onRequestClose={this.handleClose}
               >
                 {errorLoginMessage}

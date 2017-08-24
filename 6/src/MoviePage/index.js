@@ -22,7 +22,7 @@ class MovieInfo extends Component {
         super();
 
         this.state = {
-            open: false,
+            dialogOpen: false,
         }
     }
 
@@ -31,11 +31,11 @@ class MovieInfo extends Component {
     };
 
     handleOpen = () => {
-        this.setState({ open: true });
+        this.setState({ dialogOpen: true });
     };
 
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({ dialogOpen: false });
     };
 
     render() {
@@ -51,7 +51,7 @@ class MovieInfo extends Component {
                         <Dialog
                             modal={false}
                             className="movie-info__images"
-                            open={this.state.open}
+                            open={this.state.dialogOpen}
                             onRequestClose={this.handleClose}
                         >
                             <img src={movieInfo.poster} />

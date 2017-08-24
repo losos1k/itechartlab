@@ -7,20 +7,20 @@ class Gallery extends Component {
         super();
 
         this.state = {
-            open: false,
+            dialogOpen: false,
             pic: null
         }
     }
 
     handleOpen = (currentPhoto) => {
         this.setState({
-            open: true,
+            dialogOpen: true,
             pic: currentPhoto,
         });
     };
 
     handleClose = () => {
-        this.setState({ open: false });
+        this.setState({ dialogOpen: false });
     };
 
     getGallery = (sliceStart, sliceEnd) => {
@@ -30,7 +30,7 @@ class Gallery extends Component {
                 <Dialog
                     modal={false}
                     className="movie-info__images-gallery"
-                    open={this.state.open}
+                    open={this.state.dialogOpen}
                     onRequestClose={this.handleClose}
                 >
                     <img src={this.state.pic} />
