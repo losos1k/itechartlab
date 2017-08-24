@@ -10,6 +10,11 @@ import Header from '../MoviePage/components/Header';
 
 import './index.css';
 
+const sortAZ = 'title: A-Z';
+const sortZA = 'title: Z-A';
+const sortYearOldFirst = 'year: oldest first';
+const sortYearNewFirst = 'year: newest first';
+
 const mapStateToProps = (store) => {
     return {
         movies: store.movies.movies,
@@ -24,7 +29,7 @@ class MoviesList extends Component {
 
         this.state = {
             search: '',
-            sortOrder: 'title: A-Z',
+            sortOrder: sortAZ,
             loadMoviesAmount: 10,
         };
     }
@@ -72,19 +77,19 @@ class MoviesList extends Component {
         });
         let filteredList = [];
         switch (this.state.sortOrder) {
-            case 'title: A-Z':
+            case sortAZ:
                 filteredList = _.orderBy(moviesList, 'title', 'asc');
                 break;
 
-            case 'title: Z-A':
+            case sortZA:
                 filteredList = _.orderBy(moviesList, 'title', 'desc');
                 break;
 
-            case 'year: oldest first':
+            case sortYearOldFirst:
                 filteredList = _.orderBy(moviesList, 'year', 'asc');
                 break;
 
-            case 'year: newest first':
+            case sortYearNewFirst:
                 filteredList = _.orderBy(moviesList, 'year', 'desc');
                 break;
         }
@@ -115,10 +120,10 @@ class MoviesList extends Component {
                         onChange={this.handleSearch}
                         value={this.state.search} />
                     <select value={this.state.sortOrder} onChange={this.handleSelect}>
-                        <option value="title: A-Z">title: A-Z</option>
-                        <option value="title: Z-A">title: Z-A</option>
-                        <option value="year: newest first">year: newest first</option>
-                        <option value="year: oldest first">year: oldest first</option>
+                        <option value={sortAZ}>{sortAZ}</option>
+                        <option value={sortZA}>{sortZA}</option>
+                        <option value={sortYearOldFirst}>{sortYearOldFirst}</option>
+                        <option value={sortYearNewFirst}>{sortYearNewFirst}</option>
                     </select>
                 </div>
                 <div>{this.filterMovies()}</div>
