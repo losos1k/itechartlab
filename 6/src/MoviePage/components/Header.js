@@ -18,7 +18,7 @@ class Header extends Component {
 
         this.state = {
             page: props.page,
-            breadCrump: null
+            breadCrumpActive: null
         }
     }
 
@@ -27,27 +27,8 @@ class Header extends Component {
     }
 
     componentWillMount() {
-        if (this.state.page === "Movie List") {
-            this.setState({
-                breadCrump:
-                <Breadcrumb>
-                    <Breadcrumb.Item active>
-                        {this.state.page}
-                    </Breadcrumb.Item>
-                </Breadcrumb>
-            })
-        } else if (this.state.page === "Movie") {
-            this.setState({
-                breadCrump:
-                <Breadcrumb>
-                    <Breadcrumb.Item>
-                        <span onClick={this.pushToMoviesListPage}>Movie List</span>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active>
-                        {this.props.movieInfo.title}
-                    </Breadcrumb.Item>
-                </Breadcrumb>
-            })
+        if (this.state.page === "Movie") {
+            this.setState({ breadCrumpActive: true })
         }
     }
 
@@ -55,7 +36,21 @@ class Header extends Component {
 
         return (
             <header>
-                {this.state.breadCrump}
+                {this.state.breadCrumpActive ||
+                    <Breadcrumb>
+                        <Breadcrumb.Item active>
+                            {this.state.page}
+                        </Breadcrumb.Item>
+                    </Breadcrumb>}
+                {this.state.breadCrumpActive &&
+                    <Breadcrumb>
+                        <Breadcrumb.Item>
+                            <span onClick={this.pushToMoviesListPage}>Movie List</span>
+                        </Breadcrumb.Item>
+                        <Breadcrumb.Item active>
+                            {this.props.movieInfo.title}
+                        </Breadcrumb.Item>
+                    </Breadcrumb>}
                 <div>
                     <p>You logged in as <b>{this.props.login}</b></p>
                     <Logout history={this.props.history} />
