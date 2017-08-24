@@ -1,27 +1,31 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getLoginAction } from './getLoginAction'
+import { getMoviesAction } from '../MovieListPage/getMoviesAction';
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
+import * as userLocalStorage from '../services/userLocalStorage';
 
 import './index.css';
-
-const mapDispatchToProps = () => {
-  return dispatch => ({
-    getLoginAction: (loginVal, passwordVal) => {
-      dispatch(getLoginAction(loginVal, passwordVal))
-    }
-  })
-}
 
 const mapStateToProps = (store) => {
   return {
     login: store.user.login,
     password: store.user.password,
+    movies: store.movies
   };
+}
+
+const mapDispatchToProps = () => {
+  return dispatch => ({
+    getLoginAction: (loginVal, passwordVal) => {
+      dispatch(getLoginAction(loginVal, passwordVal))
+    },
+    getMoviesAction: () => dispatch(getMoviesAction())
+  })
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -37,33 +41,10 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.getIsLoginValue()) {
+    this.props.getMoviesAction();
+    if (userLocalStorage.getIsLoginValue()) {
       this.setUser();
     }
-  }
-
-  setLoginValue = () => {
-    return localStorage.setItem('login', this.state.login);
-  }
-
-  setPasswordValue = () => {
-    return localStorage.setItem('password', this.state.password);
-  }
-
-  getLoginValue = () => {
-    return localStorage.getItem('login');
-  }
-
-  getPasswordValue = () => {
-    return localStorage.getItem('password');
-  }
-
-  setIsLoginValue = () => {
-    return localStorage.setItem('isLogin', true);
-  }
-
-  getIsLoginValue = () => {
-    return localStorage.getItem('isLogin');
   }
 
   handleLogin = (e) => {
@@ -83,9 +64,9 @@ export default class Login extends Component {
   };
 
   handleSubmit = (e) => {
-    if (!this.getIsLoginValue() && (this.state.login.length > 3) && (this.state.password.length > 3)) {
-      this.setLoginValue();
-      this.setPasswordValue();
+    if (!userLocalStorage.getIsLoginValue() && (this.state.login.length > 3) && (this.state.password.length > 3)) {
+      userLocalStorage.setLoginValue(this.state.login);
+      userLocalStorage.setPasswordValue(this.state.password);
       this.setUser();
     } else {
       this.setState({
@@ -96,8 +77,8 @@ export default class Login extends Component {
   }
 
   setUser = () => {
-    this.props.getLoginAction(this.getLoginValue(), this.getPasswordValue());
-    this.setIsLoginValue();
+    this.props.getLoginAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue());
+    userLocalStorage.setIsLoginValue();
     this.pushToNextPage();
   }
 
