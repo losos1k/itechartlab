@@ -1,4 +1,4 @@
-import { GET_COMMENT, GET_RATING } from '../actionTypes';
+import { GET_COMMENT, GET_RATING, REPLACE_RATING } from '../actionTypes';
 
 export function movieInfoActions(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) {
     return {
@@ -15,6 +15,17 @@ export function movieInfoActions(commentAuthorVal, commentDateVal, commentTextVa
 export function getRatingAction(rateVal, movieIdVal, loginVal) {
     return {
         type: GET_RATING,
+        rating: {
+            rating: rateVal,
+            movieId: movieIdVal,
+            login: loginVal,
+        }
+    }
+}
+
+export function replaceRatingAction(rateVal, movieIdVal, loginVal) {
+    return {
+        type: REPLACE_RATING,
         rating: {
             rating: rateVal,
             movieId: movieIdVal,

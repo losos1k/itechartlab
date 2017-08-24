@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRatingAction } from '../movieInfoActions';
+import { getRatingAction, replaceRatingAction } from '../movieInfoActions';
 import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
     return {
-        login: store.user.login,        
+        login: store.user.login,
         rating: store.rating,
     };
 }
@@ -13,33 +13,35 @@ const mapStateToProps = (store) => {
 const mapDispatchToProps = () => {
     return dispatch => ({
         getRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(getRatingAction(rateVal, movieIdVal, loginVal)),
+        replaceRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(replaceRatingAction(rateVal, movieIdVal, loginVal)),
     })
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
 class Rating extends Component {
-    constructor() {
-        super();
-        this.state = {
-            rating: [],
-        };
-    };
 
     handleRating = (rateVal) => {
-        this.setState({ rating: rateVal }, () => {
-            const movieIdVal = this.props.movieId;
-            this.props.getRatingAction(
-                this.state.rating,
+        const movieIdVal = this.props.movieId;
+        if (this.props.rating.some(rating => rating.login === this.props.login && rating.movieId === movieIdVal)) {
+            this.props.replaceRatingAction(
+                rateVal,
                 movieIdVal,
                 this.props.login
-            );
-        });
+            )
+        } else {
+            this.props.getRatingAction(
+                rateVal,
+                movieIdVal,
+                this.props.login
+            )
+        }
     };
 
     render() {
         const movieRating = this.props.rating.filter(rating => rating.movieId === this.props.movieId);
         const mappedRating = movieRating.map((rating, index) => rating.rating)
-        const index = mappedRating.length - 1;
+        console.log(mappedRating)
+        const index = 0;
         let ratingValue = mappedRating[index];
 
         return (

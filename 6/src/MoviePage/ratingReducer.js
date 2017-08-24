@@ -1,6 +1,6 @@
-import { GET_RATING } from '../actionTypes'
+import { GET_RATING, REPLACE_RATING } from '../actionTypes'
 
-const commentsReducer = (state = [], action) => {
+const ratingReducer = (state = [], action) => {
 
     switch (action.type) {
 
@@ -8,8 +8,18 @@ const commentsReducer = (state = [], action) => {
             return [...state, action.rating];
             break;
         }
+
+        case REPLACE_RATING: {
+            return [
+                ...state.filter(rating => {
+                    return rating.login !== action.rating.login || rating.movieId !== action.rating.movieId
+                }),
+                action.rating
+            ]
+            break;
+        }
     }
     return state;
 };
 
-export default commentsReducer;
+export default ratingReducer;
