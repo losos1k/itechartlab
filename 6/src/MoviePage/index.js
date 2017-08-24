@@ -13,7 +13,7 @@ import Header from './components/Header';
 
 const mapStateToProps = (store) => {
     return {
-        movies: store.movies.movies,
+        movies: store.movies,
     };
 }
 @connect(mapStateToProps)

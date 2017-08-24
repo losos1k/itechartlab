@@ -17,7 +17,7 @@ const sortYearNewFirst = 'year: newest first';
 
 const mapStateToProps = (store) => {
     return {
-        movies: store.movies.movies,
+        movies: store.movies,
         login: store.user.login,
     };
 }

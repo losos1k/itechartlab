@@ -8,7 +8,7 @@ import Logout from './Logout';
 const mapStateToProps = (store) => {
     return {
         login: store.user.login,
-        movies: store.movies.movies,
+        movies: store.movies,
     };
 }
 @connect(mapStateToProps)
