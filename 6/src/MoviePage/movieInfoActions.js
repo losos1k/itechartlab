@@ -1,8 +1,8 @@
-import { GET_COMMENT, GET_RATING, REPLACE_RATING } from '../actionTypes';
+import { SET_COMMENT, SET_RATING, UPDATE_RATING } from '../actionTypes';
 
-export function movieInfoActions(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) {
+export function setCommentAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) {
     return {
-        type: GET_COMMENT,
+        type: SET_COMMENT,
         comments: {
             commentAuthor: commentAuthorVal,
             commentDate: commentDateVal,
@@ -12,9 +12,9 @@ export function movieInfoActions(commentAuthorVal, commentDateVal, commentTextVa
     }
 }
 
-export function getRatingAction(rateVal, movieIdVal, loginVal) {
+export function setRatingAction(rateVal, movieIdVal, loginVal) {
     return {
-        type: GET_RATING,
+        type: SET_RATING,
         rating: {
             rating: rateVal,
             movieId: movieIdVal,
@@ -23,9 +23,9 @@ export function getRatingAction(rateVal, movieIdVal, loginVal) {
     }
 }
 
-export function replaceRatingAction(rateVal, movieIdVal, loginVal) {
+export function updateRatingAction(rateVal, movieIdVal, loginVal) {
     return {
-        type: REPLACE_RATING,
+        type: UPDATE_RATING,
         rating: {
             rating: rateVal,
             movieId: movieIdVal,

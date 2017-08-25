@@ -1,10 +1,10 @@
-import { GET_COMMENT } from '../actionTypes'
+import { SET_COMMENT } from '../actionTypes'
 
 const commentsReducer = (state = [], action) => {
 
     switch (action.type) {
 
-        case GET_COMMENT: {
+        case SET_COMMENT: {
             return [...state, action.comments];
             break;
         }

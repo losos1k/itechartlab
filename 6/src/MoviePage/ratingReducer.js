@@ -1,15 +1,15 @@
-import { GET_RATING, REPLACE_RATING } from '../actionTypes'
+import { SET_RATING, UPDATE_RATING } from '../actionTypes'
 
 const ratingReducer = (state = [], action) => {
 
     switch (action.type) {
 
-        case GET_RATING: {
+        case SET_RATING: {
             return [...state, action.rating];
             break;
         }
 
-        case REPLACE_RATING: {
+        case UPDATE_RATING: {
             return [
                 ...state.filter(rating => {
                     return rating.login !== action.rating.login || rating.movieId !== action.rating.movieId

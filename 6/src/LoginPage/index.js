@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getLoginAction } from './getLoginAction'
-import { getMoviesAction } from '../MovieListPage/getMoviesAction';
+import { setUserAction } from './setUserAction'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -15,16 +14,14 @@ const mapStateToProps = (store) => {
   return {
     login: store.user.login,
     password: store.user.password,
-    movies: store.movies
   };
 }
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    getLoginAction: (loginVal, passwordVal) => {
-      dispatch(getLoginAction(loginVal, passwordVal))
+    setUserAction: (loginVal, passwordVal) => {
+      dispatch(setUserAction(loginVal, passwordVal))
     },
-    getMoviesAction: () => dispatch(getMoviesAction())
   })
 }
 
@@ -41,7 +38,6 @@ export default class Login extends Component {
   }
 
   componentDidMount() {
-    this.props.getMoviesAction();
     if (userLocalStorage.getIsLoginValue()) {
       this.setUser();
     }
@@ -77,7 +73,7 @@ export default class Login extends Component {
   }
 
   setUser = () => {
-    this.props.getLoginAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue());
+    this.props.setUserAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue());
     userLocalStorage.setIsLoginValue();
     this.pushToNextPage();
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRatingAction, replaceRatingAction } from '../movieInfoActions';
+import { setRatingAction, updateRatingAction } from '../movieInfoActions';
 import ReactStars from 'react-stars'
 
 const mapStateToProps = (store) => {
@@ -12,8 +12,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        getRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(getRatingAction(rateVal, movieIdVal, loginVal)),
-        replaceRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(replaceRatingAction(rateVal, movieIdVal, loginVal)),
+        setRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(setRatingAction(rateVal, movieIdVal, loginVal)),
+        updateRatingAction: (rateVal, movieIdVal, loginVal) => dispatch(updateRatingAction(rateVal, movieIdVal, loginVal)),
     })
 }
 
@@ -23,13 +23,13 @@ class Rating extends Component {
     handleRating = (rateVal) => {
         const movieIdVal = this.props.movieId;
         if (this.props.rating.some(rating => rating.login === this.props.login && rating.movieId === movieIdVal)) {
-            this.props.replaceRatingAction(
+            this.props.updateRatingAction(
                 rateVal,
                 movieIdVal,
                 this.props.login
             )
         } else {
-            this.props.getRatingAction(
+            this.props.setRatingAction(
                 rateVal,
                 movieIdVal,
                 this.props.login
