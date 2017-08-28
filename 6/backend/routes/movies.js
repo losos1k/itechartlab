@@ -1,6 +1,7 @@
-var express = require('express');
+import express from 'express';
+import dbMoviesModel from '../data/movies';
+
 var router = express.Router();
-var dbMoviesModel = require('../data/movies');
 
 router.get('/', function (req, res, next) {
   dbMoviesModel.find(function (err, movies) {
@@ -8,4 +9,4 @@ router.get('/', function (req, res, next) {
   });
 });
 
-module.exports = router;
+export default router;

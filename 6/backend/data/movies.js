@@ -1,7 +1,9 @@
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
+import mongo from 'mongodb';
+import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost:27017/movies');
+mongoose.connect('mongodb://localhost:27017/movies', {
+  useMongoClient: true,
+});
 var dbMoviesModel = mongoose.model('movies', {
   id: Number,
   title: String,
@@ -11,4 +13,4 @@ var dbMoviesModel = mongoose.model('movies', {
   images: Array
 })
 
-module.exports = dbMoviesModel;
+export default dbMoviesModel;
