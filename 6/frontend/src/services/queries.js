@@ -6,3 +6,10 @@ export function getMoviesFromJson() {
             return response.data;
         })
 }
+
+export function sendUserInfo(login, password) {
+    return axios.post('http://localhost:3000/users', {
+        login: login,
+        password: password
+    })
+}

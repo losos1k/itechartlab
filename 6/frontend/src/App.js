@@ -8,11 +8,11 @@ import MoviesList from './MovieListPage/index'
 import MovieInfo from './MoviePage/index'
 
 class App extends Component {
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
 
-    this.store = storeCreate();
-  }
+  //   this.store = storeCreate();
+  // }
 
   render() {
     return (
