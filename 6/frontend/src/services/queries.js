@@ -13,8 +13,7 @@ export function sendUserInfo(login, password, loginType) {
         password: password
     })
         .then((response) => {
-            console.log(response.data)
             return response.data;
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err.response.data))
 }

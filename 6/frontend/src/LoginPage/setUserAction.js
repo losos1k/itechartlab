@@ -9,6 +9,7 @@ export const setUserAction = (loginVal, passwordVal, loginType) => (dispatch) =>
                 login: data.login,
                 password: data.password,
             })
+            return Promise.resolve();
         })
         .catch(err => console.log(err))
 }

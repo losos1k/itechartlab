@@ -34,7 +34,7 @@ passport.use(new LocalStrategy(
         if (isMatch) {
           return done(null, user);
         } else {
-          return done(null, false, { message: 'Incorrect password.' })
+          return done(null, false)
         }
       });
     });
@@ -44,9 +44,11 @@ router.post('/login', function (req, res) {
   passport.authenticate('local');
   dbUsersModel.findOne({ login: req.body.login }, function (err, user) {
     if (err) throw err;
-    res.send(user);
+    if (!user) {
+      return res.status(401).send('No such user');
+    }
+    res.json(user);
   })
-  // res.json(user);
 });
 
 export default router;
