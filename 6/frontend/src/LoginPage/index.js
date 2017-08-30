@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import Paper from 'material-ui/Paper';
 import * as userLocalStorage from '../services/userLocalStorage';
+import FlatButton from 'material-ui/FlatButton';
 
 import './index.css';
 
@@ -19,8 +20,8 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    setUserAction: (loginVal, passwordVal) => {
-      dispatch(setUserAction(loginVal, passwordVal))
+    setUserAction: (loginVal, passwordVal, loginType) => {
+      dispatch(setUserAction(loginVal, passwordVal, loginType))
     },
   })
 }
@@ -34,6 +35,9 @@ export default class Login extends Component {
       password: '',
       message: null,
       dialogOpen: false,
+      isRegistrationPage: false,
+      isLoginPage: true,
+      loginType: 'login'
     };
   }
 
@@ -59,6 +63,22 @@ export default class Login extends Component {
     this.setState({ dialogOpen: false });
   };
 
+  handleMoveToLoginPage = () => {
+    this.setState({
+      isRegistrationPage: false,
+      isLoginPage: true,
+      loginType: 'login'
+    })
+  }
+
+  handleMoveToRegistrationPage = () => {
+    this.setState({
+      isRegistrationPage: true,
+      isLoginPage: false,
+      loginType: 'register'
+    })
+  }
+
   handleSubmit = (e) => {
     if (!userLocalStorage.getIsLoginValue() && (this.state.login.length > 3) && (this.state.password.length > 3)) {
       userLocalStorage.setLoginValue(this.state.login);
@@ -73,7 +93,7 @@ export default class Login extends Component {
   }
 
   setUser = () => {
-    this.props.setUserAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue());
+    this.props.setUserAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue(), this.state.loginType);
     userLocalStorage.setIsLoginValue();
     this.pushToNextPage();
   }
@@ -84,30 +104,71 @@ export default class Login extends Component {
 
   render() {
     let errorLoginMessage = this.state.message;
+    let isRegistrationPage = this.state.isRegistrationPage;
+    let isLoginPage = this.state.isLoginPage;
 
     return (
       <BrowserRouter history={history}>
-        <div className="login-form-wrapper">
-          <Paper zDepth={1} className="login-form">
-            <TextField
-              hintText="Type your login here"
-              floatingLabelText="Login"
-              onChange={this.handleLogin} /><br />
-            <TextField
-              hintText="Type your password here"
-              type="password"
-              floatingLabelText="Password"
-              onChange={this.handlePassword} /><br />
-            <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
-            {errorLoginMessage &&
-              <Dialog
-                modal={false}
-                open={this.state.dialogOpen}
-                onRequestClose={this.handleClose}
-              >
-                {errorLoginMessage}
-              </Dialog>}
-          </Paper>
+        <div>
+          {isRegistrationPage &&
+            <div className="login-form-wrapper">
+              <Paper zDepth={1} className="login-form">
+                <TextField
+                  hintText="Type your login here"
+                  floatingLabelText="Login"
+                  onChange={this.handleLogin} /><br />
+                <TextField
+                  hintText="Type your password here"
+                  type="password"
+                  floatingLabelText="Password"
+                  onChange={this.handlePassword} /><br />
+                <TextField
+                  hintText="Type your password here"
+                  type="password"
+                  floatingLabelText="Confirm password"
+                  onChange={this.handlePassword} /><br />
+                <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
+                <FlatButton label="Log In"
+                  primary={true}
+                  onClick={this.handleMoveToLoginPage} />
+                {errorLoginMessage &&
+                  <Dialog
+                    modal={false}
+                    open={this.state.dialogOpen}
+                    onRequestClose={this.handleClose}
+                  >
+                    {errorLoginMessage}
+                  </Dialog>}
+              </Paper>
+            </div>
+          }
+          {isLoginPage &&
+            <div className="login-form-wrapper">
+              <Paper zDepth={1} className="login-form">
+                <TextField
+                  hintText="Type your login here"
+                  floatingLabelText="Login"
+                  onChange={this.handleLogin} /><br />
+                <TextField
+                  hintText="Type your password here"
+                  type="password"
+                  floatingLabelText="Password"
+                  onChange={this.handlePassword} /><br />
+                <RaisedButton label="Submit" primary={true} onClick={this.handleSubmit} />
+                <FlatButton label="Register"
+                  primary={true}
+                  onClick={this.handleMoveToRegistrationPage} />
+                {errorLoginMessage &&
+                  <Dialog
+                    modal={false}
+                    open={this.state.dialogOpen}
+                    onRequestClose={this.handleClose}
+                  >
+                    {errorLoginMessage}
+                  </Dialog>}
+              </Paper>
+            </div>
+          }
         </div>
       </BrowserRouter >
     );

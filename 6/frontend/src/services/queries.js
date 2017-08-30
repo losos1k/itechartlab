@@ -7,9 +7,14 @@ export function getMoviesFromJson() {
         })
 }
 
-export function sendUserInfo(login, password) {
-    return axios.post('http://localhost:3000/users', {
+export function sendUserInfo(login, password, loginType) {
+    return axios.post('http://localhost:3000/users/' + loginType, {
         login: login,
         password: password
     })
+        .then((response) => {
+            console.log(response.data)
+            return response.data;
+        })
+        .catch(err => console.log(err))
 }

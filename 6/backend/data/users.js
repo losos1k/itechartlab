@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/users', {
+mongoose.connect('mongodb://localhost/movies', {
     useMongoClient: true,
 });
 
@@ -20,3 +20,14 @@ module.exports.createUser = function (newUser, callback) {
         });
     });
 };
+
+module.exports.getUserById = function (login, callback) {
+    return dbUsersModel.findOne({ login: login }, callback)
+}
+
+module.exports.comparePassword = function (candidatePassword, hash, callback) {
+    bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
+        if (err) throw err;
+        callback(null, isMatch);
+    });
+}

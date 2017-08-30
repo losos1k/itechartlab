@@ -1,13 +1,14 @@
 import { sendUserInfo } from '../services/queries';
 import { SET_USER } from '../actionTypes';
 
-export const setUserAction = (loginVal, passwordVal) => (dispatch) => {
-    return sendUserInfo(loginVal, passwordVal)
-        .then(() => {
+export const setUserAction = (loginVal, passwordVal, loginType) => (dispatch) => {
+    return sendUserInfo(loginVal, passwordVal, loginType)
+        .then(data => {
             dispatch({
                 type: SET_USER,
-                login: loginVal,
-                password: passwordVal,
+                login: data.login,
+                password: data.password,
             })
-        });
+        })
+        .catch(err => console.log(err))
 }
