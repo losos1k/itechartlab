@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setCommentAction } from '../movieInfoActions';
+import { setCommentAction, getComments, resetComments } from '../movieInfoActions';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,8 +14,14 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
+        getComments: (movieIdVal) => {
+            return dispatch(getComments(movieIdVal))
+        },
         setCommentAction: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
-            dispatch(setCommentAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
+            return dispatch(setCommentAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
+        },
+        resetComments: () => {
+            return dispatch(resetComments())
         },
     })
 }
@@ -28,13 +34,21 @@ class Comments extends Component {
             commentAuthor: '',
             commentDate: '',
             commentText: '',
-            movieId: '',
+            movieId: ''
         };
     };
 
     static defaultProps = {
         comments: [],
     };
+
+    componentWillMount = () => {
+        this.props.getComments(this.props.movieId);
+    }
+
+    componentWillUnmount = () => {
+        this.props.resetComments();
+    }
 
     handleCommentInput = (e) => {
         const movieIdVal = this.props.movieId;
@@ -58,8 +72,7 @@ class Comments extends Component {
     };
 
     render() {
-        const movieComments = this.props.comments.filter(comment => comment.movieId === this.props.movieId);
-        const mappedComments = movieComments.map((comment, index) => {
+        const mappedComments = this.props.comments.map((comment, index) => {
             return <p key={index}>
                 <b>{comment.commentAuthor}</b> commented on {comment.commentDate}: <b>{comment.commentText}</b>
             </p>

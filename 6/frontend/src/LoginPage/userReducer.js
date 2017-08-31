@@ -1,11 +1,16 @@
-import { SET_USER } from '../actionTypes'
+import { SET_USER, LOGOUT } from '../actionTypes'
 
 const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
 
         case SET_USER: {
-            return { ...state, login: action.login, password: action.password };
+            return { ...state, login: action.login, id: action.id };
+            break;
+        }
+
+        case LOGOUT: {
+            return initialState;
             break;
         }
     }
@@ -14,7 +19,7 @@ const userReducer = (state = initialState, action) => {
 
 const initialState = {
     login: null,
-    password: null
+    id: null
 };
 
 export default userReducer;

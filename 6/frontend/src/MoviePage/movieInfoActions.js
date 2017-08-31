@@ -1,14 +1,35 @@
-import { SET_COMMENT, SET_RATING, UPDATE_RATING } from '../actionTypes';
+import { sendComment, getCommentsFromDB } from '../services/queries';
+import { SET_COMMENT, SET_RATING, UPDATE_RATING, UPDATE_COMMENT, RESET_COMMENT } from '../actionTypes';
 
-export function setCommentAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) {
+export const getComments = (movieIdVal) => (dispatch) => {
+    return getCommentsFromDB(movieIdVal)
+        .then(data => {
+            dispatch({
+                type: SET_COMMENT,
+                comments: data,
+            })
+        });
+}
+
+export const setCommentAction = (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => (dispatch) => {
+    return sendComment(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal)
+        .then(data => {
+            dispatch({
+                type: UPDATE_COMMENT,
+                comments: {
+                    commentAuthor: data.commentAuthor,
+                    commentDate: data.commentDate,
+                    commentText: data.commentText,
+                    movieId: data.movieId
+                }
+            })
+            return Promise.resolve();
+        })
+}
+
+export function resetComments() {
     return {
-        type: SET_COMMENT,
-        comments: {
-            commentAuthor: commentAuthorVal,
-            commentDate: commentDateVal,
-            commentText: commentTextVal,
-            movieId: movieIdVal
-        }
+        type: RESET_COMMENT
     }
 }
 

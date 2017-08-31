@@ -1,5 +1,5 @@
 import express from 'express';
-import dbMoviesModel from '../data/movies';
+import dbMoviesModel from '../models/movies';
 
 var router = express.Router();
 

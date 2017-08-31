@@ -2,11 +2,6 @@ import mongo from 'mongodb';
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/movies', {
-    useMongoClient: true,
-});
-
 var dbUsersModel = module.exports = mongoose.model('users', {
     login: String,
     password: String
@@ -21,7 +16,7 @@ module.exports.createUser = function (newUser, callback) {
     });
 };
 
-module.exports.getUserById = function (login, callback) {
+module.exports.getUserByName = function (login, callback) {
     return dbUsersModel.findOne({ login: login }, callback)
 }
 

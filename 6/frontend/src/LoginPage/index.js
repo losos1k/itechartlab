@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setUserAction } from './setUserAction'
+import { userActions } from './userActions'
 import { BrowserRouter, withRouter } from 'react-router-dom'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,14 +14,14 @@ import './index.css';
 const mapStateToProps = (store) => {
   return {
     login: store.user.login,
-    password: store.user.password,
+    id: store.user.id,
   };
 }
 
 const mapDispatchToProps = () => {
   return dispatch => ({
-    setUserAction: (loginVal, passwordVal, loginType) => {
-      dispatch(setUserAction(loginVal, passwordVal, loginType))
+    userActions: (loginVal, passwordVal, loginType) => {
+      return dispatch(userActions(loginVal, passwordVal, loginType))
     },
   })
 }
@@ -93,9 +93,17 @@ export default class Login extends Component {
   }
 
   setUser = () => {
-    this.props.setUserAction(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue(), this.state.loginType);
-    userLocalStorage.setIsLoginValue();
-    this.pushToNextPage();
+    this.props.userActions(userLocalStorage.getLoginValue(), userLocalStorage.getPasswordValue(), this.state.loginType)
+      .then(() => {
+        userLocalStorage.setIsLoginValue();
+        this.pushToNextPage();
+      })
+      .catch((error) => {
+        this.setState({
+          dialogOpen: true,
+          message: 'Invalid login or password'
+        });
+      });
   }
 
   pushToNextPage = () => {

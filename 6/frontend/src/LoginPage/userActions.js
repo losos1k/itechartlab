@@ -1,15 +1,20 @@
 import { sendUserInfo } from '../services/queries';
-import { SET_USER } from '../actionTypes';
+import { SET_USER, LOGOUT } from '../actionTypes';
 
-export const setUserAction = (loginVal, passwordVal, loginType) => (dispatch) => {
+export const userActions = (loginVal, passwordVal, loginType) => (dispatch) => {
     return sendUserInfo(loginVal, passwordVal, loginType)
         .then(data => {
             dispatch({
                 type: SET_USER,
+                id: data._id,
                 login: data.login,
-                password: data.password,
             })
             return Promise.resolve();
         })
-        .catch(err => console.log(err))
+}
+
+export function logout() {
+    return {
+        type: LOGOUT
+    }
 }

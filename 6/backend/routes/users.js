@@ -1,9 +1,28 @@
 import express from 'express';
 import passport from 'passport';
-import dbUsersModel from '../data/users';
+import dbUsersModel from '../models/users';
 
 var LocalStrategy = require('passport-local').Strategy;
 var router = express.Router();
+
+passport.use(new LocalStrategy(
+  function (login, password, done) {
+    dbUsersModel.getUserByName(login, function (err, user) {
+      if (err) throw err;
+      if (!user) {
+        return done(null, false);
+      }
+
+      dbUsersModel.comparePassword(password, user.password, function (err, isMatch) {
+        if (err) throw err;
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false)
+        }
+      });
+    });
+  }));
 
 router.post('/register', function (req, res) {
   var login = req.body.login;
@@ -21,33 +40,21 @@ router.post('/register', function (req, res) {
   res.json(newUser);
 });
 
-passport.use(new LocalStrategy(
-  function (login, password, done) {
-    dbUsersModel.getUserById(login, function (err, user) {
-      if (err) throw err;
-      if (!user) {
-        return done(null, false);
-      }
-
-      dbUsersModel.comparePassword(password, user.password, function (err, isMatch) {
-        if (err) throw err;
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false)
-        }
-      });
-    });
-  }));
-
 router.post('/login', function (req, res) {
   passport.authenticate('local');
   dbUsersModel.findOne({ login: req.body.login }, function (err, user) {
     if (err) throw err;
     if (!user) {
-      return res.status(401).send('No such user');
+      return res.status(401).send();
     }
-    res.json(user);
+    dbUsersModel.comparePassword(req.body.password, user.password, function (err, isMatch) {
+      if (err) throw err;
+      if (isMatch) {
+        return res.json(user);
+      } else {
+        return res.status(402).send();
+      }
+    });
   })
 });
 

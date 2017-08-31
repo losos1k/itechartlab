@@ -4,10 +4,17 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 import index from './routes/index';
 import users from './routes/users';
 import movies from './routes/movies';
+import comments from './routes/comments';
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/movies', {
+  useMongoClient: true,
+});
 
 var app = express();
 
@@ -26,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/movies', movies);
+app.use('/comments', comments);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
