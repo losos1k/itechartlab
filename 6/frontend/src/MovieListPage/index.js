@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setMoviesAction } from './setMoviesAction';
+import { setMovies } from './moviesListActions';
 import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
@@ -24,7 +24,7 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        setMoviesAction: () => dispatch(setMoviesAction())
+        setMovies: () => dispatch(setMovies())
     })
 }
 
@@ -45,7 +45,7 @@ class MoviesList extends Component {
     }
 
     componentDidMount() {
-        this.props.setMoviesAction();
+        this.props.setMovies();
         window.addEventListener('scroll', this.handleScroll);
     }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setCommentAction, getComments, resetComments } from '../movieInfoActions';
+import { addNewComment, getMovieComments, resetMovieComments } from '../movieInfoActions';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -14,14 +14,14 @@ const mapStateToProps = (store) => {
 
 const mapDispatchToProps = () => {
     return dispatch => ({
-        getComments: (movieIdVal) => {
-            return dispatch(getComments(movieIdVal))
+        getMovieComments: (movieIdVal) => {
+            return dispatch(getMovieComments(movieIdVal))
         },
-        setCommentAction: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
-            return dispatch(setCommentAction(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
+        addNewComment: (commentAuthorVal, commentDateVal, commentTextVal, movieIdVal) => {
+            return dispatch(addNewComment(commentAuthorVal, commentDateVal, commentTextVal, movieIdVal))
         },
-        resetComments: () => {
-            return dispatch(resetComments())
+        resetMovieComments: () => {
+            return dispatch(resetMovieComments())
         },
     })
 }
@@ -43,11 +43,11 @@ class Comments extends Component {
     };
 
     componentWillMount = () => {
-        this.props.getComments(this.props.movieId);
+        this.props.getMovieComments(this.props.movieId);
     }
 
     componentWillUnmount = () => {
-        this.props.resetComments();
+        this.props.resetMovieComments();
     }
 
     handleCommentInput = (e) => {
@@ -64,7 +64,7 @@ class Comments extends Component {
     };
 
     hadleCommentSubmit = (e) => {
-        this.props.setCommentAction(
+        this.props.addNewComment(
             this.state.commentAuthor,
             this.state.commentDate,
             this.state.commentText,

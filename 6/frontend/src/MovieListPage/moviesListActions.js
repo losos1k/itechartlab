@@ -1,13 +1,13 @@
-import { getMoviesFromJson } from '../services/queries';
+import { getMoviesList } from '../services/queries';
 import { SET_MOVIES } from '../actionTypes';
 
-export const setMoviesAction = () => (dispatch, getState) => {
+export const setMovies = () => (dispatch, getState) => {
 
     let state = getState();
     let moviesList = state.movies;
 
     if (moviesList.length === 0) {
-        return getMoviesFromJson()
+        return getMoviesList()
             .then(data => {
                 dispatch({
                     type: SET_MOVIES,

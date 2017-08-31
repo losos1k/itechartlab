@@ -1,8 +1,8 @@
-import { sendUserInfo } from '../services/queries';
+import { sendUserData } from '../services/queries';
 import { SET_USER, LOGOUT } from '../actionTypes';
 
 export const userActions = (loginVal, passwordVal, loginType) => (dispatch) => {
-    return sendUserInfo(loginVal, passwordVal, loginType)
+    return sendUserData(loginVal, passwordVal, loginType)
         .then(data => {
             dispatch({
                 type: SET_USER,

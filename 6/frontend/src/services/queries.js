@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export function getMoviesFromJson() {
+export function getMoviesList() {
     return axios.get(`http://localhost:3000/movies`)
         .then(response => {
             return response.data;
         })
 }
 
-export function sendUserInfo(login, password, loginType) {
+export function sendUserData(login, password, loginType) {
     return axios.post('http://localhost:3000/users/' + loginType, {
         login: login,
         password: password
@@ -20,7 +20,7 @@ export function sendUserInfo(login, password, loginType) {
         })
 }
 
-export function getCommentsFromDB(movieId) {
+export function getCommentsList(movieId) {
     return axios.post(`http://localhost:3000/comments`, {
         movieId: movieId
     })
@@ -29,7 +29,7 @@ export function getCommentsFromDB(movieId) {
         })
 }
 
-export function sendComment(commentAuthor, commentDate, commentText, movieId) {
+export function sendNewComment(commentAuthor, commentDate, commentText, movieId) {
     return axios.post(`http://localhost:3000/comments/add`, {
         commentAuthor: commentAuthor,
         commentDate: commentDate,
