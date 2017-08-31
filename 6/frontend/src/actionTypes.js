@@ -6,3 +6,4 @@ export const UPDATE_COMMENT = 'UPDATE_COMMENT';
 export const RESET_COMMENT = 'RESET_COMMENT';
 export const SET_RATING = 'SET_RATING';
 export const UPDATE_RATING = 'UPDATE_RATING';
+export const RESET_RATING = 'RESET_RATING';

@@ -1,5 +1,5 @@
-import { sendNewComment, getCommentsList } from '../services/queries';
-import { SET_COMMENT, SET_RATING, UPDATE_RATING, UPDATE_COMMENT, RESET_COMMENT } from '../actionTypes';
+import { sendNewComment, getCommentsList, getRating, sendNewRating } from '../services/queries';
+import { SET_COMMENT, SET_RATING, UPDATE_RATING, UPDATE_COMMENT, RESET_COMMENT, RESET_RATING } from '../actionTypes';
 
 export const getMovieComments = (movieIdVal) => (dispatch) => {
     return getCommentsList(movieIdVal)
@@ -23,7 +23,6 @@ export const addNewComment = (commentAuthorVal, commentDateVal, commentTextVal, 
                     movieId: data.movieId
                 }
             })
-            return Promise.resolve();
         })
 }
 
@@ -33,24 +32,54 @@ export function resetMovieComments() {
     }
 }
 
-export function setRatingAction(rateVal, movieIdVal, loginVal) {
+export const getMovieRating = (movieIdVal) => (dispatch) => {
+    return getRating(movieIdVal)
+        .then(data => {
+            dispatch({
+                type: SET_RATING,
+                ratings: data,
+            })
+        });
+}
+
+export const addNewRating = (rateVal, movieIdVal, loginVal) => (dispatch) => {
+    return sendNewRating(rateVal, movieIdVal, loginVal)
+        .then(data => {
+            dispatch({
+                type: UPDATE_RATING,
+                rating: {
+                    rating: data.rating,
+                    movieId: data.movieId,
+                    login: data.login,
+                }
+            })
+        })
+}
+
+export function resetMovieRating() {
     return {
-        type: SET_RATING,
-        rating: {
-            rating: rateVal,
-            movieId: movieIdVal,
-            login: loginVal,
-        }
+        type: RESET_RATING
     }
 }
 
-export function updateRatingAction(rateVal, movieIdVal, loginVal) {
-    return {
-        type: UPDATE_RATING,
-        rating: {
-            rating: rateVal,
-            movieId: movieIdVal,
-            login: loginVal,
-        }
-    }
-}
+// export function getMovieRating(rateVal, movieIdVal, loginVal) {
+//     return {
+//         type: SET_RATING,
+//         rating: {
+//             rating: rateVal,
+//             movieId: movieIdVal,
+//             login: loginVal,
+//         }
+//     }
+// }
+
+// export function updateRatingAction(rateVal, movieIdVal, loginVal) {
+//     return {
+//         type: UPDATE_RATING,
+//         rating: {
+//             rating: rateVal,
+//             movieId: movieIdVal,
+//             login: loginVal,
+//         }
+//     }
+// }

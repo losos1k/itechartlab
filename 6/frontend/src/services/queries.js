@@ -40,3 +40,23 @@ export function sendNewComment(commentAuthor, commentDate, commentText, movieId)
             return response.data[0];
         })
 }
+
+export function getRating(movieId) {
+    return axios.post(`http://localhost:3000/ratings`, {
+        movieId: movieId
+    })
+        .then(response => {
+            return response.data;
+        })
+}
+
+export function sendNewRating(rateVal, movieIdVal, loginVal) {
+    return axios.post(`http://localhost:3000/ratings/add`, {
+        rating: rateVal,
+        movieId: movieIdVal,
+        login: loginVal,
+    })
+        .then(response => {
+            return response.data[0];
+        })
+}

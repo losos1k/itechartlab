@@ -1,5 +1,5 @@
 import express from 'express';
-import dbCommentsModel from '../models/comments';
+import dbRatingsModel from '../models/ratings';
 
 var router = express.Router();
 
