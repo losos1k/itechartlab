@@ -57,6 +57,7 @@ export function sendNewRating(rateVal, movieIdVal, loginVal) {
         login: loginVal,
     })
         .then(response => {
-            return response.data[0];
+            console.log(response)
+            return response.data;
         })
 }

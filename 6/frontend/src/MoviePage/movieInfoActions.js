@@ -37,7 +37,7 @@ export const getMovieRating = (movieIdVal) => (dispatch) => {
         .then(data => {
             dispatch({
                 type: SET_RATING,
-                ratings: data,
+                rating: data,
             })
         });
 }
@@ -47,13 +47,10 @@ export const addNewRating = (rateVal, movieIdVal, loginVal) => (dispatch) => {
         .then(data => {
             dispatch({
                 type: UPDATE_RATING,
-                rating: {
-                    rating: data.rating,
-                    movieId: data.movieId,
-                    login: data.login,
-                }
+                rating: data
             })
         })
+        console.log(data)
 }
 
 export function resetMovieRating() {
@@ -61,25 +58,3 @@ export function resetMovieRating() {
         type: RESET_RATING
     }
 }
-
-// export function getMovieRating(rateVal, movieIdVal, loginVal) {
-//     return {
-//         type: SET_RATING,
-//         rating: {
-//             rating: rateVal,
-//             movieId: movieIdVal,
-//             login: loginVal,
-//         }
-//     }
-// }
-
-// export function updateRatingAction(rateVal, movieIdVal, loginVal) {
-//     return {
-//         type: UPDATE_RATING,
-//         rating: {
-//             rating: rateVal,
-//             movieId: movieIdVal,
-//             login: loginVal,
-//         }
-//     }
-// }

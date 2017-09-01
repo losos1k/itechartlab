@@ -10,6 +10,7 @@ import index from './routes/index';
 import users from './routes/users';
 import movies from './routes/movies';
 import comments from './routes/comments';
+import ratings from './routes/ratings';
 
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/movies', {
@@ -34,6 +35,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/movies', movies);
 app.use('/comments', comments);
+app.use('/ratings', ratings);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
