@@ -3,10 +3,13 @@ import dbMoviesModel from '../models/movies';
 
 var router = express.Router();
 
-router.get('/', function (req, res) {
-  dbMoviesModel.find(function (err, movies) {
-    res.send(movies);
-  });
+let getMovies = () => {
+  return dbMoviesModel.find().exec();
+};
+
+router.get('/', (req, res) => {
+  getMovies()
+    .then(movies => res.send(movies));
 });
 
 export default router;

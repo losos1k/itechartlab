@@ -3,23 +3,27 @@ import dbCommentsModel from '../models/comments';
 
 var router = express.Router();
 
-router.post('/', function (req, res) {
-  dbCommentsModel.find({ movieId: req.body.movieId },
-    function (err, comments) {
-      res.send(comments);
-    });
+let getCommentsByMovieId = (movieId) => {
+  return dbCommentsModel.find({ movieId: movieId }).exec();
+};
+
+let insertNewComment = (commentAuthor, commentDate, commentText, movieId) => {
+  return dbCommentsModel.insertMany({
+    commentAuthor: commentAuthor,
+    commentDate: commentDate,
+    commentText: commentText,
+    movieId: movieId,
+  })
+};
+
+router.post('/', (req, res) => {
+  getCommentsByMovieId(req.body.movieId)
+    .then(comments => res.json(comments));
 });
 
-router.post('/add', function (req, res) {
-  dbCommentsModel.insertMany({
-    commentAuthor: req.body.commentAuthor,
-    commentDate: req.body.commentDate,
-    commentText: req.body.commentText,
-    movieId: req.body.movieId,
-  },
-    function (err, comments) {
-      res.json(comments);
-    });
+router.post('/add', (req, res) => {
+  insertNewComment(req.body.commentAuthor, req.body.commentDate, req.body.commentText, req.body.movieId)
+    .then(comments => res.json(comments));
 });
 
 export default router;

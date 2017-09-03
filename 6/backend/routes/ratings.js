@@ -3,61 +3,61 @@ import dbRatingsModel from '../models/ratings';
 
 var router = express.Router();
 
-dbRatingsModel.getMovieById = (movieId, callback) => {
-  return dbRatingsModel.find({ movieId: movieId });
-}
+let getMovieById = (movieId) => {
+  return dbRatingsModel.find({ movieId: movieId }).exec();
+};
 
-dbRatingsModel.getExistingRating = (login, movieId, callback) => {
-  return dbRatingsModel.findOne({ movieId: movieId, login: login });
-}
+let getExistingRating = (movieId, login) => {
+  return dbRatingsModel.find({ movieId: movieId, login: login }).exec();
+};
 
-dbRatingsModel.updateRating = (login, movieId, rating, callback) => {
-  return dbRatingsModel.findOneAndUpdate({ movieId: req.body.movieId, login: req.body.login },
-    { $set: { rating: rating } },
-    { new: true });
-}
+let updateRating = (movieId, login, rating) => {
+  return dbRatingsModel.findOneAndUpdate({ movieId: movieId, login: login }, { $set: { rating: rating } }, { new: true }).exec();
+};
 
-dbRatingsModel.insertNewRating = (login, movieId, callback) => {
-  return dbRatingsModel.insertMany({
-    rating: req.body.rating,
-    movieId: req.body.movieId,
-    login: req.body.login,
-  });
-}
+let insertNewRating = (rating, movieId, login) => {
+  return dbRatingsModel.insertMany({ rating: rating, movieId: movieId, login: login }, { new: true });
+};
 
-getAvg = (movieId) => {
-  getMovieById(movieId, (err, doc) => {
-    let arr = [];
-    doc.forEach(item => {
-      for (var key in item) {
-        arr.push(item[key])
+let getAvg = (movieId) => {
+  return Promise.resolve(getMovieById(movieId)
+    .then(doc => {
+      if (doc.length === 0) {
+        return 0;
+      } else {
+        let arr = [];
+        for (let i = 0; i < doc.length; i++) {
+          for (let key in doc[i]) {
+            if (key === 'rating') {
+              arr.push(doc[i][key]);
+            }
+          }
+        }
+        let sum = arr.reduce((sum, curr) => sum + curr, 0);
+        let avg = +(sum / doc.length).toFixed(2);
+        return avg;
       }
-    })
-    let sum = arr.reduce((sum, curr) => sum + curr, 0);
-    let avg = sum / doc.length.toFixed(2);
-    console.log(doc)
-    // console.log(sum)
-    return avg;
-  })
-}
+    }));
+};
 
 router.post('/', (req, res) => {
-  getMovieById(movieId);
-  res.json({ avg: avg });
+  getAvg(req.body.movieId)
+    .then(avg => res.send({ avg: avg }));
 });
 
-router.post('/add', function (req, res) {
-  getExistingRating(req.body.movieId, req.body.login, (err, ratings) => {
-    if (ratings === null) {
-      insertNewRating(req.body.rating, req.body.movieId, req.body.login, (err, result) => {
-        res.json({ avg: avg });
-      });
-    } else {
-      updateRating(req.body.movieId, req.body.login, req.body.rating, (err, result) => {
-        res.json({ avg: avg });
-      });
-    };
-  })
+router.post('/add', (req, res) => {
+  getExistingRating(req.body.movieId, req.body.login)
+    .then(ratings => {
+      if (ratings.length === 0) {
+        insertNewRating(req.body.rating, req.body.movieId, req.body.login)
+          .then(result => getAvg(req.body.movieId)
+            .then(avg => res.send({ avg: avg })));
+      } else {
+        updateRating(req.body.movieId, req.body.login, req.body.rating)
+          .then(result => getAvg(req.body.movieId)
+            .then(avg => res.send({ avg: avg })));
+      };
+    });
 });
 
 export default router;

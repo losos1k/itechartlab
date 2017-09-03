@@ -98,7 +98,7 @@ export default class Login extends Component {
         userLocalStorage.setIsLoginValue();
         this.pushToNextPage();
       })
-      .catch((error) => {
+      .catch((err) => {
         this.setState({
           dialogOpen: true,
           message: 'Invalid login or password'

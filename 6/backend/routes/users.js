@@ -1,54 +1,62 @@
 import express from 'express';
 import passport from 'passport';
 import dbUsersModel from '../models/users';
+import bcrypt from 'bcryptjs';
 
 var LocalStrategy = require('passport-local').Strategy;
 var router = express.Router();
 
-passport.use(new LocalStrategy(
-  function (login, password, done) {
-    dbUsersModel.getUserByName(login, function (err, user) {
-      if (err) throw err;
-      if (!user) {
-        return done(null, false);
-      }
-
-      dbUsersModel.comparePassword(password, user.password, function (err, isMatch) {
-        if (err) throw err;
-        if (isMatch) {
-          return done(null, user);
-        } else {
-          return done(null, false)
-        }
-      });
+dbUsersModel.createUser = (newUser, callback) => {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
+      newUser.save(callback);
     });
-  }));
+  });
+};
 
-router.post('/register', function (req, res) {
-  var login = req.body.login;
-  var password = req.body.password;
+let getUserByName = (login, callback) => {
+  return dbUsersModel.findOne({ login: login }, callback)
+}
 
-  var newUser = new dbUsersModel({
-    login: login,
-    password: password
-  })
+dbUsersModel.comparePassword = (candidatePassword, hash, callback) => {
+  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+    if (err) {
+      throw err;
+    }
+    callback(null, isMatch);
+  });
+}
 
-  dbUsersModel.createUser(newUser, function (err, user) {
-    if (err) throw err;
-  })
+passport.use(new LocalStrategy((login, password, done) => {
+  getUserByName(login, (err, user) => {
+    if (!user) {
+      return done(null, false);
+    }
 
+    comparePassword(password, user.password, (err, isMatch) => {
+      if (isMatch) {
+        return done(null, user);
+      } else {
+        return done(null, false)
+      }
+    });
+  });
+}));
+
+router.post('/register', (req, res) => {
+  var newUser = new dbUsersModel({ login: req.body.login, password: req.body.password })
+  dbUsersModel.createUser(newUser);
   res.json(newUser);
 });
 
-router.post('/login', function (req, res) {
+router.post('/login', (req, res) => {
   passport.authenticate('local');
-  dbUsersModel.findOne({ login: req.body.login }, function (err, user) {
-    if (err) throw err;
+  getUserByName(req.body.login, (err, user) => {
     if (!user) {
       return res.status(401).send();
     }
-    dbUsersModel.comparePassword(req.body.password, user.password, function (err, isMatch) {
-      if (err) throw err;
+    dbUsersModel.comparePassword(req.body.password, user.password, (err, isMatch) => {
       if (isMatch) {
         return res.json(user);
       } else {

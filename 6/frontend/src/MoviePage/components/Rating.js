@@ -18,6 +18,8 @@ const mapDispatchToProps = () => {
     })
 }
 
+let ratingValue = 0;
+
 @connect(mapStateToProps, mapDispatchToProps)
 class Rating extends Component {
 
@@ -31,7 +33,6 @@ class Rating extends Component {
 
     handleRating = (rateVal) => {
         const movieIdVal = this.props.movieId;
-        console.log(rateVal)
         this.props.addNewRating(
             rateVal,
             movieIdVal,
@@ -40,10 +41,7 @@ class Rating extends Component {
     };
 
     render() {
-        let ratingValue = 0;
-        // const mappedRating = this.props.rating.map((rating, index) => rating.rating)
-        // let sum = this.props.rating.reduce((a, b) => a + b, 0);
-        // sum === 0 ? ratingValue = 0 : ratingValue = (sum / mappedRating.length).toFixed(2);
+        ratingValue = this.props.rating.avg;
 
         return (
             <div>
@@ -52,8 +50,8 @@ class Rating extends Component {
                     onChange={this.handleRating}
                     size={24}
                     color2={'#ffd700'}
-                    value={this.props.rating.rating} />
-                {ratingValue !== NaN && <span><b>Rating: </b>{ratingValue} of 5</span>}
+                    value={ratingValue} />
+                <span><b>Rating: </b>{ratingValue} of 5</span>
             </div>
         );
     }
