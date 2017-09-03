@@ -4,7 +4,7 @@ Itechart Lab task #6
 
 ## Installing
 ```
-git clone
+git clone https://github.com/losos1k/itechartlab/tree/develop-react/6
 ```
 
 ### Frontend part
