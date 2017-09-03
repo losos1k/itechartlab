@@ -1,6 +1,6 @@
-# Project Title
+# Movies catalog site
 
-One Paragraph of project description goes here
+Itechart Lab task #6
 
 ## Installing
 ```
