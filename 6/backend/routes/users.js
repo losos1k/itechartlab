@@ -1,18 +1,18 @@
 import express from 'express';
-import passport from 'passport';
-import dbUsersModel from '../models/users';
 import * as userQueries from '../data/users';
 
 var router = express.Router();
 
 router.post('/register', (req, res) => {
-  var newUser = new dbUsersModel({ login: req.body.login, password: req.body.password });
-  dbUsersModel.createUser(newUser);
-  res.json(newUser);
+  var user = {
+    login: req.body.login,
+    password: req.body.password
+  }
+  userQueries.createUser(user);
+  res.json(user);
 });
 
 router.post('/login', (req, res) => {
-  passport.authenticate('local');
   userQueries.getUserByName(req.body.login, (err, user) => {
     if (!user) {
       return res.status(401).send();
