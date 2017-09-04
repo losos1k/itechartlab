@@ -1,9 +1,8 @@
-import express from 'express';
 import dbUsersModel from '../models/users';
 import bcrypt from 'bcryptjs';
 
 export let createUser = (user, callback) => {
-  var newUser = new dbUsersModel(user);
+  let newUser = new dbUsersModel(user);
 
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
