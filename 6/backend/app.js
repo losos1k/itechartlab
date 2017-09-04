@@ -13,8 +13,10 @@ import movies from './routes/movies';
 import comments from './routes/comments';
 import ratings from './routes/ratings';
 
+var pathToDatabase = `mongodb://localhost/movies`;
+
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/movies', {
+mongoose.connect(pathToDatabase, {
   useMongoClient: true,
 });
 
