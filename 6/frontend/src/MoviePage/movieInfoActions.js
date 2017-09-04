@@ -26,7 +26,7 @@ export const addNewComment = (commentAuthorVal, commentDateVal, commentTextVal, 
         })
 }
 
-export function resetMovieComments() {
+export const resetMovieComments = () => {
     return {
         type: RESET_COMMENT
     }
@@ -50,10 +50,9 @@ export const addNewRating = (rateVal, movieIdVal, loginVal) => (dispatch) => {
                 rating: data
             })
         })
-        console.log(data)
 }
 
-export function resetMovieRating() {
+export const resetMovieRating = () => {
     return {
         type: RESET_RATING
     }
