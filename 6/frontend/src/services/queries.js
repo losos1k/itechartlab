@@ -1,14 +1,15 @@
 import axios from 'axios';
+import { pathToServer } from './serverPath';
 
 export function getMoviesList() {
-    return axios.get(`http://localhost:3000/movies`)
+    return axios.get(pathToServer + `/movies`)
         .then(response => {
             return response.data;
         })
 }
 
 export function sendUserData(login, password, loginType) {
-    return axios.post('http://localhost:3000/users/' + loginType, {
+    return axios.post(pathToServer + `/users/` + loginType, {
         login: login,
         password: password
     })
@@ -21,7 +22,7 @@ export function sendUserData(login, password, loginType) {
 }
 
 export function getCommentsList(movieId) {
-    return axios.post(`http://localhost:3000/comments`, {
+    return axios.post(pathToServer + `/comments`, {
         movieId: movieId
     })
         .then(response => {
@@ -30,7 +31,7 @@ export function getCommentsList(movieId) {
 }
 
 export function sendNewComment(commentAuthor, commentDate, commentText, movieId) {
-    return axios.post(`http://localhost:3000/comments/add`, {
+    return axios.post(pathToServer + `/comments/add`, {
         commentAuthor: commentAuthor,
         commentDate: commentDate,
         commentText: commentText,
@@ -42,7 +43,7 @@ export function sendNewComment(commentAuthor, commentDate, commentText, movieId)
 }
 
 export function getRating(movieId) {
-    return axios.post(`http://localhost:3000/ratings`, {
+    return axios.post(pathToServer + `/ratings`, {
         movieId: movieId
     })
         .then(response => {
@@ -51,7 +52,7 @@ export function getRating(movieId) {
 }
 
 export function sendNewRating(rateVal, movieIdVal, loginVal) {
-    return axios.post(`http://localhost:3000/ratings/add`, {
+    return axios.post(pathToServer + `/ratings/add`, {
         rating: rateVal,
         movieId: movieIdVal,
         login: loginVal,
