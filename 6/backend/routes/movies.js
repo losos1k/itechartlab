@@ -1,11 +1,7 @@
 import express from 'express';
-import dbMoviesModel from '../models/movies';
+import { getMovies } from '../data/movies';
 
 var router = express.Router();
-
-let getMovies = () => {
-  return dbMoviesModel.find().exec();
-};
 
 router.get('/', (req, res) => {
   getMovies()
