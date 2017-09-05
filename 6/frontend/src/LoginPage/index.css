@@ -1,0 +1,15 @@
+.login-form{
+    text-align: center;
+    padding: 60px;
+}
+
+.login-form-wrapper{
+    height: -webkit-fill-available;
+    display: flex;
+    justify-content: center;    
+    align-items: center;
+}
+
+.flat-button-margin{
+    margin-left: 10px;
+}
